@@ -1,0 +1,282 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "demo_seed_1",
+  "seed": 1,
+  "fixture": true,
+  "generated_by": "engine/scripts/run_plan.py",
+  "units": {
+    "mass": "kg",
+    "currency": "INR",
+    "time": "day",
+    "distance": "km",
+    "discount": "percent",
+    "freshness": "percent"
+  },
+  "results": {
+    "baseline": {
+      "strategy": "baseline",
+      "dispatches": [
+        {
+          "batch_id": "B002",
+          "destination_id": "D004",
+          "dispatch_day": 0.0,
+          "quantity_kg": 100.0,
+          "discount_pct": 0.0,
+          "age_at_dispatch_days": 1.0,
+          "remaining_at_arrival_days": 2.5,
+          "effective_price_per_kg": 89.35,
+          "sold_kg": 100.0,
+          "arrived_unsold_kg": 0.0,
+          "gross_revenue": 8935.0,
+          "procurement_cost": 3500.0,
+          "transport_cost": 2400.0,
+          "handling_cost": 100.0,
+          "expected_contribution": 2935.0,
+          "reason": "FEFO: mango batch expiring day 3.5 -> Regional Depot at full price"
+        },
+        {
+          "batch_id": "B002",
+          "destination_id": "D001",
+          "dispatch_day": 0.0,
+          "quantity_kg": 250.0,
+          "discount_pct": 0.0,
+          "age_at_dispatch_days": 1.0,
+          "remaining_at_arrival_days": 3.25,
+          "effective_price_per_kg": 78.16,
+          "sold_kg": 250.0,
+          "arrived_unsold_kg": 0.0,
+          "gross_revenue": 19540.0,
+          "procurement_cost": 8750.0,
+          "transport_cost": 1200.0,
+          "handling_cost": 250.0,
+          "expected_contribution": 9340.0,
+          "reason": "FEFO: mango batch expiring day 3.5 -> City Retail at full price"
+        },
+        {
+          "batch_id": "B003",
+          "destination_id": "D001",
+          "dispatch_day": 0.0,
+          "quantity_kg": 200.0,
+          "discount_pct": 0.0,
+          "age_at_dispatch_days": 1.0,
+          "remaining_at_arrival_days": 4.25,
+          "effective_price_per_kg": 31.51,
+          "sold_kg": 200.0,
+          "arrived_unsold_kg": 0.0,
+          "gross_revenue": 6302.0,
+          "procurement_cost": 2400.0,
+          "transport_cost": 960.0,
+          "handling_cost": 200.0,
+          "expected_contribution": 2742.0,
+          "reason": "FEFO: tomato batch expiring day 4.5 -> City Retail at full price"
+        },
+        {
+          "batch_id": "B001",
+          "destination_id": "D002",
+          "dispatch_day": 0.0,
+          "quantity_kg": 100.0,
+          "discount_pct": 0.0,
+          "age_at_dispatch_days": 2.0,
+          "remaining_at_arrival_days": 17.5,
+          "effective_price_per_kg": 21.07,
+          "sold_kg": 100.0,
+          "arrived_unsold_kg": 0.0,
+          "gross_revenue": 2107.0,
+          "procurement_cost": 800.0,
+          "transport_cost": 1440.0,
+          "handling_cost": 100.0,
+          "expected_contribution": -233.0,
+          "reason": "FEFO: onion batch expiring day 18 -> Suburb Retail at full price"
+        },
+        {
+          "batch_id": "B001",
+          "destination_id": "D004",
+          "dispatch_day": 0.0,
+          "quantity_kg": 100.0,
+          "discount_pct": 0.0,
+          "age_at_dispatch_days": 2.0,
+          "remaining_at_arrival_days": 17.0,
+          "effective_price_per_kg": 19.03,
+          "sold_kg": 100.0,
+          "arrived_unsold_kg": 0.0,
+          "gross_revenue": 1903.0,
+          "procurement_cost": 800.0,
+          "transport_cost": 2400.0,
+          "handling_cost": 100.0,
+          "expected_contribution": -1397.0,
+          "reason": "FEFO: onion batch expiring day 18 -> Regional Depot at full price"
+        }
+      ],
+      "metrics": {
+        "harvested_kg": 750.0,
+        "dispatched_kg": 750.0,
+        "sold_kg": 750.0,
+        "arrived_unsold_kg": 0.0,
+        "fresh_inventory_kg": 0.0,
+        "spoiled_kg": 0.0,
+        "demand_kg": 5800.0,
+        "gross_revenue": 38787.0,
+        "procurement_cost": 16250.0,
+        "transport_cost": 8400.0,
+        "handling_cost": 750.0,
+        "spoilage_cost": 0.0,
+        "net_revenue": 13387.0,
+        "fulfillment_pct": 12.93,
+        "feasible": true,
+        "violations": []
+      },
+      "batch_summary": [
+        {
+          "batch_id": "B001",
+          "harvested_kg": 200.0,
+          "dispatched_kg": 200.0,
+          "sold_kg": 200.0,
+          "arrived_unsold_kg": 0.0,
+          "fresh_inventory_kg": 0.0,
+          "spoiled_kg": 0.0
+        },
+        {
+          "batch_id": "B002",
+          "harvested_kg": 350.0,
+          "dispatched_kg": 350.0,
+          "sold_kg": 350.0,
+          "arrived_unsold_kg": 0.0,
+          "fresh_inventory_kg": 0.0,
+          "spoiled_kg": 0.0
+        },
+        {
+          "batch_id": "B003",
+          "harvested_kg": 200.0,
+          "dispatched_kg": 200.0,
+          "sold_kg": 200.0,
+          "arrived_unsold_kg": 0.0,
+          "fresh_inventory_kg": 0.0,
+          "spoiled_kg": 0.0
+        }
+      ],
+      "reconciliation": {
+        "sum_dispatch_contributions": 13387.0,
+        "spoilage_cost": 0.0,
+        "net_revenue": 13387.0,
+        "check_ok": true
+      }
+    },
+    "planner": {
+      "strategy": "planner",
+      "dispatches": [
+        {
+          "batch_id": "B002",
+          "destination_id": "D001",
+          "dispatch_day": 0.0,
+          "quantity_kg": 350.0,
+          "discount_pct": 0.0,
+          "age_at_dispatch_days": 1.0,
+          "remaining_at_arrival_days": 3.25,
+          "effective_price_per_kg": 78.16,
+          "sold_kg": 350.0,
+          "arrived_unsold_kg": 0.0,
+          "gross_revenue": 27356.0,
+          "procurement_cost": 12250.0,
+          "transport_cost": 1680.0,
+          "handling_cost": 350.0,
+          "expected_contribution": 13076.0,
+          "reason": "greedy gain 37.36/kg"
+        },
+        {
+          "batch_id": "B003",
+          "destination_id": "D001",
+          "dispatch_day": 0.0,
+          "quantity_kg": 200.0,
+          "discount_pct": 0.0,
+          "age_at_dispatch_days": 1.0,
+          "remaining_at_arrival_days": 4.25,
+          "effective_price_per_kg": 31.51,
+          "sold_kg": 200.0,
+          "arrived_unsold_kg": 0.0,
+          "gross_revenue": 6302.0,
+          "procurement_cost": 2400.0,
+          "transport_cost": 960.0,
+          "handling_cost": 200.0,
+          "expected_contribution": 2742.0,
+          "reason": "greedy gain 13.71/kg"
+        }
+      ],
+      "metrics": {
+        "harvested_kg": 750.0,
+        "dispatched_kg": 550.0,
+        "sold_kg": 550.0,
+        "arrived_unsold_kg": 0.0,
+        "fresh_inventory_kg": 200.0,
+        "spoiled_kg": 0.0,
+        "demand_kg": 5800.0,
+        "gross_revenue": 33658.0,
+        "procurement_cost": 14650.0,
+        "transport_cost": 2640.0,
+        "handling_cost": 550.0,
+        "spoilage_cost": 0.0,
+        "net_revenue": 15818.0,
+        "fulfillment_pct": 9.48,
+        "feasible": true,
+        "violations": []
+      },
+      "batch_summary": [
+        {
+          "batch_id": "B001",
+          "harvested_kg": 200.0,
+          "dispatched_kg": 0.0,
+          "sold_kg": 0.0,
+          "arrived_unsold_kg": 0.0,
+          "fresh_inventory_kg": 200.0,
+          "spoiled_kg": 0.0
+        },
+        {
+          "batch_id": "B002",
+          "harvested_kg": 350.0,
+          "dispatched_kg": 350.0,
+          "sold_kg": 350.0,
+          "arrived_unsold_kg": 0.0,
+          "fresh_inventory_kg": 0.0,
+          "spoiled_kg": 0.0
+        },
+        {
+          "batch_id": "B003",
+          "harvested_kg": 200.0,
+          "dispatched_kg": 200.0,
+          "sold_kg": 200.0,
+          "arrived_unsold_kg": 0.0,
+          "fresh_inventory_kg": 0.0,
+          "spoiled_kg": 0.0
+        }
+      ],
+      "reconciliation": {
+        "sum_dispatch_contributions": 15818.0,
+        "spoilage_cost": 0.0,
+        "net_revenue": 15818.0,
+        "check_ok": true
+      }
+    }
+  },
+  "improvement": {
+    "net_revenue": {
+      "baseline": 13387.0,
+      "planner": 15818.0,
+      "delta": 2431.0,
+      "delta_pct": 18.1594,
+      "direction": "higher_better"
+    },
+    "spoilage_kg": {
+      "baseline": 0.0,
+      "planner": 0.0,
+      "delta": 0.0,
+      "delta_pct": null,
+      "direction": "lower_better"
+    },
+    "fulfillment_pct": {
+      "baseline": 12.93,
+      "planner": 9.48,
+      "delta": -3.45,
+      "delta_pct": -26.6821,
+      "direction": "higher_better"
+    }
+  }
+}

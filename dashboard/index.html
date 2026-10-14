@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurenza — Produce Allocation &amp; Dispatch Planner</title>
+  <meta name="description" content="Baseline vs planner comparison over engine-generated synthetic scenarios." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo" aria-hidden="true">A</span>
+      <div>
+        <h1>Aurenza</h1>
+        <p>Explainable produce allocation &amp; dispatch planning</p>
+      </div>
+    </div>
+    <span class="badge synthetic" title="All figures come from the engine's labelled synthetic fixtures, not observed real-world data">
+      Synthetic fixture data
+    </span>
+  </header>
+
+  <main>
+    <p id="load-error" class="load-error" role="alert" hidden></p>
+
+    <!-- Decision detail: one committed scenario, straight from demo/result.json -->
+    <section class="section" id="detail-section" hidden>
+      <div class="section-head">
+        <h2>Decision detail</h2>
+        <p class="muted" id="detail-meta"></p>
+      </div>
+      <div id="detail-notes" class="notes"></div>
+      <div class="kpi-grid" id="kpi-cards"></div>
+      <div class="panel-grid">
+        <div class="panel">
+          <h3>Planner dispatch recommendations</h3>
+          <div id="planner-dispatches" class="table-wrap"></div>
+        </div>
+        <div class="panel">
+          <h3>Baseline dispatches (FEFO)</h3>
+          <div id="baseline-dispatches" class="table-wrap"></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Batch inventory &amp; spoilage</h3>
+        <div id="batch-table" class="table-wrap"></div>
+      </div>
+      <div class="panel">
+        <h3>Accounting reconciliation</h3>
+        <div id="recon"></div>
+      </div>
+    </section>
+
+    <!-- Evaluation: many synthetic scenarios from demo/evaluation.json -->
+    <section class="section" id="eval-section" hidden>
+      <div class="section-head">
+        <h2>Evaluation across scenarios</h2>
+        <p class="muted" id="eval-meta"></p>
+      </div>
+      <div class="kpi-grid" id="eval-cards"></div>
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Scenario explorer</h3>
+          <label class="select-label">
+            Scenario
+            <select id="scenario-select"></select>
+          </label>
+        </div>
+        <div id="scenario-view"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="footer" class="footer"></footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
