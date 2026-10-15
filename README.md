@@ -150,12 +150,12 @@ engine/planner.py       bounded greedy planner (warm-started from baseline)
 engine/fixtures.py      labelled synthetic demo data + evaluation scenarios
 engine/scripts/run_plan.py   single-scenario CLI -> result.json
 engine/scripts/run_eval.py   multi-seed evaluation CLI -> evaluation.json
-engine/tests/test_engine.py  contract test suite (41 tests)
+engine/tests/test_engine.py  contract test suite (67 tests)
 dashboard/index.html    dashboard markup (semantic, no framework)
 dashboard/styles.css    dashboard styling (responsive, dark theme)
 dashboard/app.js        dashboard logic — reads generated JSON only
 dashboard/serve.py      stdlib static server (no dependencies)
-dashboard/test_dashboard.py  dashboard tests (7 tests)
+dashboard/test_dashboard.py  dashboard tests (9 tests)
 demo/result.json        committed generated demo output (one scenario)
 demo/evaluation.json    committed generated evaluation fixture (120 scenarios)
 output/                 gitignored generated outputs (regenerable)
@@ -213,6 +213,14 @@ See [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md) for the full ledger. Highlights
 - With the mandated FEFO baseline (which already dispatches expiring stock first),
   spoilage reduction is typically 0 — the planner's measurable gain is net revenue.
   This is an honest property of a strong baseline, not a missing feature.
+- **Destination price caps (§2.5).** A capped destination buys only while its
+  effective price is within `max_price_per_kg`; an unsellable dispatch is dropped
+  and does not consume the demand budget or book revenue.
+- **Discounts are near-expiry only (§2.3).** A capped destination is served at
+  full price when the decayed effective price already fits the cap; otherwise the
+  smallest discount-grid step that meets the cap is used, and only for a
+  near-expiry batch. The standard fixture contains no such opportunity, so its
+  discounts are zero; the policy is covered by dedicated unit and end-to-end tests.
 
 Troubleshooting:
 
@@ -227,10 +235,12 @@ Troubleshooting:
 ## Status
 
 Engine, baseline, planner, metrics, constraints, demo and evaluation outputs, and
-the dashboard are implemented and covered by `python -m pytest -q` (**48 tests**:
-41 engine + 7 dashboard). The planner applies the §5.4 objective with ties broken
-by lower spoilage then higher fulfillment; on the current synthetic fixtures this
-changes no reported outcome (spoilage is tied in 118/120 runs, fulfillment is
-lower in 84/120) — the honest reported gain remains net revenue (+23.00%
-aggregate, never worse). Outstanding external input: the A9 produce catalogue
-(see `docs/ASSUMPTIONS.md` §4).
+the dashboard are implemented and covered by `python -m pytest -q` (**76 tests**:
+67 engine + 9 dashboard). Destination price caps are enforced end-to-end with the
+same rule in the baseline, the planner and `build_dispatches` (§2.5), and
+discounts are offered only for near-expiry batches (§2.3). The planner applies the
+§5.4 objective with ties broken by lower spoilage then higher fulfillment; on the
+current synthetic fixtures the honest reported gain is net revenue (**+22.76%**
+aggregate, never worse: 115/120 wins, 24/120 on all three metrics), while spoilage
+is tied in 118/120 runs and fulfillment is lower in 91/120. Outstanding external
+input: the A9 produce catalogue (see `docs/ASSUMPTIONS.md` §4).

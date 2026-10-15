@@ -299,14 +299,316 @@ class TestDiscounts(unittest.TestCase):
         self.assertEqual(core.effective_demand_kg(100.0, 20.0, dr), 100.0)
 
     def test_planner_discount_on_grid(self):
-        # A max_price cap forces a discount; it must land on the 5% grid.
-        d = destination(price={'tomato': 30.0}, max_price={'tomato': 24.0}, cap=9999.0)
-        s = make_scenario([batch(qty=200.0, life=5.0)], [d])
+        # A max_price cap forces a discount on a near-expiry batch (§2.3);
+        # it must land on the 5% grid and stay within the eligible ceiling.
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 24.0},
+                        transit=0.0, cap=9999.0)
+        s = make_scenario([batch(qty=200.0, life=5.0, harvest=-4.5)], [d])
         flows = planner.plan_planner(s)
-        for f in flows:
-            if f.get('discount_pct'):
-                self.assertAlmostEqual(f['discount_pct'] % 5.0, 0.0, places=6)
-                self.assertLessEqual(f['discount_pct'], 30.0)
+        discounts = [f['discount_pct'] for f in flows if f.get('discount_pct')]
+        self.assertTrue(discounts, 'expected a near-expiry cap discount')
+        for disc in discounts:
+            self.assertAlmostEqual(disc % 5.0, 0.0, places=6)
+            self.assertLessEqual(disc, 30.0)
+
+
+class TestPriceCap(unittest.TestCase):
+    """§2.5: a destination buys ``produce`` only when the post-discount
+    ``effective_price_per_kg <= max_price_per_kg`` (inclusive); above the ceiling
+    the sold quantity is 0. This is a sales rule, not a §11 infeasibility."""
+
+    def _build(self, scenario, discount):
+        b = scenario['batches'][0]
+        d = scenario['destinations'][0]
+        return core.build_dispatches(scenario, [{
+            'batch_id': b['batch_id'], 'destination_id': d['destination_id'],
+            'quantity_kg': b['quantity_kg'], 'discount_pct': discount,
+        }])
+
+    def _dispatches(self, scenario, strategy):
+        s = core.apply_disruptions(scenario)
+        flows = (planner.plan_planner(s) if strategy == 'planner'
+                 else baseline.plan_baseline(s))
+        return s, core.build_dispatches(s, flows)
+
+    def _produce_of(self, scenario, dispatch):
+        for b in scenario['batches']:
+            if b['batch_id'] == dispatch['batch_id']:
+                return b['produce']
+        raise AssertionError('unknown batch ' + dispatch['batch_id'])
+
+    def _assert_no_sale_above_cap(self, scenario, dispatches):
+        for d in dispatches:
+            produce = self._produce_of(scenario, d)
+            cap = None
+            for dest in scenario['destinations']:
+                if dest['destination_id'] == d['destination_id']:
+                    cap = core.max_price_for(dest, produce)
+            if cap is not None and d['sold_kg'] > core.TOLERANCE_KG:
+                self.assertLessEqual(
+                    d['effective_price_per_kg'], cap + core.TOLERANCE_INR,
+                    f"§2.5 sale above cap: {d['destination_id']} {produce} "
+                    f"eff {d['effective_price_per_kg']} > cap {cap}")
+
+    def test_supplied_reproduction_cap20_price30_sells_zero(self):
+        # Reproduction: cap 20.0, effective price 30.0 -> sold quantity 0.
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 20.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        dp = self._build(s, 0.0)
+        self.assertEqual(len(dp), 1)
+        self.assertEqual(dp[0]['effective_price_per_kg'], 30.0)
+        self.assertEqual(dp[0]['sold_kg'], 0.0)
+        self.assertEqual(dp[0]['arrived_unsold_kg'], 300.0)
+        self.assertEqual(dp[0]['gross_revenue'], 0.0)
+
+    def test_price_below_cap_sells_fully(self):
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 40.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        self.assertEqual(self._build(s, 0.0)[0]['sold_kg'], 300.0)
+
+    def test_price_equal_cap_is_inclusive(self):
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 30.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        self.assertEqual(self._build(s, 0.0)[0]['sold_kg'], 300.0)
+
+    def test_price_above_cap_sells_zero(self):
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 20.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        self.assertEqual(self._build(s, 0.0)[0]['sold_kg'], 0.0)
+
+    def test_discounted_candidate_within_cap_sells(self):
+        # price 30, cap 24, discount 20% -> eff 24.0 == cap (inclusive) -> sells
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 24.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        dp = self._build(s, 20.0)
+        self.assertAlmostEqual(dp[0]['effective_price_per_kg'], 24.0, places=6)
+        self.assertEqual(dp[0]['sold_kg'], 300.0)
+
+    def test_discounted_candidate_above_cap_sells_zero(self):
+        # price 30, cap 24, discount 15% -> eff 25.5 > cap -> sold 0
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 24.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        dp = self._build(s, 15.0)
+        self.assertAlmostEqual(dp[0]['effective_price_per_kg'], 25.5, places=6)
+        self.assertEqual(dp[0]['sold_kg'], 0.0)
+
+    def test_no_declared_cap_sells_at_base_price(self):
+        d = destination(price={'tomato': 30.0}, demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        self.assertEqual(self._build(s, 0.0)[0]['sold_kg'], 300.0)
+
+    def test_planner_never_sells_above_cap(self):
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 24.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        s, dp = self._dispatches(s, 'planner')
+        self._assert_no_sale_above_cap(s, dp)
+
+    def test_planner_skips_unreachable_cap(self):
+        # cap 5.0 cannot be met even at the 30% discount ceiling -> no route
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 5.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        self.assertEqual(planner.plan_planner(s), [])
+
+    def test_baseline_never_sells_above_cap(self):
+        # baseline never discounts, so a fully-capped destination cannot be served
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 20.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        s, dp = self._dispatches(s, 'baseline')
+        self._assert_no_sale_above_cap(s, dp)
+        self.assertEqual(dp, [])
+
+    def test_baseline_routes_around_capped_destination(self):
+        capped = destination('D1', price={'tomato': 40.0}, max_price={'tomato': 20.0},
+                             demand={'tomato': 300.0})
+        open_d = destination('D2', price={'tomato': 30.0}, demand={'tomato': 300.0})
+        s = make_scenario([batch(qty=200.0, life=5.0)], [capped, open_d])
+        s, dp = self._dispatches(s, 'baseline')
+        self.assertTrue(dp)
+        self.assertTrue(all(x['destination_id'] == 'D2' for x in dp))
+        self._assert_no_sale_above_cap(s, dp)
+
+    def test_above_cap_flow_never_becomes_a_valid_sale(self):
+        # A prohibited (above-cap) dispatch must not silently become a sale.
+        d = destination(price={'tomato': 30.0}, max_price={'tomato': 20.0},
+                        demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=300.0, life=5.0)], [d])
+        dp = core.build_dispatches(s, [{'batch_id': 'B001', 'destination_id': 'D1',
+                                        'quantity_kg': 300.0, 'discount_pct': 0.0}])
+        self.assertEqual(dp[0]['sold_kg'], 0.0)
+        self.assertEqual(dp[0]['gross_revenue'], 0.0)
+        self.assertEqual(dp[0]['procurement_cost'], 0.0)
+
+    def test_infeasible_route_is_not_dispatched(self):
+        # §3: arrival shelf life below the minimum -> no planner dispatch at all
+        d = destination(price={'tomato': 30.0}, demand={'tomato': 300.0}, transit=1.0)
+        s = make_scenario([batch(qty=300.0, life=1.2)], [d])  # remain 0.2 < 0.5
+        self.assertEqual(planner.plan_planner(s), [])
+
+
+class TestNearExpiryDiscounts(unittest.TestCase):
+    """§2.3/§2.5: a cap-meeting discount is lawful only for a near-expiry batch.
+
+    Near-expiry at dispatch = shelf_life - (dispatch_day - harvest_day) is
+    strictly positive and <= discount.near_expiry_days (default 1.0)."""
+
+    def _cap_discount(self, scenario):
+        cfg = core.config_of(scenario)
+        b = scenario['batches'][0]
+        d = scenario['destinations'][0]
+        return planner._discount_for_cap(scenario, b, d, b['produce'], cfg)
+
+    def _capped(self, price=30.0, cap=24.0, transit=0.5):
+        return destination(price={'tomato': price}, max_price={'tomato': cap},
+                           transit=transit, demand={'tomato': 300.0}, cap=9999.0)
+
+    def test_non_near_expiry_batch_gets_no_discount(self):
+        # remaining at dispatch = 5.0 days >> near_expiry_days (1.0)
+        s = make_scenario([batch(qty=300.0, life=5.0, harvest=0)], [self._capped()])
+        self.assertEqual(self._cap_discount(s), 0.0)
+        # ...and the planner cannot route to the capped destination at all.
+        self.assertEqual(planner.plan_planner(s), [])
+
+    def test_near_expiry_batch_gets_cap_discount(self):
+        # remaining at dispatch = 0.5 <= 1.0 -> eligible -> 30->24 is a 20% step
+        s = make_scenario([batch(qty=200.0, life=5.0, harvest=-4.5)],
+                          [self._capped(transit=0.0)])
+        self.assertEqual(self._cap_discount(s), 20.0)
+        flows = planner.plan_planner(s)
+        self.assertTrue(flows)
+        self.assertTrue(all(f['discount_pct'] == 20.0 for f in flows))
+
+    def test_only_near_expiry_false_reenables_discount(self):
+        s = make_scenario([batch(qty=300.0, life=5.0, harvest=0)], [self._capped()],
+                          config={'discount': {'only_near_expiry': False}})
+        self.assertEqual(self._cap_discount(s), 20.0)
+
+    def test_expired_batch_is_not_eligible(self):
+        # remaining at dispatch = -1.0 -> already expired, never discounted
+        s = make_scenario([batch(qty=300.0, life=5.0, harvest=-6.0)], [self._capped()])
+        cfg = core.config_of(s)
+        self.assertFalse(planner._near_expiry_eligible(s, s['batches'][0], cfg))
+        self.assertEqual(self._cap_discount(s), 0.0)
+
+    def test_near_expiry_boundary_inclusive(self):
+        # remaining == near_expiry_days (1.0) is eligible (inclusive)...
+        s = make_scenario([batch(qty=200.0, life=6.0, harvest=-5.0)],
+                          [self._capped(transit=0.0)])
+        cfg = core.config_of(s)
+        self.assertTrue(planner._near_expiry_eligible(s, s['batches'][0], cfg))
+        self.assertEqual(self._cap_discount(s), 20.0)
+        # ...and just beyond it (1.05 days) is not.
+        s2 = make_scenario([batch(qty=200.0, life=6.05, harvest=-5.0)],
+                           [self._capped()])
+        cfg2 = core.config_of(s2)
+        self.assertFalse(planner._near_expiry_eligible(s2, s2['batches'][0], cfg2))
+        self.assertEqual(self._cap_discount(s2), 0.0)
+
+    def test_no_cap_means_no_discount_despite_near_expiry(self):
+        # T18: without a price cap there is no lawful discount, near-expiry or not
+        d = destination(price={'tomato': 30.0}, demand={'tomato': 300.0}, cap=9999.0)
+        s = make_scenario([batch(qty=200.0, life=5.0, harvest=-4.5)], [d])
+        self.assertEqual(self._cap_discount(s), 0.0)
+
+
+class TestNearExpiryDiscountEndToEnd(unittest.TestCase):
+    """§2.3/§2.5 end-to-end: a near-expiry batch routed to a price-capped
+    destination is discounted lawfully, sells, and reconciles through the real
+    evaluation pipeline (apply_disruptions -> plan_planner -> build_dispatches ->
+    aggregate/run_strategy). The unit tests above prove the *decision*; these
+    prove the *accounting* of a discounted sale the fixtures never exercise."""
+
+    def _capped_scenario(self, qty=200.0, life=5.0, harvest=-4.5, cap=24.0,
+                         demand=300.0, unit=12.0, price=30.0):
+        d = destination('D1', price={'tomato': price}, max_price={'tomato': cap},
+                        transit=0.0, dist=10.0, demand={'tomato': demand}, cap=9999.0)
+        b = batch('B001', qty=qty, life=life, harvest=harvest, unit=unit)
+        return make_scenario([b], [d], horizon_days=1, dispatch_day=0)
+
+    def _plan(self, scenario):
+        s = core.apply_disruptions(scenario)
+        flows = planner.plan_planner(s)
+        dispatches = core.build_dispatches(s, flows)
+        return s, flows, core.run_strategy(s, dispatches, 'planner'), dispatches
+
+    def test_undiscounted_price_exceeds_cap_but_lawful_discount_meets_it(self):
+        s, flows, block, dispatches = self._plan(self._capped_scenario())
+        b, d = s['batches'][0], s['destinations'][0]
+        self.assertEqual(core.effective_price(s, b, d, 'tomato', 0.0), 30.0)  # > cap
+        self.assertEqual(core.max_price_for(d, 'tomato'), 24.0)              # cap
+        self.assertTrue(core.sells_at_price(s, b, d, 'tomato', 0.0) is False)
+        self.assertTrue(core.sells_at_price(s, b, d, 'tomato', 20.0) is True)
+        self.assertEqual(len(dispatches), 1)
+        self.assertEqual(dispatches[0]['discount_pct'], 20.0)
+        self.assertAlmostEqual(dispatches[0]['effective_price_per_kg'], 24.0, places=6)
+        self.assertLessEqual(dispatches[0]['effective_price_per_kg'],
+                             core.max_price_for(d, 'tomato') + core.TOLERANCE_INR)
+
+    def test_discounted_sale_contributes_to_revenue_demand_and_reconciliation(self):
+        s, flows, block, dispatches = self._plan(self._capped_scenario())
+        d = dispatches[0]
+        m = block['metrics']
+        self.assertEqual(d['sold_kg'], 200.0)
+        self.assertAlmostEqual(d['gross_revenue'], 200.0 * 24.0, places=6)
+        self.assertAlmostEqual(d['expected_contribution'],
+                               200.0 * 24.0 - 200.0 * 12.0 - 200.0 * 10.0 * 0.8 - 200.0 * 1.0,
+                               places=6)
+        self.assertEqual(m['sold_kg'], 200.0)
+        self.assertEqual(m['demand_kg'], 300.0)
+        self.assertAlmostEqual(m['fulfillment_pct'], 200.0 / 300.0 * 100.0, places=2)
+        self.assertAlmostEqual(m['net_revenue'], m['gross_revenue'] - m['procurement_cost']
+                               - m['transport_cost'] - m['handling_cost'] - m['spoilage_cost'],
+                               places=2)
+        self.assertTrue(block['reconciliation']['check_ok'], block['reconciliation'])
+        self.assertEqual(m['violations'], [])
+        self.assertTrue(m['feasible'])
+
+    def test_discounted_sale_respects_destination_demand(self):
+        # demand 150 limits the planned quantity to 150 -> only 150 kg sells.
+        s, flows, block, dispatches = self._plan(
+            self._capped_scenario(qty=200.0, demand=150.0))
+        d = dispatches[0]
+        self.assertEqual(d['quantity_kg'], 150.0)
+        self.assertEqual(d['sold_kg'], 150.0)
+        self.assertEqual(d['arrived_unsold_kg'], 0.0)
+        self.assertAlmostEqual(d['gross_revenue'], 150.0 * 24.0, places=6)
+        self.assertTrue(block['reconciliation']['check_ok'])
+
+    def test_fresh_batch_cannot_use_the_discount_workaround(self):
+        # remaining at dispatch = 5.0 days -> not near-expiry -> no discount, no route.
+        s, flows, block, dispatches = self._plan(
+            self._capped_scenario(life=5.0, harvest=0.0))
+        self.assertEqual(flows, [])
+        self.assertEqual(dispatches, [])
+        self.assertEqual(block['metrics']['sold_kg'], 0.0)
+        self.assertTrue(block['metrics']['feasible'])
+
+    def test_no_lawful_discount_opportunity_gets_none(self):
+        # near-expiry, but cap 5.0 is unreachable even at the 30% ceiling -> no route,
+        # so no arbitrary discount is invented to force a sale.
+        s, flows, block, dispatches = self._plan(self._capped_scenario(cap=5.0))
+        self.assertEqual(flows, [])
+        self.assertEqual(dispatches, [])
+
+    def test_baseline_does_not_discount_the_same_scenario(self):
+        # FEFO never discounts: a fully-capped destination is skipped entirely.
+        s = core.apply_disruptions(self._capped_scenario())
+        bd = core.build_dispatches(s, baseline.plan_baseline(s))
+        self.assertEqual(bd, [])
+
+    def test_discounted_pipeline_is_deterministic(self):
+        import json
+        runs = [json.dumps(self._plan(self._capped_scenario())[2], sort_keys=True)
+                for _ in range(2)]
+        self.assertEqual(runs[0], runs[1])
 
 
 class TestDeterminismAndStrategies(unittest.TestCase):

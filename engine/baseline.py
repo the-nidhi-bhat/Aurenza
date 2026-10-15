@@ -59,6 +59,8 @@ def plan_baseline(scenario):
         for d in dests:
             if not _feasible_route(scenario, b, d, cfg):
                 continue
+            if not core.sells_at_price(scenario, b, d, produce, 0.0):
+                continue  # §2.5: baseline never discounts, so a capped dest won't buy
             eff = core.effective_price(scenario, b, d, produce, 0.0)
             ranked.append((-eff, d['destination_id'], d))
         ranked.sort(key=lambda t: (t[0], t[1]))
