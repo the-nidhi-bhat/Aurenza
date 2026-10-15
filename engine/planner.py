@@ -64,16 +64,32 @@ def _unit_gain(scenario, batch, dest, produce, discount_pct):
     return c + _batch_penalty(scenario, batch)
 
 
+def _near_expiry_eligible(scenario, batch, cfg):
+    """§2.3: discounts are near-expiry only (when ``only_near_expiry``).
+
+    Eligible when the batch has not expired at dispatch and its remaining
+    shelf life at dispatch is within ``discount.near_expiry_days``.
+    """
+    if not cfg['discount'].get('only_near_expiry', True):
+        return True
+    age = float(scenario['dispatch_day']) - float(batch['harvest_day'])
+    remaining = float(batch['shelf_life_days']) - age
+    return 0.0 < remaining <= float(cfg['discount']['near_expiry_days']) + core.TOLERANCE_KG
+
+
 def _discount_for_cap(scenario, batch, dest, produce, cfg):
     """Smallest contract-legal discount that brings price within max_price_per_kg.
 
     §2.3/§2.5: a destination that caps price only buys when
-    effective_price <= max_price_per_kg (inclusive). Returns 0.0 when no cap
-    binds or no legal step unlocks it.
+    effective_price <= max_price_per_kg (inclusive), and discounts are only
+    allowed for near-expiry batches. Returns 0.0 when no cap binds, the batch
+    is not near-expiry eligible, or no legal step unlocks it.
     """
     cap = (dest.get('max_price_per_kg') or {}).get(produce)
     if cap is None:
         return 0.0
+    if not _near_expiry_eligible(scenario, batch, cfg):
+        return 0.0  # §2.3: discounts are near-expiry only
     base = core.effective_price(scenario, batch, dest, produce, 0.0)
     if base <= cap + core.TOLERANCE_INR:
         return 0.0
@@ -130,6 +146,8 @@ def plan_planner(scenario, baseline_flows=None):
             if not _route_feasible(scenario, b, d, cfg):
                 continue
             disc = _discount_for_cap(scenario, b, d, produce, cfg)
+            if not core.sells_at_price(scenario, b, d, produce, disc):
+                continue  # §2.5: destination buys nothing at this effective price
             gain = _unit_gain(scenario, b, d, produce, disc)
             edges.append((-gain, b['batch_id'], d['destination_id'], b, d, disc))
     edges.sort(key=lambda t: (t[0], t[1], t[2]))
