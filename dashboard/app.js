@@ -85,16 +85,52 @@ function summaryLine(strategy) {
   return `${n} dispatch${n === 1 ? '' : 'es'} · Σ contribution ${money(total)}`;
 }
 
-function dispatchTable(dispatches) {
-  if (!dispatches || !dispatches.length) {
-    return '<p class="empty">No dispatches in this plan.</p>';
-  }
-  const rows = dispatches.map((d) => {
-    const neg = (d.expected_contribution || 0) < 0;
-    const disc = (d.discount_pct || 0) > 0
-      ? `<span class="pill-disc">${NUM(d.discount_pct, 0)}%</span>`
-      : '<span class="pill-none">—</span>';
-    return `
+// Filter/sort vocabulary for the dispatch tables. Each filter is a predicate
+// over the engine's own dispatch records; each sort maps a record to a
+// comparable value (direction folded into the sign for numeric keys). No
+// figures are hardcoded — every number shown is summed from the records.
+const DISPATCH_FILTERS = [
+  { key: 'all', label: 'All dispatches', test: () => true },
+  { key: 'below_cost', label: 'Below cost (loses money)', test: (d) => (d.expected_contribution || 0) < 0 },
+  { key: 'discounted', label: 'Discounted', test: (d) => (d.discount_pct || 0) > 0 },
+  { key: 'part', label: 'Part-shipped (unsold left)', test: (d) => (d.sold_kg ?? 0) < (d.quantity_kg ?? 0) - TOL_KG },
+];
+
+const DISPATCH_SORT_LABELS = {
+  'plan:asc': 'Plan priority order',
+  'contribution:desc': 'Contribution — highest first',
+  'contribution:asc': 'Contribution — lowest first',
+  'quantity_kg:desc': 'Dispatched kg — most first',
+  'sold_kg:desc': 'Sold kg — most first',
+  'effective_price_per_kg:desc': 'Effective ₹/kg — highest first',
+  'batch_id:asc': 'Batch — A to Z',
+};
+
+const DISPATCH_SORTS = {
+  'contribution:desc': (d) => -(d.expected_contribution || 0),
+  'contribution:asc': (d) => (d.expected_contribution || 0),
+  'quantity_kg:desc': (d) => -(d.quantity_kg || 0),
+  'sold_kg:desc': (d) => -(d.sold_kg || 0),
+  'effective_price_per_kg:desc': (d) => -(d.effective_price_per_kg || 0),
+  'batch_id:asc': (d) => String(d.batch_id),
+};
+
+function sortDispatches(rows, key) {
+  const get = DISPATCH_SORTS[key];
+  if (!get) return rows.slice(); // 'plan:asc' — keep the engine's own ordering
+  return rows.slice().sort((a, b) => {
+    const va = get(a), vb = get(b);
+    const c = typeof va === 'string' ? va.localeCompare(vb) : va - vb;
+    return c !== 0 ? c : String(a.batch_id).localeCompare(String(b.batch_id));
+  });
+}
+
+function dispatchRow(d) {
+  const neg = (d.expected_contribution || 0) < 0;
+  const disc = (d.discount_pct || 0) > 0
+    ? `<span class="pill-disc">${NUM(d.discount_pct, 0)}%</span>`
+    : '<span class="pill-none">—</span>';
+  return `
     <tr>
       <td data-label="Batch"><span class="batch-cell">${esc(d.batch_id)}</span></td>
       <td data-label="Destination">${esc(d.destination_id)}</td>
@@ -105,14 +141,62 @@ function dispatchTable(dispatches) {
       <td class="num ${neg ? 'neg' : 'pos'}" data-label="Contribution">${signed(d.expected_contribution, money)}</td>
       <td class="reason" data-label="Reason">${esc(d.reason)}</td>
     </tr>`;
-  }).join('');
-  return `<table class="responsive">
-    <caption class="sr-only">Dispatch decisions: batch, destination, quantities, discount, effective price, contribution and the engine's stated reason.</caption>
-    <thead><tr>
-      <th scope="col">Batch</th><th scope="col">Destination</th><th scope="col" class="num">Dispatched (kg)</th>
-      <th scope="col" class="num">Sold (kg)</th><th scope="col">Discount</th>
-      <th scope="col" class="num">Eff ₹/kg</th><th scope="col" class="num">Contribution</th><th scope="col">Reason</th>
-    </tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+// Renders an interactive dispatch table into `container`: a filter + sort
+// control pair and a live count of the visible subset (with its summed
+// contribution and how many rows lose money). Only the <tbody> is replaced on
+// change, so focus stays on the control the user is operating.
+function mountDispatchTable(container, dispatches, caption) {
+  const list = dispatches || [];
+  if (!list.length) {
+    container.innerHTML = '<p class="empty">No dispatches in this plan.</p>';
+    return;
+  }
+  const state = { filter: 'all', sort: 'plan:asc' };
+
+  container.innerHTML = `
+    <div class="table-tools">
+      <label class="field"><span>Show</span>
+        <select data-role="filter">${DISPATCH_FILTERS
+          .map((f) => `<option value="${f.key}">${esc(f.label)}</option>`).join('')}</select>
+      </label>
+      <label class="field"><span>Sort</span>
+        <select data-role="sort">${Object.keys(DISPATCH_SORT_LABELS)
+          .map((k) => `<option value="${k}">${esc(DISPATCH_SORT_LABELS[k])}</option>`).join('')}</select>
+      </label>
+      <p class="table-count" data-role="count" role="status" aria-live="polite"></p>
+    </div>
+    <table class="responsive">
+      <caption class="sr-only">${esc(caption)}</caption>
+      <thead><tr>
+        <th scope="col">Batch</th><th scope="col">Destination</th><th scope="col" class="num">Dispatched (kg)</th>
+        <th scope="col" class="num">Sold (kg)</th><th scope="col">Discount</th>
+        <th scope="col" class="num">Eff ₹/kg</th><th scope="col" class="num">Contribution</th><th scope="col">Reason</th>
+      </tr></thead>
+      <tbody data-role="rows"></tbody>
+    </table>`;
+
+  const rowsEl = container.querySelector('[data-role="rows"]');
+  const countEl = container.querySelector('[data-role="count"]');
+
+  function update() {
+    const f = DISPATCH_FILTERS.find((x) => x.key === state.filter) || DISPATCH_FILTERS[0];
+    const shown = sortDispatches(list.filter(f.test), state.sort);
+    rowsEl.innerHTML = shown.length
+      ? shown.map(dispatchRow).join('')
+      : '<tr><td class="empty" colspan="8">No dispatches match this filter.</td></tr>';
+    const total = shown.reduce((s, d) => s + (d.expected_contribution || 0), 0);
+    const below = shown.filter((d) => (d.expected_contribution || 0) < 0).length;
+    countEl.textContent = `Showing ${shown.length} of ${list.length} dispatches · Σ contribution ${money(total)}`
+      + (below ? ` · ${below} below cost` : '');
+  }
+
+  container.querySelector('[data-role="filter"]')
+    .addEventListener('change', (e) => { state.filter = e.target.value; update(); });
+  container.querySelector('[data-role="sort"]')
+    .addEventListener('change', (e) => { state.sort = e.target.value; update(); });
+  update();
 }
 
 function batchTable(baselineBatches, plannerBatches) {
@@ -245,8 +329,10 @@ function renderDetail(result) {
 
   $('planner-summary').textContent = summaryLine(p);
   $('baseline-summary').textContent = summaryLine(b);
-  $('planner-dispatches').innerHTML = dispatchTable(p.dispatches);
-  $('baseline-dispatches').innerHTML = dispatchTable(b.dispatches);
+  mountDispatchTable($('planner-dispatches'), p.dispatches,
+    "Planner dispatch decisions: batch, destination, quantities, discount, effective price, contribution and the engine's stated reason.");
+  mountDispatchTable($('baseline-dispatches'), b.dispatches,
+    "Baseline (FEFO) dispatch decisions: batch, destination, quantities, discount, effective price, contribution and the engine's stated reason.");
   $('batch-table').innerHTML = batchTable(b.batch_summary, p.batch_summary);
   $('recon').innerHTML = reconRows('Baseline', b.reconciliation) + reconRows('Planner', p.reconciliation);
 }
