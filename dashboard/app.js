@@ -85,6 +85,43 @@ function summaryLine(strategy) {
   return `${n} dispatch${n === 1 ? '' : 'es'} · Σ contribution ${money(total)}`;
 }
 
+// The three headline trade-offs, read straight from the improvement block.
+// Each card states what the planner gained (or gave up) versus the baseline —
+// including the ones that are not wins, so nothing is hidden.
+function tradeoffStrip(imp) {
+  const nr = imp.net_revenue || {};
+  const sp = imp.spoilage_kg || {};
+  const fp = imp.fulfillment_pct || {};
+  const cards = [];
+
+  const nrUp = (nr.delta || 0) > TOL_INR;
+  const nrPct = (nr.delta_pct === null || nr.delta_pct === undefined) ? null : NUM(nr.delta_pct, 1) + '%';
+  cards.push(`
+    <div class="to-card ${nrUp ? 'good' : (Math.abs(nr.delta || 0) <= TOL_INR ? '' : 'bad')}">
+      <p class="to-label">Net revenue</p>
+      <p class="to-value ${nrUp ? 'pos' : (Math.abs(nr.delta || 0) <= TOL_INR ? '' : 'neg')}">${signed(nr.delta, money)}${nrPct ? ` · ${nrPct}` : ''}</p>
+      <p class="to-text">Planner ${money(nr.planner)} vs baseline ${money(nr.baseline)} for this scenario.</p>
+    </div>`);
+
+  const spTie = Math.abs(sp.delta || 0) <= TOL_KG;
+  cards.push(`
+    <div class="to-card ${spTie ? '' : (sp.delta < 0 ? 'good' : 'warn')}">
+      <p class="to-label">Spoilage</p>
+      <p class="to-value ${spTie ? '' : (sp.delta < 0 ? 'pos' : 'neg')}">${spTie ? 'No change' : signed(sp.delta, (t) => NUM(t, 1) + ' kg')}</p>
+      <p class="to-text">${spTie ? 'FEFO already sends expiring stock first, so both plans leave the same kg to spoil here.' : 'Planner leaves more/less produce to spoil than the baseline.'}</p>
+    </div>`);
+
+  const fpDown = (fp.delta || 0) < -TOL_KG;
+  cards.push(`
+    <div class="to-card ${fpDown ? 'warn' : 'good'}">
+      <p class="to-label">Demand fulfillment</p>
+      <p class="to-value ${fpDown ? 'neg' : 'pos'}">${signed(fp.delta, (t) => NUM(t, 2) + ' pp')}</p>
+      <p class="to-text">${fpDown ? 'Planner skips dispatches that would lose money, so it moves less volume — an honest trade-off, not a guarantee.' : 'Planner meets at least as much demand as the baseline in this scenario.'}</p>
+    </div>`);
+
+  return `<div class="tradeoff" role="group" aria-label="Planner versus baseline trade-offs">${cards.join('')}</div>`;
+}
+
 // Filter/sort vocabulary for the dispatch tables. Each filter is a predicate
 // over the engine's own dispatch records; each sort maps a record to a
 // comparable value (direction folded into the sign for numeric keys). No
@@ -310,6 +347,8 @@ function renderDetail(result) {
       pm.feasible === false
         ? `planner reports ${(pm.violations || []).length} constraint violation(s)`
         : 'no hard-constraint violations in either plan');
+
+  $('tradeoff').innerHTML = tradeoffStrip(imp);
 
   // Honest messaging
   const notes = [];
@@ -559,6 +598,9 @@ function renderScenario(sc) {
         </tbody>
       </table>
     </div>`;
+
+  const live = $('scenario-live');
+  if (live) live.textContent = `Scenario ${sc.scenario_id} shown: net revenue change ${signed(nrd, money)}, spoilage change ${signed(spd, (t) => NUM(t, 2) + ' kg')}, fulfillment change ${signed(fpd, (t) => NUM(t, 2) + ' pp')}.`;
 }
 
 /* ---------- view switching ---------- */
@@ -576,6 +618,7 @@ function initTabs() {
       views[t.id].hidden = !on;
     });
     if (focus) $(id).focus();
+    initReveals();
   };
   tabs.forEach((t, i) => {
     t.addEventListener('click', () => activateView(t.id));
@@ -606,6 +649,28 @@ function renderFooter() {
     `served with <code>python dashboard/serve.py</code>.`;
 }
 
+// One-shot staged entrance for .reveal sections: transform/opacity only.
+// Falls straight through when motion is reduced or IO is unavailable, and
+// observes again only for sections still hidden when a tab is revealed.
+let _revealObserver = null;
+function initReveals() {
+  const els = document.querySelectorAll('.reveal:not(.is-in)');
+  if (!els.length) return;
+  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    els.forEach((el) => el.classList.add('is-in'));
+    return;
+  }
+  if (!_revealObserver) {
+    _revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) { en.target.classList.add('is-in'); _revealObserver.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.01 });
+  }
+  els.forEach((el) => _revealObserver.observe(el));
+}
+
 async function init() {
   renderFooter();
   initTabs();
@@ -629,6 +694,7 @@ async function init() {
   $('loading').hidden = true;
   // show the first view that actually loaded; keep tabs consistent with it
   activateView(overviewOk || !evalOk ? 'tab-overview' : 'tab-evaluation');
+  initReveals();
 }
 
 document.addEventListener('DOMContentLoaded', init);
