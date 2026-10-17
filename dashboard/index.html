@@ -6,6 +6,8 @@
   <title>Aurenza — Produce Allocation &amp; Dispatch Planner</title>
   <meta name="description" content="Explainable baseline-vs-planner produce allocation and dispatch decisions over engine-generated synthetic scenarios." />
   <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#07090d" />
+  <script>document.documentElement.classList.add('js');</script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -53,6 +55,7 @@
     <section id="view-overview" class="view" role="tabpanel" aria-labelledby="tab-overview" tabindex="0" hidden>
       <div class="view-head">
         <div class="view-head-text">
+          <p class="kicker">Planning result · one committed scenario</p>
           <h1>Decision detail</h1>
           <p class="view-sub" id="detail-meta"></p>
         </div>
@@ -62,34 +65,56 @@
       <p class="view-lede">Aurenza compares a FEFO baseline against a constrained dispatch planner for perishable produce — showing what sells, where, under which price cap, and how net revenue, spoilage and demand fulfillment compare.</p>
 
       <div id="detail-notes" class="notes"></div>
-      <div id="hero"></div>
-      <div class="kpi-row" id="kpi-cards"></div>
 
-      <section class="panel accent-planner">
-        <div class="panel-head">
-          <h2><span class="swatch planner" aria-hidden="true"></span>Planner plan</h2>
-          <span class="panel-sub" id="planner-summary"></span>
+      <div class="group reveal">
+        <div class="group-head">
+          <h2 class="group-title">Outcome</h2>
+          <p class="group-sub">Planner versus the first-expired-first-out baseline for this scenario.</p>
         </div>
-        <div id="planner-dispatches" class="table-wrap"></div>
-      </section>
+        <div id="hero"></div>
+        <div class="kpi-row" id="kpi-cards"></div>
+      </div>
 
-      <section class="panel accent-baseline">
-        <div class="panel-head">
-          <h2><span class="swatch baseline" aria-hidden="true"></span>Baseline plan (FEFO)</h2>
-          <span class="panel-sub" id="baseline-summary"></span>
+      <div id="tradeoff" class="reveal"></div>
+
+      <div class="group reveal">
+        <div class="group-head">
+          <h2 class="group-title">Dispatch explorer</h2>
+          <p class="group-sub">Every dispatch decision the engine produced, filterable and sortable. Engine order is the default.</p>
         </div>
-        <div id="baseline-dispatches" class="table-wrap"></div>
-      </section>
 
-      <div class="panel-grid">
-        <section class="panel">
-          <div class="panel-head"><h2>Batch inventory &amp; spoilage</h2></div>
-          <div id="batch-table" class="table-wrap"></div>
+        <section class="panel accent-planner">
+          <div class="panel-head">
+            <h2><span class="swatch planner" aria-hidden="true"></span>Planner plan</h2>
+            <span class="panel-sub" id="planner-summary"></span>
+          </div>
+          <div id="planner-dispatches" class="table-wrap"></div>
         </section>
-        <section class="panel">
-          <div class="panel-head"><h2>Accounting reconciliation</h2></div>
-          <div id="recon"></div>
+
+        <section class="panel accent-baseline">
+          <div class="panel-head">
+            <h2><span class="swatch baseline" aria-hidden="true"></span>Baseline plan (FEFO)</h2>
+            <span class="panel-sub" id="baseline-summary"></span>
+          </div>
+          <div id="baseline-dispatches" class="table-wrap"></div>
         </section>
+      </div>
+
+      <div class="group reveal">
+        <div class="group-head">
+          <h2 class="group-title">Inventory &amp; accounting</h2>
+          <p class="group-sub">Per-batch movement and the arithmetic that reconciles each plan.</p>
+        </div>
+        <div class="panel-grid">
+          <section class="panel">
+            <div class="panel-head"><h2>Batch inventory &amp; spoilage</h2></div>
+            <div id="batch-table" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-head"><h2>Accounting reconciliation</h2></div>
+            <div id="recon"></div>
+          </section>
+        </div>
       </div>
     </section>
 
@@ -97,6 +122,7 @@
     <section id="view-evaluation" class="view" role="tabpanel" aria-labelledby="tab-evaluation" tabindex="0" hidden>
       <div class="view-head">
         <div class="view-head-text">
+          <p class="kicker">Scenario set · aggregate behaviour</p>
           <h1>Evaluation</h1>
           <p class="view-sub" id="eval-meta"></p>
         </div>
@@ -105,19 +131,33 @@
       <p class="view-lede">Aggregate performance across the labelled synthetic scenario set. Pick any scenario below to drill into its baseline-versus-planner outcome for net revenue, spoilage and demand fulfillment.</p>
 
       <div id="eval-notes" class="notes"></div>
-      <div class="kpi-row" id="eval-cards"></div>
-      <div class="chart-grid" id="eval-charts"></div>
 
-      <section class="panel">
-        <div class="panel-head">
-          <h2>Scenario explorer</h2>
-          <label class="field" for="scenario-select">
-            <span>Scenario</span>
-            <select id="scenario-select"></select>
-          </label>
+      <div class="group reveal">
+        <div class="group-head">
+          <h2 class="group-title">Aggregate outcome</h2>
+          <p class="group-sub">How often the planner wins, ties or loses on each metric — never a single blended score.</p>
         </div>
-        <div id="scenario-view"></div>
-      </section>
+        <div class="kpi-row" id="eval-cards"></div>
+        <div class="chart-grid" id="eval-charts"></div>
+      </div>
+
+      <div class="group reveal">
+        <div class="group-head">
+          <h2 class="group-title">Scenario explorer</h2>
+          <p class="group-sub">One scenario at a time: metrics, deltas and the win/tie/loss call for each.</p>
+        </div>
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Scenario</h2>
+            <label class="field" for="scenario-select">
+              <span>Choose</span>
+              <select id="scenario-select"></select>
+            </label>
+          </div>
+          <p id="scenario-live" class="sr-only" role="status" aria-live="polite"></p>
+          <div id="scenario-view"></div>
+        </section>
+      </div>
     </section>
   </main>
 
