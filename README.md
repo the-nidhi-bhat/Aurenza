@@ -54,7 +54,8 @@ engine code** (contract §10), so it shows exactly what the engine produced.
 
 ```powershell
 python dashboard/serve.py          # serves the repo root on 127.0.0.1:8000
-# open http://127.0.0.1:8000/dashboard/
+# open http://127.0.0.1:8000/            (landing page)
+#      http://127.0.0.1:8000/dashboard/  (console — asks you to sign in first)
 ```
 
 - **Decision detail** — baseline vs planner KPI cards (net revenue, spoilage kg,
@@ -69,6 +70,24 @@ evaluation fixture is absent it shows the single demo scenario only.
 
 `python -m pytest -q` also covers the dashboard (`dashboard/test_dashboard.py`),
 including a test that starts the real server and asserts the pages and JSON load.
+
+---
+
+## Pages and sign-in (demo accounts)
+
+`/` is the landing page, `/signin/` and `/signup/` are the account pages, and the
+console at `/dashboard/` sits behind a sign-in gate that redirects here with a
+`?next=` back-link when nobody is signed in.
+
+```text
+demo@aurenza.dev  /  harvest-2026      # seeded demo account
+```
+
+> **The identity layer is a demo gate, not real authentication.** It runs
+> entirely in the browser (`assets/site.js`), stores accounts in `localStorage`
+> with a salted PBKDF2-SHA256 digest (210,000 iterations), and enforces access
+> only in the page. There is no server, database or session cookie, so the gate
+> can be bypassed from devtools and must not be used with real credentials.
 
 ---
 

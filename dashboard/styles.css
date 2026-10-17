@@ -125,15 +125,15 @@
   --ink: #1b1a15;
   --ink-2: #403c31;
   --muted: #6a6353;
-  --faint: #736c5b;
+  --faint: #726b5a;
 
   /* one committed identity: deep field green, three tints */
   --accent: #0f5c40;
   --accent-2: #17795a;
-  --accent-3: #2c9a71;
+  --accent-3: #2c9970;
 
   /* signal colours — muted, printed-ink register */
-  --warn: #8c5714;
+  --warn: #8b5614;
   --bad: #a33622;
   --base: #6f6a5c;
 
@@ -423,6 +423,24 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
 .theme-toggle .tt-sun { display: none; }
 :root[data-theme="dark"] .theme-toggle .tt-sun { display: block; }
 :root[data-theme="dark"] .theme-toggle .tt-moon { display: none; }
+
+/* session chip + sign out — same circular stamp as the theme switch */
+.session-user {
+  flex: none;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted);
+}
+.session-out {
+  appearance: none; cursor: pointer; flex: none;
+  width: 34px; height: 34px; padding: 0;
+  display: grid; place-items: center;
+  color: var(--ink-2); background: var(--card);
+  border: 1px solid var(--rule-2); border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  transition: color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
+}
+.session-out:hover { color: var(--accent); border-color: var(--accent); }
+.session-out svg { width: 16px; height: 16px; display: block; }
 
 /* ================================ shell ================================= */
 .shell {
@@ -918,8 +936,10 @@ select:focus-visible { border-color: var(--accent); }
   }
   .brand { order: 1; }
   .badge-synthetic { order: 2; margin-left: auto; }
-  .theme-toggle { order: 3; }
-  .viewswitch { order: 4; width: 100%; align-self: auto; gap: var(--sp5); }
+  .session-user { order: 3; }
+  .session-out { order: 4; }
+  .theme-toggle { order: 5; }
+  .viewswitch { order: 6; width: 100%; align-self: auto; gap: var(--sp5); }
   .vtab { padding-top: 6px; padding-bottom: 12px; }
   .vtab::after { bottom: 4px; }
   .shell { padding: var(--sp6) var(--sp4) var(--sp7); }

@@ -1,7 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "trailingSlash": true,
-  "redirects": [
-    { "source": "/", "destination": "/dashboard/", "permanent": true }
-  ]
+  "trailingSlash": true
 }

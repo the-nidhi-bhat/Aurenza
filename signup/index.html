@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Create an account — Aurenza</title>
+  <meta name="description" content="Create a local Aurenza account to open the dispatch console." />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#faf5ea" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#14120e" media="(prefers-color-scheme: dark)" />
+  <script>
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('aurenza-theme');
+      if (t !== 'dark' && t !== 'light') {
+        t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light';
+      }
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) { /* storage blocked: the light default stands */ }
+  </script>
+  <link rel="stylesheet" href="/dashboard/styles.css" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="appbar">
+    <div class="appbar-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 4C12.5 4.6 6.6 9.3 5.2 16.4" />
+            <path d="M4.5 19.5c3-6.4 7.4-10 13.5-11.6" />
+            <circle cx="19" cy="5" r="1.4" fill="currentColor" stroke="none" />
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Aurenza</span>
+          <span class="brand-sub">Produce allocation &amp; dispatch</span>
+        </span>
+      </a>
+
+      <nav class="ld-nav" aria-label="Primary">
+        <a class="btn" href="/signin/?next=%2Fdashboard%2F">Sign in</a>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-pressed="false"
+                aria-label="Switch to dark theme" title="Dark theme">
+          <svg class="tt-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.4 14.6A8.4 8.4 0 0 1 9.5 3.6a8.4 8.4 0 1 0 10.9 11Z" />
+          </svg>
+          <svg class="tt-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4.1" />
+            <path d="M12 2.8v2.1M12 19.1v2.1M4.5 4.5l1.5 1.5M18 18l1.5 1.5M2.8 12h2.1M19.1 12h2.1M4.5 19.5 6 18M18 6l1.5-1.5" />
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="ld-shell au-main">
+    <div class="au-wrap">
+      <section class="au-card">
+        <p class="ld-eyebrow">Aurenza</p>
+        <h1 class="au-title">Create an account</h1>
+        <p class="au-sub">One local account, and the console opens.</p>
+        <form data-auth-form="signup" novalidate>
+          <label class="au-label" for="name">Name</label>
+          <input class="au-input" id="name" name="name" type="text" autocomplete="name" required />
+
+          <label class="au-label" for="email">Email</label>
+          <input class="au-input" id="email" name="email" type="email" autocomplete="email" required />
+
+          <label class="au-label" for="password">Password</label>
+          <input class="au-input" id="password" name="password" type="password"
+                 autocomplete="new-password" minlength="8" required />
+          <p class="ld-hint">At least 8 characters.</p>
+
+          <label class="au-label" for="confirm">Confirm password</label>
+          <input class="au-input" id="confirm" name="confirm" type="password"
+                 autocomplete="new-password" required />
+
+          <p class="au-error" data-auth-error hidden></p>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Create account</button>
+        </form>
+
+        <p class="au-alt">Already have an account? <a href="/signin/?next=%2Fdashboard%2F">Sign in</a>.</p>
+        <p class="ld-hint">
+          Accounts and password digests stay in this browser (PBKDF2-SHA256, 210,000 iterations) and
+          nothing is transmitted. This is a demo identity layer, not server-side authentication.
+        </p>
+      </section>
+
+      <aside class="au-aside">
+        <img src="/assets/img/facility-hall.jpg" alt="" />
+        <div class="au-aside-body">
+          <p class="ld-eyebrow">Dispatch console</p>
+          <h2>Plan, price, explain — then prove it.</h2>
+          <p>
+            The console shows the planner and the FEFO baseline side by side, the trade-offs between
+            them, and the evaluation across every seeded disruption scenario.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    Aurenza · explainable produce allocation &amp; dispatch · synthetic engine output ·
+    <a href="/">home</a>
+  </footer>
+
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>
