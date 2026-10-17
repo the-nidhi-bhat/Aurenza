@@ -671,8 +671,30 @@ function initReveals() {
   els.forEach((el) => _revealObserver.observe(el));
 }
 
+// Light/dark switch. The head bootstrap script has already put data-theme on
+// <html> before first paint; this only wires the button and remembers the choice.
+function initTheme() {
+  const root = document.documentElement;
+  const btn = $('theme-toggle');
+  if (!btn) return;
+  const isDark = () => root.getAttribute('data-theme') === 'dark';
+  const sync = () => {
+    const dark = isDark();
+    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    btn.setAttribute('title', dark ? 'Light theme' : 'Dark theme');
+  };
+  sync();
+  btn.addEventListener('click', () => {
+    root.setAttribute('data-theme', isDark() ? 'light' : 'dark');
+    try { localStorage.setItem('aurenza-theme', isDark() ? 'dark' : 'light'); } catch (e) { /* ignore */ }
+    sync();
+  });
+}
+
 async function init() {
   renderFooter();
+  initTheme();
   initTabs();
   let overviewOk = false, evalOk = false;
   try {

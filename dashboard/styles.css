@@ -175,6 +175,78 @@
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
+/* ============================== dark theme ==============================
+   The same ledger, printed on ink. Every colour in this file resolves through
+   the tokens above, so the dark palette re-declares those token NAMES only.
+   Opt-in via <html data-theme="dark">, set before first paint by the bootstrap
+   script in index.html from localStorage, else from the OS preference. With no
+   JS the attribute is absent and the light default stands.
+   Contrast for these values is machine-checked by check_contrast.py. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --paper: #14120e;
+  --paper-2: #1e1a14;
+  --card: #1a1712;
+  --cream: #221e17;
+
+  --ink: #f3ede1;
+  --ink-2: #d8d0c0;
+  --muted: #a89e8b;
+  --faint: #968c79;
+
+  --accent: #6ed3a5;
+  --accent-2: #45b98a;
+  --accent-3: #7fe0b8;
+
+  --warn: #e0a95c;
+  --bad: #f0857a;
+  --base: #9a9584;
+
+  --rule: rgba(243, 237, 225, 0.15);
+  --rule-2: #756c5d;
+  --rule-strong: #8f8674;
+
+  --accent-soft: rgba(110, 211, 165, 0.14);
+  --warn-soft: rgba(224, 169, 92, 0.14);
+  --bad-soft: rgba(240, 133, 122, 0.14);
+
+  --shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow: 0 1px 0 rgba(0, 0, 0, 0.5), 0 18px 34px -26px rgba(0, 0, 0, 0.9);
+}
+
+/* the handful of literal colours that live outside the token set */
+:root[data-theme="dark"] body {
+  background-image:
+    radial-gradient(1100px 480px at 82% -14%, rgba(110, 211, 165, 0.06), transparent 60%),
+    radial-gradient(760px 420px at -6% 2%, rgba(224, 169, 92, 0.05), transparent 58%);
+}
+/* on ink the tooth has to lighten, not darken */
+:root[data-theme="dark"] body::after { opacity: 0.05; mix-blend-mode: screen; }
+:root[data-theme="dark"] .appbar { background: rgba(20, 18, 14, 0.88); }
+:root[data-theme="dark"] .badge-synthetic { border-color: rgba(224, 169, 92, 0.45); }
+:root[data-theme="dark"] .badge-synthetic .dot {
+  box-shadow: 0 0 0 3px rgba(224, 169, 92, 0.14);
+  animation-name: pulse-dark;
+}
+:root[data-theme="dark"] .verdict.down { border-color: rgba(240, 133, 122, 0.5); }
+:root[data-theme="dark"] .tag.loss { border-color: rgba(240, 133, 122, 0.45); }
+:root[data-theme="dark"] .pill-disc { border-color: rgba(224, 169, 92, 0.28); }
+:root[data-theme="dark"] .panel.hero {
+  background:
+    linear-gradient(180deg, rgba(110, 211, 165, 0.05), rgba(110, 211, 165, 0) 55%),
+    var(--card);
+}
+:root[data-theme="dark"] select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a89e8b' stroke-width='2.4' stroke-linecap='round'><path d='M6 9l6 6 6-6'/></svg>");
+}
+:root[data-theme="dark"] .state-error { border-color: rgba(240, 133, 122, 0.45); }
+:root[data-theme="dark"] .state-error code { border-color: rgba(240, 133, 122, 0.3); }
+@keyframes pulse-dark {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(224, 169, 92, 0.14); }
+  50%      { box-shadow: 0 0 0 5px rgba(224, 169, 92, 0.04); }
+}
+
 /* ================================ base ================================== */
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -228,7 +300,7 @@ td code, th code { white-space: nowrap; }
 
 /* ---------- focus & motion ---------- */
 :focus-visible {
-  outline: 2px solid var(--accent); /* 7.36:1 on paper */
+  outline: 2px solid var(--accent); /* 7.36:1 on paper, 10.3:1 on ink */
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -335,6 +407,22 @@ html.js .reveal.is-in { opacity: 1; transform: none; }
   0%, 100% { box-shadow: 0 0 0 3px rgba(140, 87, 20, 0.14); }
   50%      { box-shadow: 0 0 0 5px rgba(140, 87, 20, 0.04); }
 }
+
+/* theme switch — echoes the brand mark's circular stamp */
+.theme-toggle {
+  appearance: none; cursor: pointer; flex: none;
+  width: 34px; height: 34px; padding: 0;
+  display: grid; place-items: center;
+  color: var(--ink-2); background: var(--card);
+  border: 1px solid var(--rule-2); border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  transition: color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
+}
+.theme-toggle:hover { color: var(--accent); border-color: var(--accent); }
+.theme-toggle svg { width: 16px; height: 16px; display: block; }
+.theme-toggle .tt-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .tt-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .tt-moon { display: none; }
 
 /* ================================ shell ================================= */
 .shell {
@@ -830,7 +918,8 @@ select:focus-visible { border-color: var(--accent); }
   }
   .brand { order: 1; }
   .badge-synthetic { order: 2; margin-left: auto; }
-  .viewswitch { order: 3; width: 100%; align-self: auto; gap: var(--sp5); }
+  .theme-toggle { order: 3; }
+  .viewswitch { order: 4; width: 100%; align-self: auto; gap: var(--sp5); }
   .vtab { padding-top: 6px; padding-bottom: 12px; }
   .vtab::after { bottom: 4px; }
   .shell { padding: var(--sp6) var(--sp4) var(--sp7); }
