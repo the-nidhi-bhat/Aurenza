@@ -692,9 +692,42 @@ function initTheme() {
   });
 }
 
+// Demo session chip. The head script has already redirected anonymous visitors
+// to sign in, so this only shows who is here and wires the sign-out button.
+// The identity layer itself lives in ../assets/site.js; the console reads the
+// same session key rather than loading that file (which would double-bind the
+// theme button this file already owns).
+function initSession() {
+  const KEY = 'aurenza.session.v1';
+  let session = null;
+  try {
+    const raw = localStorage.getItem(KEY) || sessionStorage.getItem(KEY);
+    const parsed = raw ? JSON.parse(raw) : null;
+    if (parsed && parsed.exp && parsed.exp > Date.now()) session = parsed;
+  } catch (e) { /* storage blocked: treat as anonymous */ }
+
+  const chip = $('session-user');
+  if (chip && session) {
+    chip.textContent = session.name || session.email;
+    chip.hidden = false;
+  }
+
+  const out = $('session-out');
+  if (!out) return;
+  out.hidden = !session;
+  out.addEventListener('click', () => {
+    try {
+      localStorage.removeItem(KEY);
+      sessionStorage.removeItem(KEY);
+    } catch (e) { /* ignore */ }
+    window.location.assign('/');
+  });
+}
+
 async function init() {
   renderFooter();
   initTheme();
+  initSession();
   initTabs();
   let overviewOk = false, evalOk = false;
   try {
