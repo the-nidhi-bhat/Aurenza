@@ -73,14 +73,22 @@
   }
 
   /* ---------- sign up / in ---------- */
+  /* Errors carry the field they belong to, so the form can mark that field
+     invalid and put the cursor where the fix is needed. */
+  function fail(field, message) {
+    const err = new Error(message);
+    err.field = field;
+    return err;
+  }
+
   async function signUp({ name, email, password, confirm }) {
     const clean = normalise(email);
-    if (String(name || '').trim().length < 2) throw new Error('Please enter your name.');
-    if (!isEmail(clean)) throw new Error('Please enter a valid email address.');
-    if (String(password || '').length < 8) throw new Error('Your password needs at least 8 characters.');
-    if (password !== confirm) throw new Error('Those passwords do not match.');
+    if (String(name || '').trim().length < 2) throw fail('name', 'Please enter your name.');
+    if (!isEmail(clean)) throw fail('email', 'Please enter a valid email address.');
+    if (String(password || '').length < 8) throw fail('password', 'Your password needs at least 8 characters.');
+    if (password !== confirm) throw fail('confirm', 'Those passwords do not match.');
     const all = users();
-    if (all[clean]) throw new Error('An account already exists for that email — sign in instead.');
+    if (all[clean]) throw fail('email', 'An account already exists for that email — sign in instead.');
     const salt = randomSalt();
     all[clean] = {
       name: String(name).trim(),
@@ -97,9 +105,9 @@
   async function signIn({ email, password }) {
     const clean = normalise(email);
     const user = users()[clean];
-    if (!user) throw new Error('No account found for that email.');
+    if (!user) throw fail('email', 'No account found for that email.');
     const attempt = await digest(password, user.salt);
-    if (attempt !== user.hash) throw new Error('That password is incorrect.');
+    if (attempt !== user.hash) throw fail('password', 'That password is incorrect.');
     return { name: user.name, email: user.email };
   }
 
@@ -178,11 +186,23 @@
     });
   }
 
-  function showError(form, message) {
+  function showError(form, message, field) {
     const box = $('[data-auth-error]', form);
     if (!box) return;
     box.textContent = message;
     box.hidden = !message;
+    // The error element is role="alert", so setting the text announces it.
+    // Marking the field it belongs to (the stylesheet already styles
+    // [aria-invalid="true"]) and focusing it puts the cursor where the fix is.
+    form.querySelectorAll('input').forEach((input) => {
+      if (message && field === input.name) {
+        input.setAttribute('aria-invalid', 'true');
+      } else {
+        input.removeAttribute('aria-invalid');
+      }
+    });
+    const target = message && field ? form.elements[field] : null;
+    if (target && typeof target.focus === 'function') target.focus();
   }
 
   function setBusy(form, busy) {
@@ -216,7 +236,7 @@
           const next = new URLSearchParams(window.location.search).get('next');
           window.location.assign(next && next.startsWith('/') ? next : '/dashboard/');
         } catch (err) {
-          showError(signin, err.message);
+          showError(signin, err.message, err.field);
           setBusy(signin, false);
         }
       });
@@ -238,7 +258,7 @@
           writeSession(user, true);
           window.location.assign('/dashboard/');
         } catch (err) {
-          showError(signup, err.message);
+          showError(signup, err.message, err.field);
           setBusy(signup, false);
         }
       });
