@@ -1,0 +1,1 @@
+Aurenza: an explainable produce allocation engine. FEFO baseline → greedy planner. +24.2% median revenue. 120 scenarios. 0 infeasible runs. Every dispatch has a reason. github.com/the-nidhi-bhat/Aurenza

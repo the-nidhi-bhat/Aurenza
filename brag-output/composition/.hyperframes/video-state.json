@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "706cd271-01d0-4714-a190-bc956894c591",
-  "currentRevision": "3fd1a65c-8660-4aa1-a3e3-5f8c2bc4ae26",
+  "currentRevision": "72250685-7957-44d7-9395-163056b979c7",
   "pendingChanges": false,
   "files": {
     "assets/sfx/card-pop.ogg": {
@@ -27,6 +27,18 @@
     "assets/music/ambient-bed.mp3": {
       "hash": "5888d4bd2ba0119b87a94e502ae2cc401c08192945cc5e5c2f8e8a33aa47a0a1",
       "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\58\\5888d4bd2ba0119b87a94e502ae2cc401c08192945cc5e5c2f8e8a33aa47a0a1"
+    },
+    "package.json": {
+      "hash": "2647cddd0e4be9683fbde4c438510e882776c0a2e9b4503c35ad16fe0a558965",
+      "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\26\\2647cddd0e4be9683fbde4c438510e882776c0a2e9b4503c35ad16fe0a558965"
+    },
+    "package-lock.json": {
+      "hash": "b22ebbadcd642a77a9957a3ff1c08e946bb25f0b862a73abb6c8caeacecc7c7b",
+      "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\b2\\b22ebbadcd642a77a9957a3ff1c08e946bb25f0b862a73abb6c8caeacecc7c7b"
+    },
+    "record-video.js": {
+      "hash": "12b6aad54253186c2c73e0fa06b87e5b1d1bf402ea684d1dc9217f7d0d32a636",
+      "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\12\\12b6aad54253186c2c73e0fa06b87e5b1d1bf402ea684d1dc9217f7d0d32a636"
     }
   },
   "revisions": {
@@ -42,6 +54,29 @@
         "index.html": {
           "before": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\d4\\d47c03c98c929dfa848147fc551d31eda276ad0a20632b377994afc4be047360",
           "after": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\4e\\4e608ddc9d920b76b020f4f065e438df70531ccd97e8145a181c33ce4b906003"
+        }
+      }
+    },
+    "72250685-7957-44d7-9395-163056b979c7": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792336976119,
+      "endedAt": 1792336976157,
+      "files": {
+        "package-lock.json": {
+          "before": null,
+          "after": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\b2\\b22ebbadcd642a77a9957a3ff1c08e946bb25f0b862a73abb6c8caeacecc7c7b"
+        },
+        "package.json": {
+          "before": null,
+          "after": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\26\\2647cddd0e4be9683fbde4c438510e882776c0a2e9b4503c35ad16fe0a558965"
+        },
+        "record-video.js": {
+          "before": null,
+          "after": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\12\\12b6aad54253186c2c73e0fa06b87e5b1d1bf402ea684d1dc9217f7d0d32a636"
         }
       }
     }
