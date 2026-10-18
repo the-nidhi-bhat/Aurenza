@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "historyId": "706cd271-01d0-4714-a190-bc956894c591",
+  "currentRevision": "3fd1a65c-8660-4aa1-a3e3-5f8c2bc4ae26",
+  "pendingChanges": false,
+  "files": {
+    "assets/sfx/card-pop.ogg": {
+      "hash": "ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9",
+      "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\cc\\ccfb7fa0cccdd9faec0eb16033c732b1e308d139d80f799161495d58f7adcdb9"
+    },
+    "assets/sfx/confirm-chime.ogg": {
+      "hash": "d21d0f0b782445db579d11e2506b24cd1ac9d664ee33aeaf807761aa7b6fd710",
+      "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\d2\\d21d0f0b782445db579d11e2506b24cd1ac9d664ee33aeaf807761aa7b6fd710"
+    },
+    "assets/sfx/key-tick.wav": {
+      "hash": "7b873548c399b9aa0efbe63052fe1344c5317a9b23455b8be3523f47d434daf1",
+      "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\7b\\7b873548c399b9aa0efbe63052fe1344c5317a9b23455b8be3523f47d434daf1"
+    },
+    "assets/sfx/logo-hit.ogg": {
+      "hash": "94b8bb5f2d43ab65e4bcc32b28562416e9bc2c51d9fd4be1e333660ee52f977f",
+      "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\94\\94b8bb5f2d43ab65e4bcc32b28562416e9bc2c51d9fd4be1e333660ee52f977f"
+    },
+    "index.html": {
+      "hash": "4e608ddc9d920b76b020f4f065e438df70531ccd97e8145a181c33ce4b906003",
+      "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\4e\\4e608ddc9d920b76b020f4f065e438df70531ccd97e8145a181c33ce4b906003"
+    },
+    "assets/music/ambient-bed.mp3": {
+      "hash": "5888d4bd2ba0119b87a94e502ae2cc401c08192945cc5e5c2f8e8a33aa47a0a1",
+      "content": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\58\\5888d4bd2ba0119b87a94e502ae2cc401c08192945cc5e5c2f8e8a33aa47a0a1"
+    }
+  },
+  "revisions": {
+    "3fd1a65c-8660-4aa1-a3e3-5f8c2bc4ae26": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792331413150,
+      "endedAt": 1792331413156,
+      "files": {
+        "index.html": {
+          "before": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\d4\\d47c03c98c929dfa848147fc551d31eda276ad0a20632b377994afc4be047360",
+          "after": "C:\\Users\\theni\\.cache\\hyperframes\\history\\706cd271-01d0-4714-a190-bc956894c591\\blobs\\4e\\4e608ddc9d920b76b020f4f065e438df70531ccd97e8145a181c33ce4b906003"
+        }
+      }
+    }
+  },
+  "checks": {
+    "latest": {
+      "revision": "3fd1a65c-8660-4aa1-a3e3-5f8c2bc4ae26",
+      "id": "bed87ac2-7ddf-4294-a4ff-f5a5fa25918f"
+    },
+    "revisions": {
+      "3fd1a65c-8660-4aa1-a3e3-5f8c2bc4ae26": [
+        {
+          "id": "bed87ac2-7ddf-4294-a4ff-f5a5fa25918f",
+          "scope": "project",
+          "report": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\.hyperframes\\artifacts\\checks\\bed87ac2-7ddf-4294-a4ff-f5a5fa25918f.json",
+          "metadata": {
+            "ok": false,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792331437410,
+          "contentHash": "3c96bacdfbf8946418c214856ae69aaf5f1a4178e6639c51bccf05844fc7dc41",
+          "revision": "3fd1a65c-8660-4aa1-a3e3-5f8c2bc4ae26",
+          "inputFingerprint": "f2f1072729a8f5339b84996cb0b6b4a6f8d487dce70e7466d161c1b99c3e061f",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ]
+    },
+    "unversioned": [
+      {
+        "id": "5fe9bd71-754f-464a-ac7e-bec370075eda",
+        "scope": "project",
+        "report": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\.hyperframes\\artifacts\\checks\\5fe9bd71-754f-464a-ac7e-bec370075eda.json",
+        "metadata": {
+          "ok": false,
+          "browserSkipped": true,
+          "options": {
+            "samples": 9,
+            "atTransitions": false,
+            "maxIssues": 80,
+            "collapseStatic": true,
+            "tolerance": 2,
+            "timeout": 3000,
+            "contrast": true,
+            "strict": false,
+            "snapshots": false,
+            "browserGpuMode": "auto"
+          }
+        },
+        "createdAt": 1792331215399,
+        "contentHash": "371e92b6aedfa799685fa0ea0676112eb1555246de662d10b918c69fb59dc404",
+        "revision": null,
+        "inputFingerprint": "9ad12bf7ab0e8141bae2ae41d6a6c9d57f8cc96d997bc2064e9029bdb52279dd",
+        "inputScope": "local-project-files",
+        "attribution": "unversioned"
+      }
+    ]
+  },
+  "snapshots": {
+    "latest": null,
+    "revisions": {},
+    "unversioned": []
+  }
+}

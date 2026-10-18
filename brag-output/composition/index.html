@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurenza — Brag Video</title>
+  <link rel="stylesheet" href="https://unpkg.com/hyperframes@0.8.171/dist/hyperframes.css" />
+  <style>
+    :root {
+      --bg: #080b11;
+      --surface: #0e131c;
+      --surface-2: #121926;
+      --surface-3: #17202e;
+      --line: #1d2735;
+      --line-2: #283444;
+      --text: #e9eef6;
+      --muted: #9bacc2;
+      --faint: #6d7f95;
+      --accent: #2fbf7f;
+      --accent-2: #5ee0a8;
+      --accent-soft: rgba(47, 191, 127, 0.12);
+      --accent-line: rgba(47, 191, 127, 0.38);
+      --warn: #e2a53a;
+      --warn-soft: rgba(226, 165, 58, 0.12);
+      --bad: #e5717a;
+      --bad-soft: rgba(229, 113, 122, 0.13);
+      --base: #8aa0b8;
+      --plan: #2fbf7f;
+      --r-sm: 7px;
+      --r: 10px;
+      --r-lg: 16px;
+      --maxw: 1200px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      background-image:
+        radial-gradient(1100px 460px at 82% -10%, rgba(47, 191, 127, 0.06), transparent 60%),
+        radial-gradient(900px 420px at -5% 0%, rgba(90, 120, 160, 0.05), transparent 55%);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 15px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow: hidden;
+      width: 1920px;
+      height: 1080px;
+    }
+
+    .hf-comp { width: 100%; height: 100%; position: relative; }
+
+    .scene { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+    /* Scene 1 - Hook */
+    .scene-1 { z-index: 10; }
+    .hook-text { font-size: clamp(28px, 2.5vw, 42px); font-weight: 600; text-align: center; max-width: 1100px; line-height: 1.3; letter-spacing: -0.01em; }
+    .hook-text .char { display: inline-block; opacity: 0; transform: translateY(8px); transition: opacity 0.08s ease, transform 0.08s ease; }
+
+    /* Scene 2 - KPI Cards */
+    .scene-2 { z-index: 9; opacity: 0; }
+    .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; width: 100%; max-width: 1100px; }
+    .kpi-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.5), 0 14px 34px -16px rgba(0,0,0,0.65);
+      opacity: 0; transform: translateY(20px) scale(0.95); transition: opacity 0.4s cubic-bezier(.2,.7,.2,1), transform 0.4s cubic-bezier(.2,.7,.2,1);
+    }
+    .kpi-title { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--faint); margin: 0 0 16px; font-weight: 700; }
+    .kpi-compare { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; }
+    .kpi-side { display: flex; flex-direction: column; gap: 4px; }
+    .kpi-label { font-size: 11px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.06em; }
+    .kpi-value { font-size: 28px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+    .kpi-side.baseline .kpi-value { color: var(--base); }
+    .kpi-side.planner .kpi-value { color: var(--plan); }
+    .kpi-arrow { color: var(--faint); font-size: 20px; }
+    .kpi-delta { margin-top: 16px; display: flex; align-items: center; gap: 8px; font-size: 14px; font-variant-numeric: tabular-nums; }
+    .chip { display: inline-flex; align-items: center; gap: 5px; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: 13px; }
+    .chip.up { background: var(--accent-soft); color: var(--accent-2); }
+    .chip.flat { background: rgba(155, 172, 194, 0.14); color: var(--muted); }
+
+    /* Scene 3 - Dispatch Tables */
+    .scene-3 { z-index: 8; opacity: 0; }
+    .dispatch-section { width: 100%; max-width: 1100px; }
+    .dispatch-title { font-size: 18px; font-weight: 650; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+    .swatch { width: 10px; height: 10px; border-radius: 3px; }
+    .swatch.planner { background: var(--plan); }
+    .swatch.baseline { background: var(--base); }
+    .dispatch-table-wrap { overflow: hidden; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); }
+    .dispatch-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .dispatch-table th, .dispatch-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: left; }
+    .dispatch-table th { color: var(--faint); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .dispatch-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .dispatch-table td.reason { color: var(--muted); max-width: 300px; }
+    .dispatch-table tbody tr { opacity: 0; transform: translateX(-30px); transition: opacity 0.35s ease, transform 0.35s ease; }
+    .dispatch-table tbody tr:last-child td { border-bottom: 0; }
+    .pos { color: var(--accent-2); }
+    .pill-disc { font-size: 11.5px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--warn-soft); color: var(--warn); }
+    .pill-none { font-size: 11.5px; color: var(--faint); }
+
+    /* Scene 4 - Batch Inventory */
+    .scene-4 { z-index: 7; opacity: 0; }
+    .batch-table-wrap { width: 100%; max-width: 900px; }
+    .batch-table { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+    .batch-table th, .batch-table td { padding: 12px 16px; border-bottom: 1px solid var(--line); text-align: left; }
+    .batch-table th { color: var(--faint); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .batch-table td.num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--mono); }
+    .batch-table td.batch-cell { font-family: var(--mono); font-size: 13px; color: var(--text); }
+    .batch-table tbody tr { opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+    .batch-table tbody tr:last-child td { border-bottom: 0; }
+    .glow-cell { position: relative; color: var(--accent-2); font-weight: 700; }
+    .glow-cell::after { content: ''; position: absolute; inset: -4px; border-radius: 6px; box-shadow: 0 0 20px 4px var(--accent); opacity: 0; animation: glow-pulse 2s ease-in-out infinite; pointer-events: none; }
+    @keyframes glow-pulse { 0%, 100% { opacity: 0; } 50% { opacity: 0.6; } }
+
+    /* Scene 5 - Reconciliation */
+    .scene-5 { z-index: 6; opacity: 0; }
+    .recon-panel { width: 100%; max-width: 700px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 24px; }
+    .recon-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 15px; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
+    .recon-row:last-child { border-bottom: 0; }
+    .recon-label { color: var(--text); }
+    .recon-value { color: var(--muted); font-variant-numeric: tabular-nums; font-family: var(--mono); }
+    .check-row { display: flex; align-items: center; gap: 12px; margin-top: 8px; }
+    .checkmark { width: 24px; height: 24px; border-radius: 50%; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; color: var(--accent-2); opacity: 0; transform: scale(0); transition: opacity 0.3s ease, transform 0.4s cubic-bezier(.2,.7,.2,1); }
+    .checkmark svg { width: 14px; height: 14px; }
+    .check-text { font-weight: 700; color: var(--accent-2); opacity: 0; transition: opacity 0.3s ease 0.1s; }
+
+    /* Scene 6 - Evaluation Scale */
+    .scene-6 { z-index: 5; opacity: 0; }
+    .eval-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; max-width: 1100px; }
+    .eval-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--r-lg); padding: 20px; text-align: center;
+      opacity: 0; transform: translateY(20px) scale(0.95); transition: opacity 0.35s cubic-bezier(.2,.7,.2,1), transform 0.35s cubic-bezier(.2,.7,.2,1);
+    }
+    .eval-value { font-size: clamp(28px, 3vw, 40px); font-weight: 720; font-variant-numeric: tabular-nums; color: var(--accent-2); }
+    .eval-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--faint); margin-top: 8px; font-weight: 600; }
+    .eval-badge { display: inline-flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 600; color: var(--warn); background: var(--warn-soft); border: 1px solid rgba(226, 165, 58, 0.32); padding: 6px 12px; border-radius: 999px; margin-top: 16px; }
+    .eval-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--warn); }
+
+    /* Scene 7 - Outro */
+    .scene-7 { z-index: 11; opacity: 0; }
+    .brand-mark-large { width: 120px; height: 120px; display: grid; place-items: center; color: var(--accent-2); background: var(--accent-soft); border: 1px solid var(--accent-line); border-radius: 20px; margin-bottom: 24px; }
+    .brand-mark-large svg { width: 80px; height: 80px; }
+    .brand-path { stroke-dasharray: 1000; stroke-dashoffset: 1000; }
+    .brand-path:nth-child(2) { animation-delay: 0.2s; }
+    .brand-circle { opacity: 0; }
+    .outro-name { font-size: 36px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; opacity: 0; }
+    .outro-tagline { font-size: 16px; color: var(--muted); margin-bottom: 24px; opacity: 0; }
+    .outro-url { font-size: 14px; color: var(--faint); font-family: var(--mono); opacity: 0; }
+
+    audio { display: none; }
+  </style>
+</head>
+<body>
+  <div class="hf-comp clip" data-composition-id="aurenza-brag" data-width="1920" data-height="1080" data-duration="20" data-fps="30">
+
+    <!-- Audio tracks -->
+    <audio id="music" class="clip" data-start="0" data-duration="20" data-track-index="0" data-volume="0.35" src="assets/music/ambient-bed.mp3" data-fade-in="0.5" data-fade-out="2.0"></audio>
+    <audio id="sfx-typing" class="clip" data-start="0" data-duration="3.5" data-track-index="1" data-volume="0.4" src="assets/sfx/key-tick.wav"></audio>
+    <audio id="sfx-card-1" class="clip" data-start="3.5" data-duration="1.8" data-track-index="2" data-volume="0.35" src="assets/sfx/card-pop.ogg"></audio>
+    <audio id="sfx-card-2" class="clip" data-start="7.5" data-duration="2" data-track-index="2" data-volume="0.35" src="assets/sfx/card-pop.ogg"></audio>
+    <audio id="sfx-check" class="clip" data-start="15.5" data-duration="0.5" data-track-index="3" data-volume="0.4" src="assets/sfx/confirm-chime.ogg"></audio>
+    <audio id="sfx-logo" class="clip" data-start="19" data-duration="0.5" data-track-index="4" data-volume="0.5" src="assets/sfx/logo-hit.ogg"></audio>
+
+    <!-- Scene 1: Hook (0-3.5s) -->
+    <section class="scene scene-1 clip" id="scene-hook" data-start="0" data-duration="3.5">
+      <div class="hook-text" id="hookText">
+        India loses <span class="highlight">₹92,651 crore/year</span> to post-harvest waste.
+      </div>
+    </section>
+
+    <!-- Scene 2: KPI Cards (3.5-7.5s) -->
+    <section class="scene scene-2 clip" id="scene-kpi" data-start="3.5" data-duration="4">
+      <div class="kpi-row">
+        <div class="kpi-card clip" id="kpi1" data-start="3.5" data-duration="4">
+          <p class="kpi-title">Net Revenue</p>
+          <div class="kpi-compare">
+            <div class="kpi-side baseline">
+              <span class="kpi-label">Baseline</span>
+              <span class="kpi-value">₹13,387</span>
+            </div>
+            <span class="kpi-arrow">→</span>
+            <div class="kpi-side planner">
+              <span class="kpi-label">Planner</span>
+              <span class="kpi-value">₹15,818</span>
+            </div>
+          </div>
+          <div class="kpi-delta"><span class="chip up">+18.2%</span></div>
+        </div>
+        <div class="kpi-card clip" id="kpi2" data-start="4.1" data-duration="3.4">
+          <p class="kpi-title">Spoilage</p>
+          <div class="kpi-compare">
+            <div class="kpi-side baseline">
+              <span class="kpi-label">Baseline</span>
+              <span class="kpi-value">0 kg</span>
+            </div>
+            <span class="kpi-arrow">=</span>
+            <div class="kpi-side planner">
+              <span class="kpi-label">Planner</span>
+              <span class="kpi-value">0 kg</span>
+            </div>
+          </div>
+          <div class="kpi-delta"><span class="chip flat">Tied</span></div>
+        </div>
+        <div class="kpi-card clip" id="kpi3" data-start="4.7" data-duration="2.8">
+          <p class="kpi-title">Fulfillment</p>
+          <div class="kpi-compare">
+            <div class="kpi-side baseline">
+              <span class="kpi-label">Baseline</span>
+              <span class="kpi-value">12.93%</span>
+            </div>
+            <span class="kpi-arrow">↘</span>
+            <div class="kpi-side planner">
+              <span class="kpi-label">Planner</span>
+              <span class="kpi-value">9.48%</span>
+            </div>
+          </div>
+          <div class="kpi-delta"><span class="chip flat">Trade-off</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 3: Dispatch Tables (7.5-11.5s) -->
+    <section class="scene scene-3 clip" id="scene-dispatch" data-start="7.5" data-duration="4">
+      <div class="dispatch-section">
+        <h2 class="dispatch-title clip" data-start="7.5" data-duration="4"><span class="swatch planner"></span>Planner plan <span style="color:var(--muted);font-weight:400;">— every dispatch has a reason</span></h2>
+        <div class="dispatch-table-wrap clip" data-start="7.8" data-duration="3.7">
+          <table class="dispatch-table">
+            <thead>
+              <tr>
+                <th>Batch</th>
+                <th>Destination</th>
+                <th class="num">Qty (kg)</th>
+                <th class="num">Disc %</th>
+                <th class="num">Gain/kg</th>
+                <th class="reason">Reason</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="clip" id="plan-row-1" data-start="8" data-duration="3.5">
+                <td class="batch-cell">B002 (Mango)</td>
+                <td>D001 City Retail</td>
+                <td class="num">350</td>
+                <td class="num"><span class="pill-none">0%</span></td>
+                <td class="num pos">37.36</td>
+                <td class="reason">greedy gain 37.36/kg</td>
+              </tr>
+              <tr class="clip" id="plan-row-2" data-start="8.5" data-duration="3">
+                <td class="batch-cell">B003 (Tomato)</td>
+                <td>D001 City Retail</td>
+                <td class="num">200</td>
+                <td class="num"><span class="pill-none">0%</span></td>
+                <td class="num pos">13.71</td>
+                <td class="reason">greedy gain 13.71/kg</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="dispatch-title clip" data-start="9.5" data-duration="2"><span class="swatch baseline"></span>Baseline plan (FEFO) <span style="color:var(--muted);font-weight:400;">— ships expiring stock first</span></h2>
+        <div class="dispatch-table-wrap clip" data-start="9.8" data-duration="1.7">
+          <table class="dispatch-table">
+            <thead>
+              <tr>
+                <th>Batch</th>
+                <th>Destination</th>
+                <th class="num">Qty (kg)</th>
+                <th class="num">Disc %</th>
+                <th class="num">Contribution</th>
+                <th class="reason">Reason</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="clip" id="base-row-1" data-start="10" data-duration="1.5">
+                <td class="batch-cell">B002 (Mango)</td>
+                <td>D004 Regional Depot</td>
+                <td class="num">100</td>
+                <td class="num"><span class="pill-none">0%</span></td>
+                <td class="num pos">2,935</td>
+                <td class="reason">FEFO: expiring day 3.5 → highest price</td>
+              </tr>
+              <tr class="clip" id="base-row-2" data-start="10.5" data-duration="1">
+                <td class="batch-cell">B001 (Onion)</td>
+                <td>D002 Suburb Retail</td>
+                <td class="num">100</td>
+                <td class="num"><span class="pill-none">0%</span></td>
+                <td class="num neg">−233</td>
+                <td class="reason">FEFO: expiring day 18 → full price</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 4: Batch Inventory (11.5-15s) -->
+    <section class="scene scene-4 clip" id="scene-batch" data-start="11.5" data-duration="3.5">
+      <div class="batch-table-wrap clip" data-start="11.5" data-duration="3.5">
+        <h2 class="dispatch-title clip" data-start="11.5" data-duration="3.5">Batch inventory & spoilage — optimizer holds, baseline ships at loss</h2>
+        <table class="batch-table">
+          <thead>
+            <tr>
+              <th>Batch</th>
+              <th>Produce</th>
+              <th class="num">Harvested</th>
+              <th class="num">Dispatched</th>
+              <th class="num">Sold</th>
+              <th class="num">Fresh inv.</th>
+              <th class="num">Spoiled</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="clip" id="batch-row-1" data-start="11.5" data-duration="3.5">
+              <td class="batch-cell">B001 (Planner)</td>
+              <td>Onion</td>
+              <td class="num">200</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="num glow-cell">200</td>
+              <td class="num">0</td>
+            </tr>
+            <tr class="clip" id="batch-row-2" data-start="12" data-duration="3">
+              <td class="batch-cell">B001 (Baseline)</td>
+              <td>Onion</td>
+              <td class="num">200</td>
+              <td class="num">200</td>
+              <td class="num">200</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+            </tr>
+            <tr class="clip" id="batch-row-3" data-start="12.5" data-duration="2.5">
+              <td class="batch-cell">B002</td>
+              <td>Mango</td>
+              <td class="num">350</td>
+              <td class="num">350</td>
+              <td class="num">350</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+            </tr>
+            <tr class="clip" id="batch-row-4" data-start="13" data-duration="2">
+              <td class="batch-cell">B003</td>
+              <td>Tomato</td>
+              <td class="num">200</td>
+              <td class="num">200</td>
+              <td class="num">200</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="clip" style="margin-top: 12px; color: var(--muted); font-size: 13px;" data-start="11.5" data-duration="3.5">← Planner (green) holds 200kg onions fresh  |  Baseline ships all at negative contribution →</p>
+      </div>
+    </section>
+
+    <!-- Scene 5: Reconciliation (15-17.5s) -->
+    <section class="scene scene-5 clip" id="scene-recon" data-start="15" data-duration="2.5">
+      <div class="recon-panel clip" data-start="15" data-duration="2.5">
+        <h2 class="dispatch-title clip" data-start="15" data-duration="2.5">Accounting reconciliation — trust, verified</h2>
+        <div class="recon-row clip" id="recon-1" data-start="15" data-duration="2.5">
+          <span class="recon-label">Sum dispatch contributions</span>
+          <span class="recon-value">₹15,818.00</span>
+        </div>
+        <div class="recon-row clip" id="recon-2" data-start="15.4" data-duration="2.1">
+          <span class="recon-label">Spoilage cost</span>
+          <span class="recon-value">₹0.00</span>
+        </div>
+        <div class="recon-row clip" id="recon-3" data-start="15.8" data-duration="1.7">
+          <span class="recon-label">Net revenue</span>
+          <span class="recon-value" style="color: var(--accent-2); font-weight: 700;">₹15,818.00</span>
+        </div>
+        <div class="check-row clip" id="recon-check" data-start="16.2" data-duration="1.3">
+          <div class="checkmark" id="checkmark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <span class="check-text" id="checkText">check_ok: true</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 6: Evaluation Scale (17.5-20s) -->
+    <section class="scene scene-6 clip" id="scene-eval" data-start="17.5" data-duration="2.5">
+      <div class="clip" style="text-align: center; margin-bottom: 20px;" data-start="17.5" data-duration="2.5">
+        <span class="eval-badge"><span class="dot"></span>Synthetic data</span>
+      </div>
+      <div class="eval-cards">
+        <div class="eval-card clip" id="eval-1" data-start="17.5" data-duration="2.5">
+          <div class="eval-value">115/120</div>
+          <div class="eval-label">Net Revenue Wins</div>
+        </div>
+        <div class="eval-card clip" id="eval-2" data-start="17.8" data-duration="2.2">
+          <div class="eval-value">118/120</div>
+          <div class="eval-label">Spoilage Ties</div>
+        </div>
+        <div class="eval-card clip" id="eval-3" data-start="18.1" data-duration="1.9">
+          <div class="eval-value">23/120</div>
+          <div class="eval-label">All-Metric Wins</div>
+        </div>
+        <div class="eval-card clip" id="eval-4" data-start="18.4" data-duration="1.6">
+          <div class="eval-value">0</div>
+          <div class="eval-label">Infeasible Runs</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 7: Outro (19-20s + hold) -->
+    <section class="scene scene-7 clip" id="scene-outro" data-start="19" data-duration="2">
+      <div class="brand-mark-large clip" data-start="19" data-duration="2" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path class="brand-path" d="M20 4C12.5 4.6 6.6 9.3 5.2 16.4" />
+          <path class="brand-path" d="M4.5 19.5c3-6.4 7.4-10 13.5-11.6" />
+          <circle class="brand-circle" cx="19" cy="5" r="1.4" fill="currentColor" stroke="none" />
+        </svg>
+      </div>
+      <div class="outro-name clip" data-start="19.5" data-duration="1.5">Aurenza</div>
+      <div class="outro-tagline clip" data-start="19.7" data-duration="1.3">Produce allocation & dispatch</div>
+      <div class="outro-url clip" data-start="19.9" data-duration="1.1">github.com/the-nidhi-bhat/Aurenza</div>
+    </section>
+
+  </div>
+
+  <script type="module">
+    import { Hyperframes } from 'https://unpkg.com/hyperframes@0.8.171/dist/hyperframes.js';
+    import { gsap } from 'https://unpkg.com/gsap@3.12.5/index.js';
+
+    // Initialize Hyperframes
+    const hf = new Hyperframes(document.querySelector('.hf-comp'));
+    hf.init();
+
+    // Register timelines
+    window.__timelines = window.__timelines || {};
+    window.__timelines['aurenza-brag'] = gsap.timeline({ paused: true });
+
+    // Scene 1: Hook typing animation - use GSAP
+    const hookText = document.getElementById('hookText');
+    const hookFullText = "India loses ₹92,651 crore/year to post-harvest waste.";
+    const hookChars = hookFullText.split('');
+
+    function typeHook() {
+      hookText.innerHTML = '';
+      hookChars.forEach((char, i) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        hookText.appendChild(span);
+        gsap.fromTo(span,
+          { opacity: 0, y: 8 },
+          { opacity: 1, y: 0, duration: 0.08, delay: i * 0.04, ease: 'power2.out' }
+        );
+        // Play typing SFX every few chars
+        if (i % 3 === 0 && i > 0) {
+          gsap.delayedCall(i * 0.04, () => playSfx('sfx-typing'));
+        }
+      });
+    }
+
+    // Scene 2: KPI cards sequential reveal
+    function revealKpiCards() {
+      const cards = [document.getElementById('kpi1'), document.getElementById('kpi2'), document.getElementById('kpi3')];
+      cards.forEach((card, i) => {
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.4,
+          delay: i * 0.6,
+          ease: 'power2.out',
+          onStart: () => playSfx('sfx-card-1')
+        });
+      });
+    }
+
+    // Scene 3: Dispatch table rows sequential reveal
+    function revealDispatchRows() {
+      const planRows = [document.getElementById('plan-row-1'), document.getElementById('plan-row-2')];
+      const baseRows = [document.getElementById('base-row-1'), document.getElementById('base-row-2')];
+
+      planRows.forEach((row, i) => {
+        gsap.to(row, {
+          opacity: 1,
+          x: 0,
+          duration: 0.35,
+          delay: i * 0.5,
+          ease: 'power2.out',
+          onStart: () => playSfx('sfx-card-1')
+        });
+      });
+
+      baseRows.forEach((row, i) => {
+        gsap.to(row, {
+          opacity: 1,
+          x: 0,
+          duration: 0.35,
+          delay: 1.2 + i * 0.5,
+          ease: 'power2.out',
+          onStart: () => playSfx('sfx-card-1')
+        });
+      });
+    }
+
+    // Scene 4: Batch inventory rows sequential reveal
+    function revealBatchRows() {
+      const rows = [
+        document.getElementById('batch-row-1'),
+        document.getElementById('batch-row-2'),
+        document.getElementById('batch-row-3'),
+        document.getElementById('batch-row-4')
+      ];
+      rows.forEach((row, i) => {
+        gsap.to(row, {
+          opacity: 1,
+          y: 0,
+          duration: 0.3,
+          delay: i * 0.4,
+          ease: 'power2.out',
+          onStart: () => playSfx('sfx-card-1')
+        });
+      });
+    }
+
+    // Scene 5: Reconciliation lines sequential reveal
+    function revealReconciliation() {
+      const rows = [document.getElementById('recon-1'), document.getElementById('recon-2'), document.getElementById('recon-3')];
+      rows.forEach((row, i) => {
+        gsap.to(row, {
+          opacity: 1,
+          y: 0,
+          duration: 0.3,
+          delay: i * 0.4,
+          ease: 'power2.out',
+          onStart: () => playSfx('sfx-card-1')
+        });
+      });
+
+      // Checkmark animation
+      gsap.to('#checkmark', {
+        opacity: 1,
+        scale: 1,
+        duration: 0.4,
+        delay: 1.2,
+        ease: 'back.out(1.7)',
+        onStart: () => playSfx('sfx-check')
+      });
+      gsap.to('#checkText', {
+        opacity: 1,
+        duration: 0.3,
+        delay: 1.3,
+        ease: 'power2.out'
+      });
+    }
+
+    // Scene 6: Evaluation cards sequential reveal
+    function revealEvalCards() {
+      const cards = [document.getElementById('eval-1'), document.getElementById('eval-2'), document.getElementById('eval-3'), document.getElementById('eval-4')];
+      cards.forEach((card, i) => {
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.35,
+          delay: i * 0.35,
+          ease: 'power2.out',
+          onStart: () => playSfx('sfx-card-1')
+        });
+      });
+    }
+
+    // Scene 7: Outro brand mark draw
+    function triggerOutro() {
+      gsap.to('.brand-path', {
+        strokeDashoffset: 0,
+        duration: 1.2,
+        stagger: 0.2,
+        ease: 'power2.out'
+      });
+      gsap.to('.brand-circle', {
+        opacity: 1,
+        duration: 0.3,
+        delay: 0.6,
+        ease: 'power2.out'
+      });
+      gsap.to('.outro-name', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        delay: 0.8,
+        ease: 'power2.out'
+      });
+      gsap.to('.outro-tagline', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        delay: 1.0,
+        ease: 'power2.out'
+      });
+      gsap.to('.outro-url', {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        delay: 1.2,
+        ease: 'power2.out'
+      });
+      playSfx('sfx-logo');
+    }
+
+    // Audio helper
+    function playSfx(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.currentTime = 0;
+        el.play().catch(() => {});
+      }
+    }
+
+    // Scene transition handlers using Hyperframes time updates
+    let scene1Done = false, scene2Done = false, scene3Done = false, scene4Done = false, scene5Done = false, scene6Done = false;
+
+    hf.on('timeupdate', (t) => {
+      // Scene 1 → 2
+      if (t >= 3.5 && t < 3.6 && !scene1Done) {
+        scene1Done = true;
+        document.querySelector('.scene-1').style.opacity = '0';
+        document.querySelector('.scene-2').style.opacity = '1';
+        revealKpiCards();
+      }
+      // Scene 2 → 3
+      if (t >= 7.5 && t < 7.6 && !scene2Done) {
+        scene2Done = true;
+        document.querySelector('.scene-2').style.opacity = '0';
+        document.querySelector('.scene-3').style.opacity = '1';
+        revealDispatchRows();
+      }
+      // Scene 3 → 4
+      if (t >= 11.5 && t < 11.6 && !scene3Done) {
+        scene3Done = true;
+        document.querySelector('.scene-3').style.opacity = '0';
+        document.querySelector('.scene-4').style.opacity = '1';
+        revealBatchRows();
+      }
+      // Scene 4 → 5
+      if (t >= 15 && t < 15.1 && !scene4Done) {
+        scene4Done = true;
+        document.querySelector('.scene-4').style.opacity = '0';
+        document.querySelector('.scene-5').style.opacity = '1';
+        revealReconciliation();
+      }
+      // Scene 5 → 6
+      if (t >= 17.5 && t < 17.6 && !scene5Done) {
+        scene5Done = true;
+        document.querySelector('.scene-5').style.opacity = '0';
+        document.querySelector('.scene-6').style.opacity = '1';
+        revealEvalCards();
+      }
+      // Scene 6 → 7
+      if (t >= 19 && t < 19.1 && !scene6Done) {
+        scene6Done = true;
+        document.querySelector('.scene-6').style.opacity = '0';
+        document.querySelector('.scene-7').style.opacity = '1';
+        triggerOutro();
+      }
+    });
+
+    // Start hook typing when composition starts
+    hf.on('start', () => {
+      typeHook();
+      // Music is handled by Hyperframes via data attributes
+    });
+  </script>
+</body>
+</html>

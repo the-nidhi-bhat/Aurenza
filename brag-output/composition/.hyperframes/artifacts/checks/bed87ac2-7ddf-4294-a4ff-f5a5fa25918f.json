@@ -1,0 +1,735 @@
+{
+  "ok": false,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 31,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "css_transition_used",
+        "severity": "warning",
+        "message": "CSS declaration `transition: opacity 0.08s ease, transform 0.08s ease` runs on the browser clock and cannot be seeked deterministically across render workers.",
+        "selector": ".hook-text .char",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the class or attribute swap for state; put the visual change on the paused GSAP timeline."
+      },
+      {
+        "code": "css_transition_used",
+        "severity": "warning",
+        "message": "CSS declaration `transition: opacity 0.4s cubic-bezier(.2,.7,.2,1), transform 0.4s cubic-bezier(.2,.7,.2,1)` runs on the browser clock and cannot be seeked deterministically across render workers.",
+        "selector": ".kpi-card",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the class or attribute swap for state; put the visual change on the paused GSAP timeline."
+      },
+      {
+        "code": "css_transition_used",
+        "severity": "warning",
+        "message": "CSS declaration `transition: opacity 0.35s ease, transform 0.35s ease` runs on the browser clock and cannot be seeked deterministically across render workers.",
+        "selector": ".dispatch-table tbody tr",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the class or attribute swap for state; put the visual change on the paused GSAP timeline."
+      },
+      {
+        "code": "css_transition_used",
+        "severity": "warning",
+        "message": "CSS declaration `transition: opacity 0.3s ease, transform 0.3s ease` runs on the browser clock and cannot be seeked deterministically across render workers.",
+        "selector": ".batch-table tbody tr",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the class or attribute swap for state; put the visual change on the paused GSAP timeline."
+      },
+      {
+        "code": "css_transition_used",
+        "severity": "warning",
+        "message": "CSS declaration `transition: opacity 0.3s ease, transform 0.3s ease` runs on the browser clock and cannot be seeked deterministically across render workers.",
+        "selector": ".recon-row",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the class or attribute swap for state; put the visual change on the paused GSAP timeline."
+      },
+      {
+        "code": "css_transition_used",
+        "severity": "warning",
+        "message": "CSS declaration `transition: opacity 0.3s ease, transform 0.4s cubic-bezier(.2,.7,.2,1)` runs on the browser clock and cannot be seeked deterministically across render workers.",
+        "selector": ".checkmark",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the class or attribute swap for state; put the visual change on the paused GSAP timeline."
+      },
+      {
+        "code": "css_transition_used",
+        "severity": "warning",
+        "message": "CSS declaration `transition: opacity 0.3s ease 0.1s` runs on the browser clock and cannot be seeked deterministically across render workers.",
+        "selector": ".check-text",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the class or attribute swap for state; put the visual change on the paused GSAP timeline."
+      },
+      {
+        "code": "css_transition_used",
+        "severity": "warning",
+        "message": "CSS declaration `transition: opacity 0.35s cubic-bezier(.2,.7,.2,1), transform 0.35s cubic-bezier(.2,.7,.2,1)` runs on the browser clock and cannot be seeked deterministically across render workers.",
+        "selector": ".eval-card",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Keep the class or attribute swap for state; put the visual change on the paused GSAP timeline."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<h2 class=\"dispatch-title\" data-start=\"7.5\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"dispatch-table-wrap\" data-start=\"7.8\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<h2 class=\"dispatch-title\" data-start=\"9.5\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"dispatch-table-wrap\" data-start=\"9.8\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"batch-table-wrap\" data-start=\"11.5\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<h2 class=\"dispatch-title\" data-start=\"11.5\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<p data-start=\"11.5\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"recon-panel\" data-start=\"15\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<h2 class=\"dispatch-title\" data-start=\"15\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div data-start=\"17.5\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"brand-mark-large\" data-start=\"19\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"outro-name\" data-start=\"19.5\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"outro-tagline\" data-start=\"19.7\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "studio_missing_editable_id",
+        "severity": "warning",
+        "message": "<div class=\"outro-url\" data-start=\"19.9\"> has no id, so Studio cannot use a stable edit target for its timeline and canvas controls.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Add a stable, human-readable id such as id=\"hero-title\" or id=\"scene-1-card\" to every timeline-visible element you want agents or Studio to edit."
+      },
+      {
+        "code": "composition_file_too_large",
+        "severity": "warning",
+        "message": "This HTML composition file has 525 lines. Smaller sub-compositions are easier to read, iterate on, and diff.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Split coherent scenes or layers into separate .html files under compositions/, then mount them from the parent with data-composition-src so each file stays small enough to inspect, revise, and validate independently."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene-hook\"> is a timeline element that contains nested <div id=\"hookText\">. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-hook",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene-hook\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene-kpi\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-kpi",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene-kpi\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene-dispatch\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-dispatch",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene-dispatch\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene-batch\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-batch",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene-batch\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene-recon\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-recon",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene-recon\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene-eval\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-eval",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene-eval\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<section id=\"scene-outro\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-outro",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <section id=\"scene-outro\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "clip_ends_past_root_duration",
+        "severity": "warning",
+        "message": "<section id=\"scene-outro\"> runs from 19s to 21s, past the root composition's data-duration of 20s, so it is cut off in previews, posters and renders.",
+        "selector": "#scene-outro",
+        "dataAttributes": {},
+        "sourceFile": "C:\\Users\\theni\\OneDrive\\Desktop\\projects main\\Aurenza\\brag-output\\composition\\index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Extend the root data-duration to 21, or make <section id=\"scene-outro\"> end at or before 20s."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": false,
+    "errorCount": 3,
+    "warningCount": 4,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "request_failed",
+        "severity": "error",
+        "message": "Failed to load hyperframes@0.8.171/dist/hyperframes.css: net::ERR_BLOCKED_BY_ORB",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "aurenza-brag",
+          "data-width": "1920",
+          "data-height": "1080",
+          "data-duration": "20",
+          "data-fps": "30",
+          "data-start": "0"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0,
+        "url": "https://unpkg.com/hyperframes@0.8.171/dist/hyperframes.css"
+      },
+      {
+        "code": "console_error",
+        "severity": "error",
+        "message": "Access to script at 'https://unpkg.com/hyperframes@0.8.171/dist/hyperframes.js' from origin 'http://127.0.0.1:53134' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "aurenza-brag",
+          "data-width": "1920",
+          "data-height": "1080",
+          "data-duration": "20",
+          "data-fps": "30",
+          "data-start": "0"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0,
+        "url": "http://127.0.0.1:53134/"
+      },
+      {
+        "code": "request_failed",
+        "severity": "error",
+        "message": "Failed to load hyperframes@0.8.171/dist/hyperframes.js: net::ERR_FAILED",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "aurenza-brag",
+          "data-width": "1920",
+          "data-height": "1080",
+          "data-duration": "20",
+          "data-fps": "30",
+          "data-start": "0"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0,
+        "url": "https://unpkg.com/hyperframes@0.8.171/dist/hyperframes.js"
+      },
+      {
+        "code": "clip_media_fit",
+        "severity": "warning",
+        "message": "Audio \"sfx-typing\" is 0.25s but its slot (data-duration) is 3.50s — the slot is shortened to the media length when rendered. Set data-duration to ~0.25s if that isn't intended.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "aurenza-brag",
+          "data-width": "1920",
+          "data-height": "1080",
+          "data-duration": "20",
+          "data-fps": "30",
+          "data-start": "0"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0
+      },
+      {
+        "code": "clip_media_fit",
+        "severity": "warning",
+        "message": "Audio \"sfx-card-1\" is 0.10s but its slot (data-duration) is 1.80s — the slot is shortened to the media length when rendered. Set data-duration to ~0.10s if that isn't intended.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "aurenza-brag",
+          "data-width": "1920",
+          "data-height": "1080",
+          "data-duration": "20",
+          "data-fps": "30",
+          "data-start": "0"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0
+      },
+      {
+        "code": "clip_media_fit",
+        "severity": "warning",
+        "message": "Audio \"sfx-card-2\" is 0.10s but its slot (data-duration) is 2.00s — the slot is shortened to the media length when rendered. Set data-duration to ~0.10s if that isn't intended.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "aurenza-brag",
+          "data-width": "1920",
+          "data-height": "1080",
+          "data-duration": "20",
+          "data-fps": "30",
+          "data-start": "0"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0
+      },
+      {
+        "code": "clip_media_fit",
+        "severity": "warning",
+        "message": "Audio \"sfx-check\" is 0.12s but its slot (data-duration) is 0.50s — the slot is shortened to the media length when rendered. Set data-duration to ~0.12s if that isn't intended.",
+        "selector": "[data-composition-id]",
+        "dataAttributes": {
+          "data-composition-id": "aurenza-brag",
+          "data-width": "1920",
+          "data-height": "1080",
+          "data-duration": "20",
+          "data-fps": "30",
+          "data-start": "0"
+        },
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 1920,
+          "height": 1080
+        },
+        "time": 0
+      }
+    ]
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 20,
+    "samples": [
+      1.111,
+      3.333,
+      5.556,
+      7.778,
+      10,
+      12.222,
+      14.444,
+      16.667,
+      18.889
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      1.111,
+      5.556,
+      10,
+      14.444,
+      18.889
+    ],
+    "checked": 1,
+    "passed": 1
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}
