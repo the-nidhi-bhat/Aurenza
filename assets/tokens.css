@@ -18,9 +18,9 @@
   --rule-2: #ddd5c4;
 
   /* Semantic accents (single accent family) */
-  --accent: #0f9d46;       /* primary green - trust, growth, freshness */
-  --accent-2: #2ec86e;     /* hover/active */
-  --accent-3: #0a7a34;     /* pressed */
+  --accent: #0a7a34;       /* primary green - trust, growth, freshness (darker for contrast) */
+  --accent-2: #0f9d46;     /* hover/active */
+  --accent-3: #085e28;     /* pressed */
   --accent-soft: rgba(15, 157, 70, 0.1);
   --accent-line: rgba(15, 157, 70, 0.3);
   --warn: #d4a01e;         /* amber for cautions */
