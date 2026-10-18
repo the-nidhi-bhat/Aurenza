@@ -597,15 +597,6 @@ python -m pytest -q                    # 77 tests
 
 MIT License — see `LICENSE` (to be added).
 
----
-
-## Acknowledgments
-
-- **Nidhi** — Engine architecture, contract, baseline, planner, evaluation
-- **Arati** — Dashboard (HTML/CSS/JS), accessibility, visual design
-- **Iffa** — Data & evaluation (A9 produce catalogue, market data) — *open*
-
----
 
 ## Live Demo
 
