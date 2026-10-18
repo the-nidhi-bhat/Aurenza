@@ -19,7 +19,8 @@
       document.documentElement.setAttribute('data-theme', t);
     } catch (e) { /* storage blocked: the light default stands */ }
   </script>
-  <link rel="stylesheet" href="/dashboard/styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="/assets/tokens.css" />
   <link rel="stylesheet" href="/assets/site.css" />
 </head>
 <body>
@@ -27,7 +28,7 @@
 
   <header class="appbar">
     <div class="appbar-inner">
-      <a class="brand" href="/">
+      <a class="brand" href="/" aria-label="Aurenza home">
         <span class="brand-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
                stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
@@ -38,11 +39,11 @@
         </span>
         <span class="brand-text">
           <span class="brand-name">Aurenza</span>
-          <span class="brand-sub">Produce allocation &amp; dispatch</span>
+          <span class="brand-sub">Produce allocation & dispatch</span>
         </span>
       </a>
 
-      <nav class="ld-nav" aria-label="Primary">
+      <nav class="ld-nav" aria-label="Primary navigation">
         <a href="#problem">The problem</a>
         <a href="#how">How it works</a>
         <a href="#evidence">Evidence</a>
@@ -73,10 +74,11 @@
 
   <main id="main" class="ld-shell">
 
-    <section class="ld-hero">
+    <!-- HERO: asymmetric, left-aligned copy, right visual -->
+    <section class="ld-hero" aria-labelledby="hero-title">
       <div class="ld-hero-copy reveal">
         <p class="ld-eyebrow">Decision support for perishable produce</p>
-        <h1 class="ld-title">Every crate is on a clock. <em>Decide where it goes before the clock runs out.</em></h1>
+        <h1 id="hero-title" class="ld-title">Every crate is on a clock. <em>Decide where it goes before the clock runs out.</em></h1>
         <p class="ld-lede">
           Aurenza turns a day of produce — batches with hours of shelf life left, destinations with
           demand, price and capacity — into a dispatch ledger you can defend line by line. It then
@@ -90,42 +92,51 @@
         <p class="ld-hint">Synthetic engine output · no live data, no third-party calls, every number reproducible from a seed.</p>
       </div>
 
-      <figure class="ld-plate ld-plate-hero reveal">
+      <figure class="ld-plate ld-plate-hero reveal reveal-stagger-1" aria-hidden="true">
         <img src="/assets/img/forest-mist.jpg" alt="" width="480" height="480" decoding="async" />
         <figcaption class="ld-plate-cap">Freshness is a deadline, not a label.</figcaption>
       </figure>
     </section>
 
-    <section class="ld-section" aria-label="Measured outcome">
-      <div class="ld-stats reveal">
-        <div class="ld-stat">
+    <!-- STAT STRIP: visual bars instead of just numbers -->
+    <section class="ld-section ld-stats-section" aria-label="Measured outcome">
+      <div class="ld-stats-visual reveal">
+        <div class="ld-stat-visual reveal-stagger-1">
           <span class="ld-stat-num">120</span>
-          <span class="ld-stat-lab">disruption scenarios scored, 30 seeds, replayed from the committed fixture</span>
+          <span class="ld-stat-label">disruption scenarios</span>
+          <div class="ld-stat-bar" style="--value: 100" aria-hidden="true"><span></span></div>
+          <p class="ld-stat-detail">30 seeds, replayed from committed fixture</p>
         </div>
-        <div class="ld-stat">
+        <div class="ld-stat-visual reveal-stagger-2">
           <span class="ld-stat-num up">+24.2%</span>
-          <span class="ld-stat-lab">median net-revenue improvement per run against the FEFO baseline</span>
+          <span class="ld-stat-label">median net-revenue improvement</span>
+          <div class="ld-stat-bar" style="--value: 65" aria-hidden="true"><span></span></div>
+          <p class="ld-stat-detail">vs. FEFO baseline per run</p>
         </div>
-        <div class="ld-stat">
+        <div class="ld-stat-visual reveal-stagger-3">
           <span class="ld-stat-num">115/120</span>
-          <span class="ld-stat-lab">scenarios where net revenue came out ahead</span>
+          <span class="ld-stat-label">scenarios ahead</span>
+          <div class="ld-stat-bar" style="--value: 96" aria-hidden="true"><span></span></div>
+          <p class="ld-stat-detail">planner beats baseline</p>
         </div>
-        <div class="ld-stat">
+        <div class="ld-stat-visual reveal-stagger-4">
           <span class="ld-stat-num">0</span>
-          <span class="ld-stat-lab">infeasible allocations — planner and baseline alike</span>
+          <span class="ld-stat-label">infeasible allocations</span>
+          <div class="ld-stat-bar" style="--value: 0" aria-hidden="true"><span></span></div>
+          <p class="ld-stat-detail">both planner & baseline stay feasible</p>
         </div>
       </div>
-      <p class="ld-hint">
+      <p class="ld-hint reveal reveal-stagger-5">
         Every figure on this page is recomputed from <code>demo/evaluation.json</code> by the test
         suite. The engine generates the scenarios, so nothing here is a real market result.
       </p>
     </section>
 
-    <section class="ld-section" id="problem">
+    <!-- PROBLEM: left-aligned text, right image (no eyebrow) -->
+    <section class="ld-section" id="problem" aria-labelledby="problem-title">
       <div class="ld-split">
         <div class="reveal">
-          <p class="ld-eyebrow">The problem</p>
-          <h2>A dashboard that only reports is not decision support.</h2>
+          <h2 id="problem-title">A dashboard that only reports is not decision support.</h2>
           <p>
             Perishable stock loses value by the hour, and the loss is uneven: a crate with two days
             of shelf life is not the same asset as one with two hours. First-expired-first-out gets
@@ -138,14 +149,15 @@
             saying why. Anything less is a spreadsheet with better typography.
           </p>
         </div>
-        <figure class="ld-plate reveal">
+        <figure class="ld-plate reveal reveal-stagger-1">
           <img src="/assets/img/field-bloom.jpg" alt="" width="480" height="480" loading="lazy" decoding="async" />
           <figcaption class="ld-plate-cap">Freshness is a deadline, not a label.</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="ld-section" id="how">
+    <!-- HOW IT WORKS: right-aligned text, left image (has eyebrow - 2nd of 3 allowed) -->
+    <section class="ld-section" id="how" aria-labelledby="how-title">
       <div class="ld-split reverse">
         <figure class="ld-plate reveal">
           <img src="/assets/img/facility-hall.jpg" alt="" width="480" height="480" loading="lazy" decoding="async" />
@@ -153,9 +165,9 @@
         </figure>
         <div class="reveal">
           <p class="ld-eyebrow">How it works</p>
-          <h2>Four steps, every one of them inspectable.</h2>
+          <h2 id="how-title">Four steps, every one of them inspectable.</h2>
           <ol class="ld-steps">
-            <li class="ld-step">
+            <li class="ld-step reveal-stagger-1">
               <h3>Model the day.</h3>
               <p>
                 Batches carry harvested mass, remaining shelf life and grade; destinations carry
@@ -163,7 +175,7 @@
                 can be swapped and re-run.
               </p>
             </li>
-            <li class="ld-step">
+            <li class="ld-step reveal-stagger-2">
               <h3>Search the best feasible destination.</h3>
               <p>
                 Perishability sets the priority, contribution sets the tie-break, and hard
@@ -171,7 +183,7 @@
                 before they ever reach the plan.
               </p>
             </li>
-            <li class="ld-step">
+            <li class="ld-step reveal-stagger-3">
               <h3>Price and explain.</h3>
               <p>
                 Each dispatch carries a discount, an effective price per kilogram, an expected
@@ -179,7 +191,7 @@
                 rather than a number dump.
               </p>
             </li>
-            <li class="ld-step">
+            <li class="ld-step reveal-stagger-4">
               <h3>Prove it.</h3>
               <p>
                 The same input is solved by the FEFO baseline and by the planner, then scored across
@@ -192,13 +204,13 @@
       </div>
     </section>
 
-    <section class="ld-section" id="features">
+    <!-- FEATURES: bento-style grid, no eyebrow (3rd section, no eyebrow allowed) -->
+    <section class="ld-section" id="features" aria-labelledby="features-title">
       <div class="reveal">
-        <p class="ld-eyebrow">What is in the box</p>
-        <h2>Built to be audited, not admired.</h2>
+        <h2 id="features-title">Built to be audited, not admired.</h2>
       </div>
       <div class="ld-grid">
-        <article class="ld-card reveal">
+        <article class="ld-card reveal reveal-stagger-1">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 3v6M12 9c-3.4 0-6 2.4-6 5.4 0 2.1 1.3 3.6 3 3.6 2.4 0 3-2 3-4.2V9Z" />
             <path d="M12 9c3.4 0 6 2.4 6 5.4 0 2.1-1.3 3.6-3 3.6-2.4 0-3-2-3-4.2V9Z" />
@@ -206,21 +218,21 @@
           <h3>Perishability-first batching</h3>
           <p>Shelf life, not arrival order, decides which batch moves first — and how hard it has to be priced to move.</p>
         </article>
-        <article class="ld-card reveal">
+        <article class="ld-card reveal reveal-stagger-2">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="11" cy="11" r="6.2" /><path d="M15.6 15.6 20 20" />
           </svg>
           <h3>Best-feasible destination search</h3>
           <p>Candidates are filtered by capacity, demand and freshness floor before contribution is compared.</p>
         </article>
-        <article class="ld-card reveal">
+        <article class="ld-card reveal reveal-stagger-3">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 19h16" /><path d="M7 19V9M12 19V5M17 19v-6" />
           </svg>
           <h3>Markdown that keeps the margin</h3>
           <p>A discount is applied to recover contribution from stock that would otherwise be written off, and the effective price per kilogram is shown every time.</p>
         </article>
-        <article class="ld-card reveal">
+        <article class="ld-card reveal reveal-stagger-4">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 3.5 20 7v5.4c0 4-3.4 6.6-8 8.1-4.6-1.5-8-4.1-8-8.1V7l8-3.5Z" />
             <path d="M8.8 12.2 11 14.4l4.2-4.6" />
@@ -228,14 +240,14 @@
           <h3>Feasibility guardrails</h3>
           <p>Allocations that violate a constraint are never emitted. Across the evaluated scenarios, both plans stay feasible on every run.</p>
         </article>
-        <article class="ld-card reveal">
+        <article class="ld-card reveal reveal-stagger-5">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 6h16M4 12h10M4 18h13" /><circle cx="18" cy="12" r="1.3" fill="currentColor" stroke="none" />
           </svg>
           <h3>Every dispatch explained</h3>
           <p>Each line states the batch, the destination, the discount and the decision reason in words a dispatcher can repeat to a customer.</p>
         </article>
-        <article class="ld-card reveal">
+        <article class="ld-card reveal reveal-stagger-6">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M12 3v4M12 17v4M3 12h4M17 12h4" /><circle cx="12" cy="12" r="4.2" />
           </svg>
@@ -245,11 +257,11 @@
       </div>
     </section>
 
-    <section class="ld-section" id="evidence">
+    <!-- EVIDENCE: left text, right image (no eyebrow - 4th section, no eyebrow allowed) -->
+    <section class="ld-section" id="evidence" aria-labelledby="evidence-title">
       <div class="ld-split">
         <div class="reveal">
-          <p class="ld-eyebrow">Evidence, including the uncomfortable parts</p>
-          <h2>What the evaluation actually shows.</h2>
+          <h2 id="evidence-title">What the evaluation actually shows.</h2>
           <p>
             Over 30 seeds and 120 disruption scenarios, the planner beats the FEFO baseline on net
             revenue in 115 runs, with a median improvement of 24.2% and no infeasible allocation on
@@ -271,17 +283,18 @@
             <a class="btn" href="/signup/?next=%2Fdashboard%2F">Create an account</a>
           </p>
         </div>
-        <figure class="ld-plate reveal">
+        <figure class="ld-plate reveal reveal-stagger-1">
           <img src="/assets/img/city-street.jpg" alt="" width="480" height="480" loading="lazy" decoding="async" />
           <figcaption class="ld-plate-cap">The last mile is where the margin is decided.</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="ld-section">
+    <!-- CTA BAND -->
+    <section class="ld-section" aria-labelledby="cta-title">
       <div class="ld-band reveal">
         <div>
-          <h2>The ledger is already written. Go read it.</h2>
+          <h2 id="cta-title">The ledger is already written. Go read it.</h2>
           <p>Sign in with the demo operator account, or create your own, and open the console.</p>
         </div>
         <div class="ld-actions">
@@ -299,7 +312,7 @@
   </main>
 
   <footer class="site-footer">
-    Aurenza · explainable produce allocation &amp; dispatch · synthetic engine output ·
+    Aurenza · explainable produce allocation & dispatch · synthetic engine output ·
     <a href="/dashboard/">console</a>
   </footer>
 

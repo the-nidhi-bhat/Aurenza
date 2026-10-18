@@ -18,7 +18,8 @@
       document.documentElement.setAttribute('data-theme', t);
     } catch (e) { /* storage blocked: the light default stands */ }
   </script>
-  <link rel="stylesheet" href="/dashboard/styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link rel="stylesheet" href="/assets/tokens.css" />
   <link rel="stylesheet" href="/assets/site.css" />
 </head>
 <body>
@@ -37,7 +38,7 @@
         </span>
         <span class="brand-text">
           <span class="brand-name">Aurenza</span>
-          <span class="brand-sub">Produce allocation &amp; dispatch</span>
+          <span class="brand-sub">Produce allocation & dispatch</span>
         </span>
       </a>
 
@@ -67,10 +68,10 @@
 
   <main id="main" class="ld-shell au-main">
     <div class="au-wrap">
-      <section class="au-card">
+      <section class="au-card reveal">
         <p class="ld-eyebrow">Aurenza</p>
         <h1 class="au-title">Sign in</h1>
-        <p class="au-sub">Open the produce allocation &amp; dispatch console.</p>
+        <p class="au-sub">Open the produce allocation & dispatch console.</p>
 
         <form class="au-form" data-auth-form="signin" novalidate>
           <label class="au-label" for="email">Email</label>
@@ -104,7 +105,7 @@
         </p>
       </section>
 
-      <aside class="au-aside">
+      <aside class="au-aside reveal reveal-stagger-1">
         <img src="/assets/img/forest-mist.jpg" alt="" />
         <div class="au-aside-body">
           <p class="ld-eyebrow">Dispatch console</p>
@@ -119,7 +120,7 @@
   </main>
 
   <footer class="site-footer">
-    Aurenza · explainable produce allocation &amp; dispatch · synthetic engine output ·
+    Aurenza · explainable produce allocation & dispatch · synthetic engine output ·
     <a href="/">home</a>
   </footer>
 

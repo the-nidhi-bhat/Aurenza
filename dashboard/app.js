@@ -87,7 +87,7 @@ function summaryLine(strategy) {
 
 function dispatchTable(dispatches) {
   if (!dispatches || !dispatches.length) {
-    return '<p class="empty">No dispatches in this plan.</p>';
+    return '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/></svg><h3>No dispatches</h3><p>This plan has no dispatch decisions for the current scenario.</p></div>';
   }
   const rows = dispatches.map((d) => {
     const neg = (d.expected_contribution || 0) < 0;
@@ -123,7 +123,7 @@ function batchTable(baselineBatches, plannerBatches) {
     e.p = r;
     map.set(r.batch_id, e);
   });
-  if (!map.size) return '<p class="empty">No batch data.</p>';
+  if (!map.size) return '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.2"/><path d="M15.6 15.6 20 20"/></svg><h3>No batch data</h3><p>Inventory data is not available for this scenario.</p></div>';
   const rows = [...map.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([id, e]) => {
     const b = e.b || {}, p = e.p || {};
     const harvested = (b.harvested_kg ?? p.harvested_kg);
@@ -157,6 +157,50 @@ function reconRows(name, rec) {
     <strong>${esc(name)}</strong>
     <span class="detail">Σ contributions ${money(rec.sum_dispatch_contributions)} − spoilage ${money(rec.spoilage_cost)} = net ${money(rec.net_revenue)}</span>
   </div>`;
+}
+
+/* ---------- skeleton loaders ---------- */
+
+function renderSkeletonOverview() {
+  return `
+    <section class="panel hero skeleton-card" aria-busy="true" aria-label="Loading net revenue comparison"></section>
+    <div class="kpi-row">
+      <div class="card skeleton-kpi"></div>
+      <div class="card skeleton-kpi"></div>
+      <div class="card skeleton-kpi"></div>
+      <div class="card skeleton-kpi"></div>
+    </div>
+    <section class="panel accent-planner">
+      <div class="panel-head"><h2><span class="swatch planner" aria-hidden="true"></span>Planner plan</h2></div>
+      <div class="table-wrap"><div class="skeleton-row"></div><div class="skeleton-row"></div><div class="skeleton-row"></div></div>
+    </section>
+    <section class="panel accent-baseline">
+      <div class="panel-head"><h2><span class="swatch baseline" aria-hidden="true"></span>Baseline plan (FEFO)</h2></div>
+      <div class="table-wrap"><div class="skeleton-row"></div><div class="skeleton-row"></div><div class="skeleton-row"></div></div>
+    </section>
+    <div class="panel-grid">
+      <section class="panel"><div class="panel-head"><h2>Batch inventory & spoilage</h2></div><div class="table-wrap"><div class="skeleton-row"></div><div class="skeleton-row"></div></div></section>
+      <section class="panel"><div class="panel-head"><h2>Accounting reconciliation</h2></div><div class="skeleton-row"></div><div class="skeleton-row"></div></section>
+    </div>`;
+}
+
+function renderSkeletonEvaluation() {
+  return `
+    <div class="kpi-row">
+      <div class="card skeleton-kpi"></div>
+      <div class="card skeleton-kpi"></div>
+      <div class="card skeleton-kpi"></div>
+      <div class="card skeleton-kpi"></div>
+      <div class="card skeleton-kpi"></div>
+    </div>
+    <div class="chart-grid">
+      <section class="panel"><h2 class="chart-title skeleton-title"></h2><div class="skeleton-card"></div></section>
+      <section class="panel"><h2 class="chart-title skeleton-title"></h2><div class="skeleton-card"></div></section>
+    </div>
+    <section class="panel">
+      <div class="panel-head"><h2>Scenario explorer</h2></div>
+      <div class="skeleton-row"></div>
+    </section>`;
 }
 
 /* ---------- overview view (demo/result.json) ---------- */
@@ -226,8 +270,6 @@ function renderDetail(result) {
       pm.feasible === false
         ? `planner reports ${(pm.violations || []).length} constraint violation(s)`
         : 'no hard-constraint violations in either plan');
-
-  $('tradeoff').innerHTML = tradeoffStrip(imp);
 
   // Honest messaging
   const notes = [];
@@ -340,7 +382,7 @@ function outcomeChart(a) {
 function histogramSvg(values) {
   const W = 720, H = 220, padL = 14, padR = 14, padT = 16, padB = 30;
   const vals = values.filter((v) => Number.isFinite(v));
-  if (!vals.length) return '<p class="empty">No net-revenue deltas available.</p>';
+  if (!vals.length) return '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-6"/></svg><h3>No data</h3><p>No net-revenue deltas available.</p></div>';
   const min = Math.min(...vals), max = Math.max(...vals);
   const lo = Math.min(0, min), hi = Math.max(0, max);
   const span = (hi - lo) || 1;
@@ -434,7 +476,7 @@ function barGroup(label, bv, pv, fmt) {
 function renderScenario(sc) {
   const view = $('scenario-view');
   const r = (sc.runs || [])[0];
-  if (!r) { view.innerHTML = '<p class="empty">No run data for this scenario.</p>'; return; }
+  if (!r) { view.innerHTML = '<div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="11" cy="11" r="6.2"/><path d="M15.6 15.6 20 20"/></svg><h3>No run data</h3><p>This scenario has no run data available.</p></div>'; return; }
   const bm = r.baseline.metrics, pm = r.planner.metrics;
   const imp = r.improvement || {};
   const win = r.win || {};
@@ -475,9 +517,6 @@ function renderScenario(sc) {
         </tbody>
       </table>
     </div>`;
-
-  const live = $('scenario-live');
-  if (live) live.textContent = `Scenario ${sc.scenario_id} shown: net revenue change ${signed(nrd, money)}, spoilage change ${signed(spd, (t) => NUM(t, 2) + ' kg')}, fulfillment change ${signed(fpd, (t) => NUM(t, 2) + ' pp')}.`;
 }
 
 /* ---------- view switching ---------- */
@@ -508,6 +547,56 @@ function initTabs() {
       else if (e.key === 'End') { e.preventDefault(); activateView(tabs[tabs.length - 1].id, true); }
     });
   });
+}
+
+/* ---------- keyboard shortcuts ---------- */
+
+function initKeyboardShortcuts() {
+  document.addEventListener('keydown', (e) => {
+    // Ignore if typing in an input
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA' || e.target.isContentEditable) return;
+
+    // 1 / 2 - switch tabs
+    if (e.key === '1') { activateView('tab-overview', true); }
+    else if (e.key === '2') { activateView('tab-evaluation', true); }
+    // T - toggle theme
+    else if (e.key === 't' || e.key === 'T') {
+      const btn = $('theme-toggle');
+      if (btn) btn.click();
+    }
+    // R - refresh data
+    else if (e.key === 'r' || e.key === 'R') {
+      location.reload();
+    }
+    // ? - show shortcuts hint
+    else if (e.key === '?' && e.shiftKey) {
+      showShortcutsHint();
+    }
+  });
+}
+
+function showShortcutsHint() {
+  const existing = $('shortcuts-hint');
+  if (existing) { existing.remove(); return; }
+
+  const hint = document.createElement('div');
+  hint.id = 'shortcuts-hint';
+  hint.style.cssText = `
+    position: fixed; bottom: 24px; right: 24px; z-index: 1000;
+    background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-lg);
+    padding: var(--sp4); box-shadow: var(--shadow-lg); max-width: 320px;
+  `;
+  hint.innerHTML = `
+    <h4 style="margin: 0 0 var(--sp3); font-size: 13px;">Keyboard shortcuts</h4>
+    <div style="display: grid; gap: var(--sp2); font-size: 12px; color: var(--muted);">
+      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">1</kbd> / <kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">2</kbd> — Switch tabs</div>
+      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">T</kbd> — Toggle theme</div>
+      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">R</kbd> — Refresh data</div>
+      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">?</kbd> — Show this hint</div>
+    </div>
+  `;
+  document.body.appendChild(hint);
+  setTimeout(() => hint.remove(), 8000);
 }
 
 /* ---------- boot ---------- */
@@ -566,7 +655,7 @@ function initTheme() {
     root.setAttribute('data-theme', isDark() ? 'light' : 'dark');
     try { localStorage.setItem('aurenza-theme', isDark() ? 'dark' : 'light'); } catch (e) { /* ignore */ }
     sync();
-  };
+  });
 }
 
 // Demo session chip. The head bootstrap script has already redirected anonymous visitors
@@ -602,10 +691,16 @@ function initSession() {
 }
 
 async function init() {
+  // Show skeletons immediately
+  $('view-overview').innerHTML = renderSkeletonOverview();
+  $('view-evaluation').innerHTML = renderSkeletonEvaluation();
+
   renderFooter();
   initTheme();
   initSession();
   initTabs();
+  initKeyboardShortcuts();
+
   let overviewOk = false, evalOk = false;
   try {
     const result = await fetchJSON('../demo/result.json');
