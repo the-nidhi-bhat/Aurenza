@@ -82,6 +82,32 @@ class TestConsumedSchema(unittest.TestCase):
         self.assertEqual(committed, run_eval.evaluate('standard'))
 
 
+class TestDashboardMarkup(unittest.TestCase):
+    """Every element id app.js writes into must exist in index.html, and the
+    page must load its own assets (no build step, no CDN)."""
+
+    HTML_IDS = ('loading', 'load-error', 'footer', 'detail-meta', 'detail-verdict',
+                'detail-notes', 'hero', 'kpi-cards', 'planner-summary', 'planner-dispatches',
+                'baseline-summary', 'baseline-dispatches', 'batch-table', 'recon',
+                'eval-meta', 'eval-notes', 'eval-cards', 'eval-charts',
+                'scenario-select', 'scenario-view', 'tab-overview', 'tab-evaluation',
+                'view-overview', 'view-evaluation')
+
+    @classmethod
+    def setUpClass(cls):
+        cls.html = open(os.path.join(HERE, 'index.html'), encoding='utf-8').read()
+
+    def test_render_targets_present(self):
+        for el_id in self.HTML_IDS:
+            self.assertIn(f'id="{el_id}"', self.html, f'index.html missing id="{el_id}"')
+
+    def test_local_assets_linked(self):
+        self.assertIn('href="styles.css"', self.html)
+        self.assertIn('src="app.js"', self.html)
+        self.assertNotIn('http://', self.html.replace('http://www.w3.org', ''))
+        self.assertNotIn('https://', self.html.replace('https://www.w3.org', ''))
+
+
 class TestStaticServer(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
