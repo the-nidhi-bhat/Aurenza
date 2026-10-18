@@ -27,36 +27,36 @@ Aurenza compares a deterministic **FEFO baseline** against an optimizing **plann
 
 ```mermaid
 graph TB
-    subgraph Input["📥 Input Layer"]
-        S[("Scenario JSON\n(seed + config)")]
-        D[("Disruptions\n(optional)")]
-        C[("Contract v1.0.0\n(docs/CONTRACT.md)")]
+    subgraph Input["Input Layer"]
+        S["Scenario JSON<br/>(seed + config)"]
+        D["Disruptions<br/>(optional)"]
+        C["Contract v1.0.0<br/>(docs/CONTRACT.md)"]
     end
 
-    subgraph Engine["⚙️ Engine Core (engine/core.py)"]
-        V[Validate Schema\n& Config]
-        A[Apply Disruptions\n(5 types)]
-        P[Pricing & Demand\nHelpers]
-        F[Feasibility Checks\n(14 codes)]
-        AG[Aggregation\n§5-§6 Metrics]
-        RC[Reconciliation\n§5.3 Identity]
+    subgraph Engine["Engine Core (engine/core.py)"]
+        V["Validate Schema<br/>& Config"]
+        A["Apply Disruptions<br/>(5 types)"]
+        P["Pricing & Demand<br/>Helpers"]
+        F["Feasibility Checks<br/>(14 codes)"]
+        AG["Aggregation<br/>§5-§6 Metrics"]
+        RC["Reconciliation<br/>§5.3 Identity"]
     end
 
-    subgraph Strategies["🧠 Strategies (Pure Functions)"]
-        B[Baseline: FEFO\n(engine/baseline.py)]
-        PL[Planner: Greedy\n(engine/planner.py)]
+    subgraph Strategies["Strategies (Pure Functions)"]
+        B["Baseline: FEFO<br/>(engine/baseline.py)"]
+        PL["Planner: Greedy<br/>(engine/planner.py)"]
     end
 
-    subgraph Output["📤 Output Layer"]
-        R[result.json\n§8 Schema]
-        E[evaluation.json\n§9 Schema]
+    subgraph Output["Output Layer"]
+        R["result.json<br/>§8 Schema"]
+        E["evaluation.json<br/>§9 Schema"]
     end
 
-    subgraph Dashboard["🖥️ Dashboard (Zero-Deps)"]
-        HTML[index.html]
-        CSS[styles.css]
-        JS[app.js]
-        SRV[serve.py]
+    subgraph Dashboard["Dashboard (Zero-Deps)"]
+        HTML["index.html"]
+        CSS["styles.css"]
+        JS["app.js"]
+        SRV["serve.py"]
     end
 
     S --> V
@@ -94,12 +94,12 @@ graph TB
 flowchart LR
     subgraph NT["Null Theory First Methodology"]
         direction TB
-        N1[Define the Problem\nPrecisely]
-        N2[Build Credible Baseline\nFEFO = Domain Standard]
-        N3[Specify Objective\nNet Revenue + Tie-breaks]
-        N4[Build Optimizer\nMust Beat Baseline]
-        N5[Warm-Start\nNever Worse Than Baseline]
-        N6[Evaluate Honestly\n120 Scenarios]
+        N1["Define the Problem<br/>Precisely"]
+        N2["Build Credible Baseline<br/>FEFO = Domain Standard"]
+        N3["Specify Objective<br/>Net Revenue + Tie-breaks"]
+        N4["Build Optimizer<br/>Must Beat Baseline"]
+        N5["Warm-Start<br/>Never Worse Than Baseline"]
+        N6["Evaluate Honestly<br/>120 Scenarios"]
     end
 
     N1 --> N2
@@ -114,27 +114,27 @@ flowchart LR
 ```mermaid
 flowchart TD
     subgraph Shared["Shared Foundation (engine/core.py)"]
-        SC[Scenario\nValidation]
-        DC[Disruption\nApplication]
-        PH[Pricing\nHelpers]
-        FC[Feasibility\nEngine]
-        AG[Aggregation &\nReconciliation]
+        SC["Scenario<br/>Validation"]
+        DC["Disruption<br/>Application"]
+        PH["Pricing<br/>Helpers"]
+        FC["Feasibility<br/>Engine"]
+        AG["Aggregation &<br/>Reconciliation"]
     end
 
     subgraph Baseline["Baseline Strategy (FEFO)"]
-        B1[Sort Batches by\nExpiry ASC]
-        B2[For Each Batch:\n  Rank Destinations by\n  Effective Price DESC]
-        B3[Allocate at\n  Discount = 0%]
-        B4[Respect All\n  Hard Constraints]
+        B1["Sort Batches by<br/>Expiry ASC"]
+        B2["For Each Batch:<br/>Rank Destinations by<br/>Effective Price DESC"]
+        B3["Allocate at<br/>Discount = 0%"]
+        B4["Respect All<br/>Hard Constraints"]
     end
 
     subgraph Planner["Planner Strategy (Greedy)"]
-        P1[Build All Feasible\n  Batch→Dest Edges]
-        P2[Score Each Edge by\n  Per-Kg Gain +\n  Spoilage Avoided]
-        P3[Apply Min Discount\n  to Unlock Price Caps\n  (5% grid, ≤30%)]
-        P4[Allocate Greedy\n  by Gain DESC]
-        P5[Warm-Start from\n  Baseline Plan]
-        P6[Keep Better Plan\n  Under §5.4 Order]
+        P1["Build All Feasible<br/>Batch-Dest Edges"]
+        P2["Score Each Edge by<br/>Per-Kg Gain +<br/>Spoilage Avoided"]
+        P3["Apply Min Discount<br/>to Unlock Price Caps<br/>(5% grid, up to 30%)"]
+        P4["Allocate Greedy<br/>by Gain DESC"]
+        P5["Warm-Start from<br/>Baseline Plan"]
+        P6["Keep Better Plan<br/>Under §5.4 Order"]
     end
 
     SC --> DC
@@ -154,7 +154,7 @@ flowchart TD
     P6 --> AG
     AG --> FC
     FC --> AG
-    AG --> RC[Reconciliation\nCheck OK]
+    AG --> RC["Reconciliation<br/>Check OK"]
 ```
 
 ### 3. Cost & Revenue Model (§5)
@@ -162,27 +162,27 @@ flowchart TD
 ```mermaid
 graph LR
     subgraph Dispatch["Per-Dispatch Accounting"]
-        QK[Quantity Dispatched\n(dispatched_kg)]
-        SK[Quantity Sold\n(sold_kg)]
-        AUS[Arrived Unsold\n(arrived_unsold_kg)]
+        QK["Quantity Dispatched<br/>(dispatched_kg)"]
+        SK["Quantity Sold<br/>(sold_kg)"]
+        AUS["Arrived Unsold<br/>(arrived_unsold_kg)"]
     end
 
     subgraph Revenue["Revenue (Sold Only)"]
-        EP[Effective Price\n= base × (1 - disc%)]
-        GR[Gross Revenue\n= sold_kg × EP]
+        EP["Effective Price<br/>= base x (1 - disc%)"]
+        GR["Gross Revenue<br/>= sold_kg x EP"]
     end
 
     subgraph Costs["Costs"]
-        PC[Procurement\n= sold_kg × unit_cost\n(COGS only on sold)]
-        TC[Transport\n= dispatched_kg × distance × rate]
-        HC[Handling\n= dispatched_kg × rate]
-        SC[Spoilage\n= spoiled_kg × penalty\n(once, at aggregate)]
+        PC["Procurement<br/>= sold_kg x unit_cost<br/>(COGS only on sold)"]
+        TC["Transport<br/>= dispatched_kg x distance x rate"]
+        HC["Handling<br/>= dispatched_kg x rate"]
+        SC["Spoilage<br/>= spoiled_kg x penalty<br/>(once, at aggregate)"]
     end
 
     subgraph Aggregates["Aggregate (§5.3)"]
-        EC[Expected Contribution\n= GR - PC - TC - HC\n(excludes spoilage)]
-        SDE[Σ Dispatch Contributions]
-        NR[Net Revenue\n= SDE - Spoilage Cost]
+        EC["Expected Contribution<br/>= GR - PC - TC - HC<br/>(excludes spoilage)"]
+        SDE["Sum Dispatch<br/>Contributions"]
+        NR["Net Revenue<br/>= SDE - Spoilage Cost"]
     end
 
     QK --> SK
@@ -205,12 +205,12 @@ graph LR
 
 ```mermaid
 flowchart TD
-    H[Harvested kg\nbatch.quantity_kg]
+    H["Harvested kg<br/>batch.quantity_kg"]
     
     subgraph Terminal["Terminal States at Horizon"]
-        S[Sold kg\ndispatched, arrived, sold]
-        FI[Fresh Inventory kg\nstill usable at horizon]
-        SP[Spoiled kg\nexpired at horizon]
+        S["Sold kg<br/>dispatched, arrived, sold"]
+        FI["Fresh Inventory kg<br/>still usable at horizon"]
+        SP["Spoiled kg<br/>expired at horizon"]
     end
 
     H == Conservation ==> S
@@ -271,28 +271,28 @@ sequenceDiagram
 ```mermaid
 graph TD
     subgraph Gen["Scenario Generation (fixtures.py)"]
-        G1[30 Seeds ×\n4 Configs = 120]
-        G2[Base Scenario]
-        G3[Transport Strike]
-        G4[Demand Spike]
-        G5[Shelf Life Shock]
-        G6[Capacity Reduction]
-        G7[Price Drop]
+        G1["30 Seeds x 4 Configs = 120"]
+        G2["Base Scenario"]
+        G3["Transport Strike"]
+        G4["Demand Spike"]
+        G5["Shelf Life Shock"]
+        G6["Capacity Reduction"]
+        G7["Price Drop"]
     end
 
     subgraph Run["Evaluation Run (run_eval.py)"]
-        R1[Same Scenario →\nBoth Strategies]
-        R2[Compute Metrics\nPer Run]
-        R3[Win Counting\n§9.4 Rules]
-        R4[Aggregate Stats\nMean/Min/Max/Std]
+        R1["Same Scenario -> Both Strategies"]
+        R2["Compute Metrics Per Run"]
+        R3["Win Counting §9.4 Rules"]
+        R4["Aggregate Stats Mean/Min/Max/Std"]
     end
 
     subgraph Results["Key Results (demo/evaluation.json)"]
-        Res1[Net Revenue: Planner Wins\n115/120 Runs]
-        Res2[Median Improvement: +24.2%]
-        Res3[Spoilage: Tied 118/120\n(Baseline Already Strong)]
-        Res4[Fulfillment: Planner Lower\n91/120 (Revenue Trade-off)]
-        Res5[0 Infeasible Runs]
+        Res1["Net Revenue: Planner Wins 115/120"]
+        Res2["Median Improvement: +24.2%"]
+        Res3["Spoilage: Tied 118/120 (Baseline Strong)"]
+        Res4["Fulfillment: Planner Lower 91/120 (Trade-off)"]
+        Res5["0 Infeasible Runs"]
     end
 
     G1 --> G2
@@ -320,12 +320,11 @@ graph TD
 ### Evaluation Dashboard View
 
 ```mermaid
-%%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#1e293b', 'secondaryColor': '#334155', 'tertiaryColor': '#0f172a' }}}%%
 graph LR
     subgraph EvalUI["Evaluation Tab (dashboard/index.html)"]
-        EC[Summary Cards\nNet Revenue / Spoilage / Fulfillment\nWin Counts + %]
-        CH[Charts\nPer-Seed & Per-Disruption]
-        SE[Scenario Explorer\nDropdown → Detail View]
+        EC["Summary Cards<br/>Net Revenue / Spoilage / Fulfillment<br/>Win Counts + %"]
+        CH["Charts<br/>Per-Seed & Per-Disruption"]
+        SE["Scenario Explorer<br/>Dropdown -> Detail View"]
     end
 
     EC --> CH
@@ -339,21 +338,21 @@ graph LR
 ```mermaid
 graph TB
     subgraph Dash["Dashboard Architecture"]
-        HTML[index.html\nSemantic, Accessible]
-        CSS[styles.css\nResponsive, Dark Theme,\nCSS Variables]
-        JS[app.js\nVanilla ES6, No Framework]
-        SRV[serve.py\nstdlib http.server]
+        HTML["index.html<br/>Semantic, Accessible"]
+        CSS["styles.css<br/>Responsive, Dark Theme,<br/>CSS Variables"]
+        JS["app.js<br/>Vanilla ES6, No Framework"]
+        SRV["serve.py<br/>stdlib http.server"]
     end
 
     subgraph Data["Data Sources (Read-Only)"]
-        DR[demo/result.json\nCommitted Fixture]
-        DE[demo/evaluation.json\n120-Scenario Fixture]
-        OR[output/*.json\nLocal Regenerated]
+        DR["demo/result.json<br/>Committed Fixture"]
+        DE["demo/evaluation.json<br/>120-Scenario Fixture"]
+        OR["output/*.json<br/>Local Regenerated"]
     end
 
     subgraph Views["Two Views"]
-        OV[Overview Tab\nSingle Scenario Detail]
-        EV[Evaluation Tab\n120-Scenario Aggregate]
+        OV["Overview Tab<br/>Single Scenario Detail"]
+        EV["Evaluation Tab<br/>120-Scenario Aggregate"]
     end
 
     HTML --> CSS
@@ -491,23 +490,23 @@ python -m engine.scripts.run_eval [--mode dev|standard|large] [--out PATH]
 ```mermaid
 graph LR
     subgraph Tests["Test Suite"]
-        T1[pytest -q\n48 Tests Pass]
-        T2[engine/tests/test_engine.py\n41 Contract Tests]
-        T3[dashboard/test_dashboard.py\n7 Tests + Live Server]
+        T1["pytest -q<br/>48 Tests Pass"]
+        T2["engine/tests/test_engine.py<br/>41 Contract Tests"]
+        T3["dashboard/test_dashboard.py<br/>7 Tests + Live Server"]
     end
 
     subgraph Browser["Browser Verification"]
-        B1[browser_check_platform.py\n115/115 Pass]
-        B2[browser_check_editorial.py\n103/103 Pass]
-        B3[prod_platform_smoke.py\n33/33 vs Prod]
-        B4[check_contrast.py\n132 Pairs]
-        B5[verify_fixes.py\n64 Checks]
-        B6[audit_landing.py\nExit 0, Zero Findings]
+        B1["browser_check_platform.py<br/>115/115 Pass"]
+        B2["browser_check_editorial.py<br/>103/103 Pass"]
+        B3["prod_platform_smoke.py<br/>33/33 vs Prod"]
+        B4["check_contrast.py<br/>132 Pairs"]
+        B5["verify_fixes.py<br/>64 Checks"]
+        B6["audit_landing.py<br/>Exit 0, Zero Findings"]
     end
 
     subgraph NonVacuity["Non-Vacuity Proofs"]
-        NV1[probe_a11y_mutation.py]
-        NV2[probe_guard_mutation.py]
+        NV1["probe_a11y_mutation.py"]
+        NV2["probe_guard_mutation.py"]
     end
 
     T1 --> B1
@@ -568,24 +567,19 @@ python -m pytest -q                    # 77 tests
 
 ## Roadmap
 
-```mermaid
-timeline
-    title Aurenza Roadmap
-    section v1.0 (Current)
-        Contract v1.0.0-draft.4 : PROPOSED
-        Engine + Baseline + Planner : IMPLEMENTED
-        Dashboard + Tests : IMPLEMENTED
-        120-Scenario Evaluation : COMPLETE
-    section v1.1 (Next)
-        Freeze Contract v1.0.0 : PENDING REVIEW
-        A9 Produce Catalogue (Iffa) : OPEN
-        Real Market Data Integration : PLANNED
-    section v2.0 (Future)
-        Multi-Day Horizon : DESIGNED
-        Stochastic Demand : RESEARCH
-        ML-Assisted Price Forecasting : EXPLORATORY
-        Multi-Objective Pareto : EXPLORATORY
-```
+| Phase | Deliverable | Status |
+|-------|-------------|--------|
+| **v1.0 (Current)** | Contract v1.0.0-draft.4 | PROPOSED |
+| | Engine + Baseline + Planner | IMPLEMENTED |
+| | Dashboard + Tests | IMPLEMENTED |
+| | 120-Scenario Evaluation | COMPLETE |
+| **v1.1 (Next)** | Freeze Contract v1.0.0 | PENDING REVIEW |
+| | A9 Produce Catalogue (Iffa) | OPEN |
+| | Real Market Data Integration | PLANNED |
+| **v2.0 (Future)** | Multi-Day Horizon | DESIGNED |
+| | Stochastic Demand | RESEARCH |
+| | ML-Assisted Price Forecasting | EXPLORATORY |
+| | Multi-Objective Pareto | EXPLORATORY |
 
 ---
 
