@@ -1708,19 +1708,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1700.0,
-              "dispatched_kg": 1400.0,
-              "sold_kg": 1400.0,
+              "dispatched_kg": 900.0,
+              "sold_kg": 900.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 300.0,
+              "fresh_inventory_kg": 800.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5300.0,
-              "gross_revenue": 43763.5,
-              "procurement_cost": 18900.0,
-              "transport_cost": 23840.0,
-              "handling_cost": 1400.0,
+              "gross_revenue": 25598.0,
+              "procurement_cost": 11400.0,
+              "transport_cost": 12000.0,
+              "handling_cost": 900.0,
               "spoilage_cost": 0.0,
-              "net_revenue": -376.5,
-              "fulfillment_pct": 26.42,
+              "net_revenue": 1298.0,
+              "fulfillment_pct": 16.98,
               "feasible": true,
               "violations": []
             },
@@ -1729,19 +1729,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1700.0,
-              "dispatched_kg": 500.0,
-              "sold_kg": 500.0,
+              "dispatched_kg": 400.0,
+              "sold_kg": 400.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 1200.0,
+              "fresh_inventory_kg": 1300.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5300.0,
-              "gross_revenue": 14772.7,
-              "procurement_cost": 6900.0,
-              "transport_cost": 4320.0,
-              "handling_cost": 500.0,
+              "gross_revenue": 11524.0,
+              "procurement_cost": 5400.0,
+              "transport_cost": 2880.0,
+              "handling_cost": 400.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 3052.7,
-              "fulfillment_pct": 9.43,
+              "net_revenue": 2844.0,
+              "fulfillment_pct": 7.55,
               "feasible": true,
               "violations": []
             },
@@ -1749,10 +1749,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": -376.5,
-              "planner": 3052.7,
-              "delta": 3429.2,
-              "delta_pct": 910.8101,
+              "baseline": 1298.0,
+              "planner": 2844.0,
+              "delta": 1546.0,
+              "delta_pct": 119.1063,
               "defined": true,
               "direction": "higher_better"
             },
@@ -1765,10 +1765,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 26.42,
-              "planner": 9.43,
-              "delta": -16.99,
-              "delta_pct": -64.3073,
+              "baseline": 16.98,
+              "planner": 7.55,
+              "delta": -9.43,
+              "delta_pct": -55.5359,
               "defined": true,
               "direction": "higher_better"
             }
@@ -1784,25 +1784,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": -376.5,
-            "min": -376.5,
-            "max": -376.5,
+            "mean": 1298.0,
+            "min": 1298.0,
+            "max": 1298.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 3052.7,
-            "min": 3052.7,
-            "max": 3052.7,
+            "mean": 2844.0,
+            "min": 2844.0,
+            "max": 2844.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 3429.2,
-            "min": 3429.2,
-            "max": 3429.2,
+            "mean": 1546.0,
+            "min": 1546.0,
+            "max": 1546.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -1812,9 +1812,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -16.99,
-            "min": -16.99,
-            "max": -16.99,
+            "mean": -9.43,
+            "min": -9.43,
+            "max": -9.43,
             "std": 0.0
           }
         },
@@ -1848,19 +1848,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1700.0,
-              "dispatched_kg": 1050.0,
-              "sold_kg": 1050.0,
+              "dispatched_kg": 600.0,
+              "sold_kg": 600.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 650.0,
+              "fresh_inventory_kg": 1100.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5300.0,
-              "gross_revenue": 33216.5,
-              "procurement_cost": 14550.0,
-              "transport_cost": 18480.0,
-              "handling_cost": 1050.0,
+              "gross_revenue": 17426.0,
+              "procurement_cost": 7800.0,
+              "transport_cost": 7680.0,
+              "handling_cost": 600.0,
               "spoilage_cost": 0.0,
-              "net_revenue": -863.5,
-              "fulfillment_pct": 19.81,
+              "net_revenue": 1346.0,
+              "fulfillment_pct": 11.32,
               "feasible": true,
               "violations": []
             },
@@ -1889,10 +1889,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": -863.5,
+              "baseline": 1346.0,
               "planner": 2844.0,
-              "delta": 3707.5,
-              "delta_pct": 429.3573,
+              "delta": 1498.0,
+              "delta_pct": 111.2927,
               "defined": true,
               "direction": "higher_better"
             },
@@ -1905,10 +1905,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 19.81,
+              "baseline": 11.32,
               "planner": 7.55,
-              "delta": -12.26,
-              "delta_pct": -61.8879,
+              "delta": -3.77,
+              "delta_pct": -33.3039,
               "defined": true,
               "direction": "higher_better"
             }
@@ -1924,9 +1924,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": -863.5,
-            "min": -863.5,
-            "max": -863.5,
+            "mean": 1346.0,
+            "min": 1346.0,
+            "max": 1346.0,
             "std": 0.0
           }
         },
@@ -1940,9 +1940,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 3707.5,
-            "min": 3707.5,
-            "max": 3707.5,
+            "mean": 1498.0,
+            "min": 1498.0,
+            "max": 1498.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -1952,9 +1952,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -12.26,
-            "min": -12.26,
-            "max": -12.26,
+            "mean": -3.77,
+            "min": -3.77,
+            "max": -3.77,
             "std": 0.0
           }
         },
@@ -1988,19 +1988,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1700.0,
-              "dispatched_kg": 1400.0,
-              "sold_kg": 1400.0,
+              "dispatched_kg": 950.0,
+              "sold_kg": 950.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 300.0,
+              "fresh_inventory_kg": 750.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5750.0,
-              "gross_revenue": 43782.5,
-              "procurement_cost": 18900.0,
-              "transport_cost": 23680.0,
-              "handling_cost": 1400.0,
+              "gross_revenue": 27064.0,
+              "procurement_cost": 12150.0,
+              "transport_cost": 12240.0,
+              "handling_cost": 950.0,
               "spoilage_cost": 0.0,
-              "net_revenue": -197.5,
-              "fulfillment_pct": 24.35,
+              "net_revenue": 1724.0,
+              "fulfillment_pct": 16.52,
               "feasible": true,
               "violations": []
             },
@@ -2009,19 +2009,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1700.0,
-              "dispatched_kg": 550.0,
-              "sold_kg": 550.0,
+              "dispatched_kg": 450.0,
+              "sold_kg": 450.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 1150.0,
+              "fresh_inventory_kg": 1250.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5750.0,
-              "gross_revenue": 16238.7,
-              "procurement_cost": 7650.0,
-              "transport_cost": 4560.0,
-              "handling_cost": 550.0,
+              "gross_revenue": 12990.0,
+              "procurement_cost": 6150.0,
+              "transport_cost": 3120.0,
+              "handling_cost": 450.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 3478.7,
-              "fulfillment_pct": 9.57,
+              "net_revenue": 3270.0,
+              "fulfillment_pct": 7.83,
               "feasible": true,
               "violations": []
             },
@@ -2029,10 +2029,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": -197.5,
-              "planner": 3478.7,
-              "delta": 3676.2,
-              "delta_pct": 1861.3671,
+              "baseline": 1724.0,
+              "planner": 3270.0,
+              "delta": 1546.0,
+              "delta_pct": 89.6752,
               "defined": true,
               "direction": "higher_better"
             },
@@ -2045,10 +2045,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 24.35,
-              "planner": 9.57,
-              "delta": -14.78,
-              "delta_pct": -60.6982,
+              "baseline": 16.52,
+              "planner": 7.83,
+              "delta": -8.69,
+              "delta_pct": -52.6029,
               "defined": true,
               "direction": "higher_better"
             }
@@ -2064,25 +2064,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": -197.5,
-            "min": -197.5,
-            "max": -197.5,
+            "mean": 1724.0,
+            "min": 1724.0,
+            "max": 1724.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 3478.7,
-            "min": 3478.7,
-            "max": 3478.7,
+            "mean": 3270.0,
+            "min": 3270.0,
+            "max": 3270.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 3676.2,
-            "min": 3676.2,
-            "max": 3676.2,
+            "mean": 1546.0,
+            "min": 1546.0,
+            "max": 1546.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -2092,9 +2092,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -14.78,
-            "min": -14.78,
-            "max": -14.78,
+            "mean": -8.69,
+            "min": -8.69,
+            "max": -8.69,
             "std": 0.0
           }
         },
@@ -2128,19 +2128,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1700.0,
-              "dispatched_kg": 1400.0,
-              "sold_kg": 1400.0,
+              "dispatched_kg": 900.0,
+              "sold_kg": 900.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 300.0,
+              "fresh_inventory_kg": 800.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5300.0,
-              "gross_revenue": 43763.5,
-              "procurement_cost": 18900.0,
-              "transport_cost": 23840.0,
-              "handling_cost": 1400.0,
+              "gross_revenue": 25598.0,
+              "procurement_cost": 11400.0,
+              "transport_cost": 12000.0,
+              "handling_cost": 900.0,
               "spoilage_cost": 0.0,
-              "net_revenue": -376.5,
-              "fulfillment_pct": 26.42,
+              "net_revenue": 1298.0,
+              "fulfillment_pct": 16.98,
               "feasible": true,
               "violations": []
             },
@@ -2149,19 +2149,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1700.0,
-              "dispatched_kg": 500.0,
-              "sold_kg": 500.0,
+              "dispatched_kg": 400.0,
+              "sold_kg": 400.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 1200.0,
+              "fresh_inventory_kg": 1300.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5300.0,
-              "gross_revenue": 14772.7,
-              "procurement_cost": 6900.0,
-              "transport_cost": 4320.0,
-              "handling_cost": 500.0,
+              "gross_revenue": 11524.0,
+              "procurement_cost": 5400.0,
+              "transport_cost": 2880.0,
+              "handling_cost": 400.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 3052.7,
-              "fulfillment_pct": 9.43,
+              "net_revenue": 2844.0,
+              "fulfillment_pct": 7.55,
               "feasible": true,
               "violations": []
             },
@@ -2169,10 +2169,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": -376.5,
-              "planner": 3052.7,
-              "delta": 3429.2,
-              "delta_pct": 910.8101,
+              "baseline": 1298.0,
+              "planner": 2844.0,
+              "delta": 1546.0,
+              "delta_pct": 119.1063,
               "defined": true,
               "direction": "higher_better"
             },
@@ -2185,10 +2185,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 26.42,
-              "planner": 9.43,
-              "delta": -16.99,
-              "delta_pct": -64.3073,
+              "baseline": 16.98,
+              "planner": 7.55,
+              "delta": -9.43,
+              "delta_pct": -55.5359,
               "defined": true,
               "direction": "higher_better"
             }
@@ -2204,25 +2204,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": -376.5,
-            "min": -376.5,
-            "max": -376.5,
+            "mean": 1298.0,
+            "min": 1298.0,
+            "max": 1298.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 3052.7,
-            "min": 3052.7,
-            "max": 3052.7,
+            "mean": 2844.0,
+            "min": 2844.0,
+            "max": 2844.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 3429.2,
-            "min": 3429.2,
-            "max": 3429.2,
+            "mean": 1546.0,
+            "min": 1546.0,
+            "max": 1546.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -2232,9 +2232,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -16.99,
-            "min": -16.99,
-            "max": -16.99,
+            "mean": -9.43,
+            "min": -9.43,
+            "max": -9.43,
             "std": 0.0
           }
         },
@@ -2260,19 +2260,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1800.0,
-              "dispatched_kg": 1800.0,
-              "sold_kg": 1800.0,
+              "dispatched_kg": 1700.0,
+              "sold_kg": 1700.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 100.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5350.0,
-              "gross_revenue": 87918.5,
-              "procurement_cost": 37650.0,
-              "transport_cost": 29760.0,
-              "handling_cost": 1800.0,
+              "gross_revenue": 84758.5,
+              "procurement_cost": 36150.0,
+              "transport_cost": 28320.0,
+              "handling_cost": 1700.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 18708.5,
-              "fulfillment_pct": 33.64,
+              "net_revenue": 18588.5,
+              "fulfillment_pct": 31.78,
               "feasible": true,
               "violations": []
             },
@@ -2301,10 +2301,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 18708.5,
+              "baseline": 18588.5,
               "planner": 24463.5,
-              "delta": 5755.0,
-              "delta_pct": 30.7614,
+              "delta": 5875.0,
+              "delta_pct": 31.6056,
               "defined": true,
               "direction": "higher_better"
             },
@@ -2317,10 +2317,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 33.64,
+              "baseline": 31.78,
               "planner": 27.1,
-              "delta": -6.54,
-              "delta_pct": -19.4411,
+              "delta": -4.68,
+              "delta_pct": -14.7262,
               "defined": true,
               "direction": "higher_better"
             }
@@ -2336,9 +2336,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 18708.5,
-            "min": 18708.5,
-            "max": 18708.5,
+            "mean": 18588.5,
+            "min": 18588.5,
+            "max": 18588.5,
             "std": 0.0
           }
         },
@@ -2352,9 +2352,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 5755.0,
-            "min": 5755.0,
-            "max": 5755.0,
+            "mean": 5875.0,
+            "min": 5875.0,
+            "max": 5875.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -2364,9 +2364,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -6.54,
-            "min": -6.54,
-            "max": -6.54,
+            "mean": -4.68,
+            "min": -4.68,
+            "max": -4.68,
             "std": 0.0
           }
         },
@@ -2540,19 +2540,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1800.0,
-              "dispatched_kg": 1800.0,
-              "sold_kg": 1800.0,
+              "dispatched_kg": 1750.0,
+              "sold_kg": 1750.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 50.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5600.0,
-              "gross_revenue": 88278.0,
-              "procurement_cost": 37650.0,
-              "transport_cost": 29280.0,
-              "handling_cost": 1800.0,
+              "gross_revenue": 86698.0,
+              "procurement_cost": 36900.0,
+              "transport_cost": 28560.0,
+              "handling_cost": 1750.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 19548.0,
-              "fulfillment_pct": 32.14,
+              "net_revenue": 19488.0,
+              "fulfillment_pct": 31.25,
               "feasible": true,
               "violations": []
             },
@@ -2581,10 +2581,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 19548.0,
+              "baseline": 19488.0,
               "planner": 26381.5,
-              "delta": 6833.5,
-              "delta_pct": 34.9575,
+              "delta": 6893.5,
+              "delta_pct": 35.3731,
               "defined": true,
               "direction": "higher_better"
             },
@@ -2597,10 +2597,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 32.14,
+              "baseline": 31.25,
               "planner": 29.46,
-              "delta": -2.68,
-              "delta_pct": -8.3385,
+              "delta": -1.79,
+              "delta_pct": -5.728,
               "defined": true,
               "direction": "higher_better"
             }
@@ -2616,9 +2616,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 19548.0,
-            "min": 19548.0,
-            "max": 19548.0,
+            "mean": 19488.0,
+            "min": 19488.0,
+            "max": 19488.0,
             "std": 0.0
           }
         },
@@ -2632,9 +2632,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 6833.5,
-            "min": 6833.5,
-            "max": 6833.5,
+            "mean": 6893.5,
+            "min": 6893.5,
+            "max": 6893.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -2644,9 +2644,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -2.68,
-            "min": -2.68,
-            "max": -2.68,
+            "mean": -1.79,
+            "min": -1.79,
+            "max": -1.79,
             "std": 0.0
           }
         },
@@ -2680,19 +2680,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1800.0,
-              "dispatched_kg": 1800.0,
-              "sold_kg": 1800.0,
+              "dispatched_kg": 1700.0,
+              "sold_kg": 1700.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 100.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5350.0,
-              "gross_revenue": 87918.5,
-              "procurement_cost": 37650.0,
-              "transport_cost": 29760.0,
-              "handling_cost": 1800.0,
+              "gross_revenue": 84758.5,
+              "procurement_cost": 36150.0,
+              "transport_cost": 28320.0,
+              "handling_cost": 1700.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 18708.5,
-              "fulfillment_pct": 33.64,
+              "net_revenue": 18588.5,
+              "fulfillment_pct": 31.78,
               "feasible": true,
               "violations": []
             },
@@ -2721,10 +2721,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 18708.5,
+              "baseline": 18588.5,
               "planner": 24463.5,
-              "delta": 5755.0,
-              "delta_pct": 30.7614,
+              "delta": 5875.0,
+              "delta_pct": 31.6056,
               "defined": true,
               "direction": "higher_better"
             },
@@ -2737,10 +2737,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 33.64,
+              "baseline": 31.78,
               "planner": 27.1,
-              "delta": -6.54,
-              "delta_pct": -19.4411,
+              "delta": -4.68,
+              "delta_pct": -14.7262,
               "defined": true,
               "direction": "higher_better"
             }
@@ -2756,9 +2756,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 18708.5,
-            "min": 18708.5,
-            "max": 18708.5,
+            "mean": 18588.5,
+            "min": 18588.5,
+            "max": 18588.5,
             "std": 0.0
           }
         },
@@ -2772,9 +2772,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 5755.0,
-            "min": 5755.0,
-            "max": 5755.0,
+            "mean": 5875.0,
+            "min": 5875.0,
+            "max": 5875.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -2784,9 +2784,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -6.54,
-            "min": -6.54,
-            "max": -6.54,
+            "mean": -4.68,
+            "min": -4.68,
+            "max": -4.68,
             "std": 0.0
           }
         },
@@ -2812,19 +2812,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 2450.0,
-              "dispatched_kg": 1800.0,
-              "sold_kg": 1800.0,
+              "dispatched_kg": 1500.0,
+              "sold_kg": 1500.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 650.0,
+              "fresh_inventory_kg": 950.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4450.0,
-              "gross_revenue": 55081.0,
-              "procurement_cost": 22900.0,
-              "transport_cost": 23040.0,
-              "handling_cost": 1800.0,
+              "gross_revenue": 43828.0,
+              "procurement_cost": 18400.0,
+              "transport_cost": 15840.0,
+              "handling_cost": 1500.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 7341.0,
-              "fulfillment_pct": 40.45,
+              "net_revenue": 8088.0,
+              "fulfillment_pct": 33.71,
               "feasible": true,
               "violations": []
             },
@@ -2853,10 +2853,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 7341.0,
+              "baseline": 8088.0,
               "planner": 10527.0,
-              "delta": 3186.0,
-              "delta_pct": 43.4001,
+              "delta": 2439.0,
+              "delta_pct": 30.1558,
               "defined": true,
               "direction": "higher_better"
             },
@@ -2869,10 +2869,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 40.45,
+              "baseline": 33.71,
               "planner": 29.21,
-              "delta": -11.24,
-              "delta_pct": -27.7874,
+              "delta": -4.5,
+              "delta_pct": -13.3492,
               "defined": true,
               "direction": "higher_better"
             }
@@ -2888,9 +2888,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 7341.0,
-            "min": 7341.0,
-            "max": 7341.0,
+            "mean": 8088.0,
+            "min": 8088.0,
+            "max": 8088.0,
             "std": 0.0
           }
         },
@@ -2904,9 +2904,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 3186.0,
-            "min": 3186.0,
-            "max": 3186.0,
+            "mean": 2439.0,
+            "min": 2439.0,
+            "max": 2439.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -2916,9 +2916,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -11.24,
-            "min": -11.24,
-            "max": -11.24,
+            "mean": -4.5,
+            "min": -4.5,
+            "max": -4.5,
             "std": 0.0
           }
         },
@@ -2952,19 +2952,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 2450.0,
-              "dispatched_kg": 1500.0,
-              "sold_kg": 1500.0,
+              "dispatched_kg": 1200.0,
+              "sold_kg": 1200.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 950.0,
+              "fresh_inventory_kg": 1250.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4450.0,
-              "gross_revenue": 45684.0,
-              "procurement_cost": 19100.0,
-              "transport_cost": 18720.0,
-              "handling_cost": 1500.0,
+              "gross_revenue": 34431.0,
+              "procurement_cost": 14600.0,
+              "transport_cost": 11520.0,
+              "handling_cost": 1200.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 6364.0,
-              "fulfillment_pct": 33.71,
+              "net_revenue": 7111.0,
+              "fulfillment_pct": 26.97,
               "feasible": true,
               "violations": []
             },
@@ -2993,10 +2993,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 6364.0,
+              "baseline": 7111.0,
               "planner": 9508.0,
-              "delta": 3144.0,
-              "delta_pct": 49.4029,
+              "delta": 2397.0,
+              "delta_pct": 33.7083,
               "defined": true,
               "direction": "higher_better"
             },
@@ -3009,10 +3009,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 33.71,
+              "baseline": 26.97,
               "planner": 22.47,
-              "delta": -11.24,
-              "delta_pct": -33.3432,
+              "delta": -4.5,
+              "delta_pct": -16.6852,
               "defined": true,
               "direction": "higher_better"
             }
@@ -3028,9 +3028,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 6364.0,
-            "min": 6364.0,
-            "max": 6364.0,
+            "mean": 7111.0,
+            "min": 7111.0,
+            "max": 7111.0,
             "std": 0.0
           }
         },
@@ -3044,9 +3044,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 3144.0,
-            "min": 3144.0,
-            "max": 3144.0,
+            "mean": 2397.0,
+            "min": 2397.0,
+            "max": 2397.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -3056,9 +3056,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -11.24,
-            "min": -11.24,
-            "max": -11.24,
+            "mean": -4.5,
+            "min": -4.5,
+            "max": -4.5,
             "std": 0.0
           }
         },
@@ -3092,19 +3092,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 2450.0,
-              "dispatched_kg": 1800.0,
-              "sold_kg": 1800.0,
+              "dispatched_kg": 1500.0,
+              "sold_kg": 1500.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 650.0,
+              "fresh_inventory_kg": 950.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4950.0,
-              "gross_revenue": 56932.0,
-              "procurement_cost": 23600.0,
-              "transport_cost": 23040.0,
-              "handling_cost": 1800.0,
+              "gross_revenue": 45679.0,
+              "procurement_cost": 19100.0,
+              "transport_cost": 15840.0,
+              "handling_cost": 1500.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 8492.0,
-              "fulfillment_pct": 36.36,
+              "net_revenue": 9239.0,
+              "fulfillment_pct": 30.3,
               "feasible": true,
               "violations": []
             },
@@ -3133,10 +3133,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 8492.0,
+              "baseline": 9239.0,
               "planner": 11678.0,
-              "delta": 3186.0,
-              "delta_pct": 37.5177,
+              "delta": 2439.0,
+              "delta_pct": 26.399,
               "defined": true,
               "direction": "higher_better"
             },
@@ -3149,10 +3149,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 36.36,
+              "baseline": 30.3,
               "planner": 26.26,
-              "delta": -10.1,
-              "delta_pct": -27.7778,
+              "delta": -4.04,
+              "delta_pct": -13.3333,
               "defined": true,
               "direction": "higher_better"
             }
@@ -3168,9 +3168,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 8492.0,
-            "min": 8492.0,
-            "max": 8492.0,
+            "mean": 9239.0,
+            "min": 9239.0,
+            "max": 9239.0,
             "std": 0.0
           }
         },
@@ -3184,9 +3184,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 3186.0,
-            "min": 3186.0,
-            "max": 3186.0,
+            "mean": 2439.0,
+            "min": 2439.0,
+            "max": 2439.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -3196,9 +3196,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -10.1,
-            "min": -10.1,
-            "max": -10.1,
+            "mean": -4.04,
+            "min": -4.04,
+            "max": -4.04,
             "std": 0.0
           }
         },
@@ -3232,19 +3232,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 2450.0,
-              "dispatched_kg": 1800.0,
-              "sold_kg": 1800.0,
+              "dispatched_kg": 1500.0,
+              "sold_kg": 1500.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 650.0,
+              "fresh_inventory_kg": 950.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4450.0,
-              "gross_revenue": 55081.0,
-              "procurement_cost": 22900.0,
-              "transport_cost": 23040.0,
-              "handling_cost": 1800.0,
+              "gross_revenue": 43828.0,
+              "procurement_cost": 18400.0,
+              "transport_cost": 15840.0,
+              "handling_cost": 1500.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 7341.0,
-              "fulfillment_pct": 40.45,
+              "net_revenue": 8088.0,
+              "fulfillment_pct": 33.71,
               "feasible": true,
               "violations": []
             },
@@ -3273,10 +3273,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 7341.0,
+              "baseline": 8088.0,
               "planner": 10527.0,
-              "delta": 3186.0,
-              "delta_pct": 43.4001,
+              "delta": 2439.0,
+              "delta_pct": 30.1558,
               "defined": true,
               "direction": "higher_better"
             },
@@ -3289,10 +3289,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 40.45,
+              "baseline": 33.71,
               "planner": 29.21,
-              "delta": -11.24,
-              "delta_pct": -27.7874,
+              "delta": -4.5,
+              "delta_pct": -13.3492,
               "defined": true,
               "direction": "higher_better"
             }
@@ -3308,9 +3308,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 7341.0,
-            "min": 7341.0,
-            "max": 7341.0,
+            "mean": 8088.0,
+            "min": 8088.0,
+            "max": 8088.0,
             "std": 0.0
           }
         },
@@ -3324,9 +3324,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 3186.0,
-            "min": 3186.0,
-            "max": 3186.0,
+            "mean": 2439.0,
+            "min": 2439.0,
+            "max": 2439.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -3336,9 +3336,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -11.24,
-            "min": -11.24,
-            "max": -11.24,
+            "mean": -4.5,
+            "min": -4.5,
+            "max": -4.5,
             "std": 0.0
           }
         },
@@ -7234,12 +7234,12 @@
               "fresh_inventory_kg": 700.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4900.0,
-              "gross_revenue": 59714.0,
-              "procurement_cost": 25000.0,
+              "gross_revenue": 56468.0,
+              "procurement_cost": 23600.0,
               "transport_cost": 9280.0,
               "handling_cost": 1000.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 24434.0,
+              "net_revenue": 22588.0,
               "fulfillment_pct": 20.41,
               "feasible": true,
               "violations": []
@@ -7255,12 +7255,12 @@
               "fresh_inventory_kg": 700.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4900.0,
-              "gross_revenue": 59714.0,
-              "procurement_cost": 25000.0,
+              "gross_revenue": 56468.0,
+              "procurement_cost": 23600.0,
               "transport_cost": 9280.0,
               "handling_cost": 1000.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 24434.0,
+              "net_revenue": 22588.0,
               "fulfillment_pct": 20.41,
               "feasible": true,
               "violations": []
@@ -7269,8 +7269,8 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 24434.0,
-              "planner": 24434.0,
+              "baseline": 22588.0,
+              "planner": 22588.0,
               "delta": 0.0,
               "delta_pct": 0.0,
               "defined": true,
@@ -7304,17 +7304,17 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 24434.0,
-            "min": 24434.0,
-            "max": 24434.0,
+            "mean": 22588.0,
+            "min": 22588.0,
+            "max": 22588.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 24434.0,
-            "min": 24434.0,
-            "max": 24434.0,
+            "mean": 22588.0,
+            "min": 22588.0,
+            "max": 22588.0,
             "std": 0.0
           }
         },
@@ -7374,12 +7374,12 @@
               "fresh_inventory_kg": 1000.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4900.0,
-              "gross_revenue": 37114.0,
-              "procurement_cost": 16500.0,
+              "gross_revenue": 33868.0,
+              "procurement_cost": 15100.0,
               "transport_cost": 4320.0,
               "handling_cost": 700.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 15594.0,
+              "net_revenue": 13748.0,
               "fulfillment_pct": 14.29,
               "feasible": true,
               "violations": []
@@ -7395,12 +7395,12 @@
               "fresh_inventory_kg": 1000.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4900.0,
-              "gross_revenue": 37114.0,
-              "procurement_cost": 16500.0,
+              "gross_revenue": 33868.0,
+              "procurement_cost": 15100.0,
               "transport_cost": 4320.0,
               "handling_cost": 700.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 15594.0,
+              "net_revenue": 13748.0,
               "fulfillment_pct": 14.29,
               "feasible": true,
               "violations": []
@@ -7409,8 +7409,8 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 15594.0,
-              "planner": 15594.0,
+              "baseline": 13748.0,
+              "planner": 13748.0,
               "delta": 0.0,
               "delta_pct": 0.0,
               "defined": true,
@@ -7444,17 +7444,17 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 15594.0,
-            "min": 15594.0,
-            "max": 15594.0,
+            "mean": 13748.0,
+            "min": 13748.0,
+            "max": 13748.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 15594.0,
-            "min": 15594.0,
-            "max": 15594.0,
+            "mean": 13748.0,
+            "min": 13748.0,
+            "max": 13748.0,
             "std": 0.0
           }
         },
@@ -7514,12 +7514,12 @@
               "fresh_inventory_kg": 700.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5600.0,
-              "gross_revenue": 59714.0,
-              "procurement_cost": 25000.0,
+              "gross_revenue": 56468.0,
+              "procurement_cost": 23600.0,
               "transport_cost": 9280.0,
               "handling_cost": 1000.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 24434.0,
+              "net_revenue": 22588.0,
               "fulfillment_pct": 17.86,
               "feasible": true,
               "violations": []
@@ -7535,12 +7535,12 @@
               "fresh_inventory_kg": 700.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5600.0,
-              "gross_revenue": 59714.0,
-              "procurement_cost": 25000.0,
+              "gross_revenue": 57574.0,
+              "procurement_cost": 24300.0,
               "transport_cost": 9280.0,
               "handling_cost": 1000.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 24434.0,
+              "net_revenue": 22994.0,
               "fulfillment_pct": 17.86,
               "feasible": true,
               "violations": []
@@ -7549,10 +7549,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 24434.0,
-              "planner": 24434.0,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 22588.0,
+              "planner": 22994.0,
+              "delta": 406.0,
+              "delta_pct": 1.7974,
               "defined": true,
               "direction": "higher_better"
             },
@@ -7574,35 +7574,35 @@
             }
           },
           "win": {
-            "net_revenue": false,
+            "net_revenue": true,
             "spoilage_kg": false,
             "fulfillment_pct": false,
-            "all_metrics": false
+            "all_metrics": true
           }
         }
       ],
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 24434.0,
-            "min": 24434.0,
-            "max": 24434.0,
+            "mean": 22588.0,
+            "min": 22588.0,
+            "max": 22588.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 24434.0,
-            "min": 24434.0,
-            "max": 24434.0,
+            "mean": 22994.0,
+            "min": 22994.0,
+            "max": 22994.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": 406.0,
+            "min": 406.0,
+            "max": 406.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -7619,10 +7619,10 @@
           }
         },
         "wins": {
-          "net_revenue": 0,
+          "net_revenue": 1,
           "spoilage_kg": 0,
           "fulfillment_pct": 0,
-          "all_metrics": 0,
+          "all_metrics": 1,
           "runs": 1
         },
         "infeasible_runs": {
@@ -7654,12 +7654,12 @@
               "fresh_inventory_kg": 700.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4900.0,
-              "gross_revenue": 59714.0,
-              "procurement_cost": 25000.0,
+              "gross_revenue": 56468.0,
+              "procurement_cost": 23600.0,
               "transport_cost": 9280.0,
               "handling_cost": 1000.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 24434.0,
+              "net_revenue": 22588.0,
               "fulfillment_pct": 20.41,
               "feasible": true,
               "violations": []
@@ -7675,12 +7675,12 @@
               "fresh_inventory_kg": 700.0,
               "spoiled_kg": 0.0,
               "demand_kg": 4900.0,
-              "gross_revenue": 59714.0,
-              "procurement_cost": 25000.0,
+              "gross_revenue": 56468.0,
+              "procurement_cost": 23600.0,
               "transport_cost": 9280.0,
               "handling_cost": 1000.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 24434.0,
+              "net_revenue": 22588.0,
               "fulfillment_pct": 20.41,
               "feasible": true,
               "violations": []
@@ -7689,8 +7689,8 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 24434.0,
-              "planner": 24434.0,
+              "baseline": 22588.0,
+              "planner": 22588.0,
               "delta": 0.0,
               "delta_pct": 0.0,
               "defined": true,
@@ -7724,17 +7724,17 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 24434.0,
-            "min": 24434.0,
-            "max": 24434.0,
+            "mean": 22588.0,
+            "min": 22588.0,
+            "max": 22588.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 24434.0,
-            "min": 24434.0,
-            "max": 24434.0,
+            "mean": 22588.0,
+            "min": 22588.0,
+            "max": 22588.0,
             "std": 0.0
           }
         },
@@ -8884,19 +8884,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1900.0,
-              "dispatched_kg": 1900.0,
-              "sold_kg": 1900.0,
+              "dispatched_kg": 1700.0,
+              "sold_kg": 1700.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 200.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6350.0,
-              "gross_revenue": 85750.0,
-              "procurement_cost": 38550.0,
-              "transport_cost": 21440.0,
-              "handling_cost": 1900.0,
+              "gross_revenue": 72860.0,
+              "procurement_cost": 31550.0,
+              "transport_cost": 18560.0,
+              "handling_cost": 1700.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 23860.0,
-              "fulfillment_pct": 29.92,
+              "net_revenue": 21050.0,
+              "fulfillment_pct": 26.77,
               "feasible": true,
               "violations": []
             },
@@ -8905,19 +8905,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1900.0,
-              "dispatched_kg": 1900.0,
-              "sold_kg": 1900.0,
+              "dispatched_kg": 1500.0,
+              "sold_kg": 1500.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 400.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6350.0,
-              "gross_revenue": 85750.0,
-              "procurement_cost": 38550.0,
-              "transport_cost": 21440.0,
-              "handling_cost": 1900.0,
+              "gross_revenue": 67698.5,
+              "procurement_cost": 29950.0,
+              "transport_cost": 12960.0,
+              "handling_cost": 1500.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 23860.0,
-              "fulfillment_pct": 29.92,
+              "net_revenue": 23288.5,
+              "fulfillment_pct": 23.62,
               "feasible": true,
               "violations": []
             },
@@ -8925,10 +8925,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 23860.0,
-              "planner": 23860.0,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 21050.0,
+              "planner": 23288.5,
+              "delta": 2238.5,
+              "delta_pct": 10.6342,
               "defined": true,
               "direction": "higher_better"
             },
@@ -8941,16 +8941,16 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 29.92,
-              "planner": 29.92,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 26.77,
+              "planner": 23.62,
+              "delta": -3.15,
+              "delta_pct": -11.7669,
               "defined": true,
               "direction": "higher_better"
             }
           },
           "win": {
-            "net_revenue": false,
+            "net_revenue": true,
             "spoilage_kg": false,
             "fulfillment_pct": false,
             "all_metrics": false
@@ -8960,25 +8960,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 23860.0,
-            "min": 23860.0,
-            "max": 23860.0,
+            "mean": 21050.0,
+            "min": 21050.0,
+            "max": 21050.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 23860.0,
-            "min": 23860.0,
-            "max": 23860.0,
+            "mean": 23288.5,
+            "min": 23288.5,
+            "max": 23288.5,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": 2238.5,
+            "min": 2238.5,
+            "max": 2238.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -8988,14 +8988,14 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": -3.15,
+            "min": -3.15,
+            "max": -3.15,
             "std": 0.0
           }
         },
         "wins": {
-          "net_revenue": 0,
+          "net_revenue": 1,
           "spoilage_kg": 0,
           "fulfillment_pct": 0,
           "all_metrics": 0,
@@ -9164,19 +9164,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1900.0,
-              "dispatched_kg": 1900.0,
-              "sold_kg": 1900.0,
+              "dispatched_kg": 1750.0,
+              "sold_kg": 1750.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 150.0,
               "spoiled_kg": 0.0,
               "demand_kg": 7250.0,
-              "gross_revenue": 86538.0,
-              "procurement_cost": 38550.0,
-              "transport_cost": 20000.0,
-              "handling_cost": 1900.0,
+              "gross_revenue": 76870.5,
+              "procurement_cost": 33300.0,
+              "transport_cost": 17840.0,
+              "handling_cost": 1750.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 26088.0,
-              "fulfillment_pct": 26.21,
+              "net_revenue": 23980.5,
+              "fulfillment_pct": 24.14,
               "feasible": true,
               "violations": []
             },
@@ -9185,19 +9185,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1900.0,
-              "dispatched_kg": 1900.0,
-              "sold_kg": 1900.0,
+              "dispatched_kg": 1550.0,
+              "sold_kg": 1550.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 350.0,
               "spoiled_kg": 0.0,
               "demand_kg": 7250.0,
-              "gross_revenue": 86538.0,
-              "procurement_cost": 38550.0,
-              "transport_cost": 20000.0,
-              "handling_cost": 1900.0,
+              "gross_revenue": 72168.5,
+              "procurement_cost": 31700.0,
+              "transport_cost": 14000.0,
+              "handling_cost": 1550.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 26088.0,
-              "fulfillment_pct": 26.21,
+              "net_revenue": 24918.5,
+              "fulfillment_pct": 21.38,
               "feasible": true,
               "violations": []
             },
@@ -9205,10 +9205,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 26088.0,
-              "planner": 26088.0,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 23980.5,
+              "planner": 24918.5,
+              "delta": 938.0,
+              "delta_pct": 3.9115,
               "defined": true,
               "direction": "higher_better"
             },
@@ -9221,16 +9221,16 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 26.21,
-              "planner": 26.21,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 24.14,
+              "planner": 21.38,
+              "delta": -2.76,
+              "delta_pct": -11.4333,
               "defined": true,
               "direction": "higher_better"
             }
           },
           "win": {
-            "net_revenue": false,
+            "net_revenue": true,
             "spoilage_kg": false,
             "fulfillment_pct": false,
             "all_metrics": false
@@ -9240,25 +9240,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 26088.0,
-            "min": 26088.0,
-            "max": 26088.0,
+            "mean": 23980.5,
+            "min": 23980.5,
+            "max": 23980.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 26088.0,
-            "min": 26088.0,
-            "max": 26088.0,
+            "mean": 24918.5,
+            "min": 24918.5,
+            "max": 24918.5,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": 938.0,
+            "min": 938.0,
+            "max": 938.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -9268,14 +9268,14 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": -2.76,
+            "min": -2.76,
+            "max": -2.76,
             "std": 0.0
           }
         },
         "wins": {
-          "net_revenue": 0,
+          "net_revenue": 1,
           "spoilage_kg": 0,
           "fulfillment_pct": 0,
           "all_metrics": 0,
@@ -9304,19 +9304,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1900.0,
-              "dispatched_kg": 1900.0,
-              "sold_kg": 1900.0,
+              "dispatched_kg": 1700.0,
+              "sold_kg": 1700.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 200.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6350.0,
-              "gross_revenue": 85750.0,
-              "procurement_cost": 38550.0,
-              "transport_cost": 21440.0,
-              "handling_cost": 1900.0,
+              "gross_revenue": 72860.0,
+              "procurement_cost": 31550.0,
+              "transport_cost": 18560.0,
+              "handling_cost": 1700.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 23860.0,
-              "fulfillment_pct": 29.92,
+              "net_revenue": 21050.0,
+              "fulfillment_pct": 26.77,
               "feasible": true,
               "violations": []
             },
@@ -9325,19 +9325,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1900.0,
-              "dispatched_kg": 1900.0,
-              "sold_kg": 1900.0,
+              "dispatched_kg": 1500.0,
+              "sold_kg": 1500.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 400.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6350.0,
-              "gross_revenue": 85750.0,
-              "procurement_cost": 38550.0,
-              "transport_cost": 21440.0,
-              "handling_cost": 1900.0,
+              "gross_revenue": 67698.5,
+              "procurement_cost": 29950.0,
+              "transport_cost": 12960.0,
+              "handling_cost": 1500.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 23860.0,
-              "fulfillment_pct": 29.92,
+              "net_revenue": 23288.5,
+              "fulfillment_pct": 23.62,
               "feasible": true,
               "violations": []
             },
@@ -9345,10 +9345,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 23860.0,
-              "planner": 23860.0,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 21050.0,
+              "planner": 23288.5,
+              "delta": 2238.5,
+              "delta_pct": 10.6342,
               "defined": true,
               "direction": "higher_better"
             },
@@ -9361,16 +9361,16 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 29.92,
-              "planner": 29.92,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 26.77,
+              "planner": 23.62,
+              "delta": -3.15,
+              "delta_pct": -11.7669,
               "defined": true,
               "direction": "higher_better"
             }
           },
           "win": {
-            "net_revenue": false,
+            "net_revenue": true,
             "spoilage_kg": false,
             "fulfillment_pct": false,
             "all_metrics": false
@@ -9380,25 +9380,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 23860.0,
-            "min": 23860.0,
-            "max": 23860.0,
+            "mean": 21050.0,
+            "min": 21050.0,
+            "max": 21050.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 23860.0,
-            "min": 23860.0,
-            "max": 23860.0,
+            "mean": 23288.5,
+            "min": 23288.5,
+            "max": 23288.5,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": 2238.5,
+            "min": 2238.5,
+            "max": 2238.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -9408,14 +9408,14 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": -3.15,
+            "min": -3.15,
+            "max": -3.15,
             "std": 0.0
           }
         },
         "wins": {
-          "net_revenue": 0,
+          "net_revenue": 1,
           "spoilage_kg": 0,
           "fulfillment_pct": 0,
           "all_metrics": 0,
@@ -9442,12 +9442,12 @@
               "fresh_inventory_kg": 0.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6850.0,
-              "gross_revenue": 86454.0,
+              "gross_revenue": 80924.5,
               "procurement_cost": 35750.0,
-              "transport_cost": 15600.0,
+              "transport_cost": 14160.0,
               "handling_cost": 1350.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 33754.0,
+              "net_revenue": 29664.5,
               "fulfillment_pct": 19.71,
               "feasible": true,
               "violations": []
@@ -9457,19 +9457,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1350.0,
-              "dispatched_kg": 1350.0,
-              "sold_kg": 1350.0,
+              "dispatched_kg": 1300.0,
+              "sold_kg": 1300.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 50.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6850.0,
-              "gross_revenue": 86454.0,
-              "procurement_cost": 35750.0,
-              "transport_cost": 15600.0,
-              "handling_cost": 1350.0,
+              "gross_revenue": 79667.0,
+              "procurement_cost": 35150.0,
+              "transport_cost": 13440.0,
+              "handling_cost": 1300.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 33754.0,
-              "fulfillment_pct": 19.71,
+              "net_revenue": 29777.0,
+              "fulfillment_pct": 18.98,
               "feasible": true,
               "violations": []
             },
@@ -9477,10 +9477,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 33754.0,
-              "planner": 33754.0,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 29664.5,
+              "planner": 29777.0,
+              "delta": 112.5,
+              "delta_pct": 0.3792,
               "defined": true,
               "direction": "higher_better"
             },
@@ -9494,15 +9494,15 @@
             },
             "fulfillment_pct": {
               "baseline": 19.71,
-              "planner": 19.71,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "planner": 18.98,
+              "delta": -0.73,
+              "delta_pct": -3.7037,
               "defined": true,
               "direction": "higher_better"
             }
           },
           "win": {
-            "net_revenue": false,
+            "net_revenue": true,
             "spoilage_kg": false,
             "fulfillment_pct": false,
             "all_metrics": false
@@ -9512,25 +9512,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 33754.0,
-            "min": 33754.0,
-            "max": 33754.0,
+            "mean": 29664.5,
+            "min": 29664.5,
+            "max": 29664.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 33754.0,
-            "min": 33754.0,
-            "max": 33754.0,
+            "mean": 29777.0,
+            "min": 29777.0,
+            "max": 29777.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": 112.5,
+            "min": 112.5,
+            "max": 112.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -9540,14 +9540,14 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": -0.73,
+            "min": -0.73,
+            "max": -0.73,
             "std": 0.0
           }
         },
         "wins": {
-          "net_revenue": 0,
+          "net_revenue": 1,
           "spoilage_kg": 0,
           "fulfillment_pct": 0,
           "all_metrics": 0,
@@ -9576,19 +9576,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1350.0,
-              "dispatched_kg": 1350.0,
-              "sold_kg": 1350.0,
+              "dispatched_kg": 1100.0,
+              "sold_kg": 1100.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 250.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6850.0,
-              "gross_revenue": 80246.0,
-              "procurement_cost": 35750.0,
-              "transport_cost": 15120.0,
-              "handling_cost": 1350.0,
+              "gross_revenue": 54504.0,
+              "procurement_cost": 27000.0,
+              "transport_cost": 7680.0,
+              "handling_cost": 1100.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 28026.0,
-              "fulfillment_pct": 19.71,
+              "net_revenue": 18724.0,
+              "fulfillment_pct": 16.06,
               "feasible": true,
               "violations": []
             },
@@ -9597,19 +9597,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1350.0,
-              "dispatched_kg": 1350.0,
-              "sold_kg": 1350.0,
+              "dispatched_kg": 1050.0,
+              "sold_kg": 1050.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 300.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6850.0,
-              "gross_revenue": 80246.0,
-              "procurement_cost": 35750.0,
-              "transport_cost": 15120.0,
-              "handling_cost": 1350.0,
+              "gross_revenue": 53278.5,
+              "procurement_cost": 26400.0,
+              "transport_cost": 6480.0,
+              "handling_cost": 1050.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 28026.0,
-              "fulfillment_pct": 19.71,
+              "net_revenue": 19348.5,
+              "fulfillment_pct": 15.33,
               "feasible": true,
               "violations": []
             },
@@ -9617,10 +9617,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 28026.0,
-              "planner": 28026.0,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 18724.0,
+              "planner": 19348.5,
+              "delta": 624.5,
+              "delta_pct": 3.3353,
               "defined": true,
               "direction": "higher_better"
             },
@@ -9633,16 +9633,16 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 19.71,
-              "planner": 19.71,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 16.06,
+              "planner": 15.33,
+              "delta": -0.73,
+              "delta_pct": -4.5455,
               "defined": true,
               "direction": "higher_better"
             }
           },
           "win": {
-            "net_revenue": false,
+            "net_revenue": true,
             "spoilage_kg": false,
             "fulfillment_pct": false,
             "all_metrics": false
@@ -9652,25 +9652,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 28026.0,
-            "min": 28026.0,
-            "max": 28026.0,
+            "mean": 18724.0,
+            "min": 18724.0,
+            "max": 18724.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 28026.0,
-            "min": 28026.0,
-            "max": 28026.0,
+            "mean": 19348.5,
+            "min": 19348.5,
+            "max": 19348.5,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": 624.5,
+            "min": 624.5,
+            "max": 624.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -9680,14 +9680,14 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": -0.73,
+            "min": -0.73,
+            "max": -0.73,
             "std": 0.0
           }
         },
         "wins": {
-          "net_revenue": 0,
+          "net_revenue": 1,
           "spoilage_kg": 0,
           "fulfillment_pct": 0,
           "all_metrics": 0,
@@ -9722,12 +9722,12 @@
               "fresh_inventory_kg": 0.0,
               "spoiled_kg": 0.0,
               "demand_kg": 7525.0,
-              "gross_revenue": 86454.0,
+              "gross_revenue": 80924.5,
               "procurement_cost": 35750.0,
-              "transport_cost": 15600.0,
+              "transport_cost": 14160.0,
               "handling_cost": 1350.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 33754.0,
+              "net_revenue": 29664.5,
               "fulfillment_pct": 17.94,
               "feasible": true,
               "violations": []
@@ -9737,19 +9737,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1350.0,
-              "dispatched_kg": 1350.0,
-              "sold_kg": 1350.0,
+              "dispatched_kg": 1300.0,
+              "sold_kg": 1300.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 50.0,
               "spoiled_kg": 0.0,
               "demand_kg": 7525.0,
-              "gross_revenue": 86454.0,
-              "procurement_cost": 35750.0,
-              "transport_cost": 15600.0,
-              "handling_cost": 1350.0,
+              "gross_revenue": 79667.0,
+              "procurement_cost": 35150.0,
+              "transport_cost": 13440.0,
+              "handling_cost": 1300.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 33754.0,
-              "fulfillment_pct": 17.94,
+              "net_revenue": 29777.0,
+              "fulfillment_pct": 17.28,
               "feasible": true,
               "violations": []
             },
@@ -9757,10 +9757,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 33754.0,
-              "planner": 33754.0,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 29664.5,
+              "planner": 29777.0,
+              "delta": 112.5,
+              "delta_pct": 0.3792,
               "defined": true,
               "direction": "higher_better"
             },
@@ -9774,15 +9774,15 @@
             },
             "fulfillment_pct": {
               "baseline": 17.94,
-              "planner": 17.94,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "planner": 17.28,
+              "delta": -0.66,
+              "delta_pct": -3.6789,
               "defined": true,
               "direction": "higher_better"
             }
           },
           "win": {
-            "net_revenue": false,
+            "net_revenue": true,
             "spoilage_kg": false,
             "fulfillment_pct": false,
             "all_metrics": false
@@ -9792,25 +9792,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 33754.0,
-            "min": 33754.0,
-            "max": 33754.0,
+            "mean": 29664.5,
+            "min": 29664.5,
+            "max": 29664.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 33754.0,
-            "min": 33754.0,
-            "max": 33754.0,
+            "mean": 29777.0,
+            "min": 29777.0,
+            "max": 29777.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": 112.5,
+            "min": 112.5,
+            "max": 112.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -9820,14 +9820,14 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": -0.66,
+            "min": -0.66,
+            "max": -0.66,
             "std": 0.0
           }
         },
         "wins": {
-          "net_revenue": 0,
+          "net_revenue": 1,
           "spoilage_kg": 0,
           "fulfillment_pct": 0,
           "all_metrics": 0,
@@ -9862,12 +9862,12 @@
               "fresh_inventory_kg": 0.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6850.0,
-              "gross_revenue": 86454.0,
+              "gross_revenue": 80924.5,
               "procurement_cost": 35750.0,
-              "transport_cost": 15600.0,
+              "transport_cost": 14160.0,
               "handling_cost": 1350.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 33754.0,
+              "net_revenue": 29664.5,
               "fulfillment_pct": 19.71,
               "feasible": true,
               "violations": []
@@ -9877,19 +9877,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1350.0,
-              "dispatched_kg": 1350.0,
-              "sold_kg": 1350.0,
+              "dispatched_kg": 1300.0,
+              "sold_kg": 1300.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 50.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6850.0,
-              "gross_revenue": 86454.0,
-              "procurement_cost": 35750.0,
-              "transport_cost": 15600.0,
-              "handling_cost": 1350.0,
+              "gross_revenue": 79667.0,
+              "procurement_cost": 35150.0,
+              "transport_cost": 13440.0,
+              "handling_cost": 1300.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 33754.0,
-              "fulfillment_pct": 19.71,
+              "net_revenue": 29777.0,
+              "fulfillment_pct": 18.98,
               "feasible": true,
               "violations": []
             },
@@ -9897,10 +9897,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 33754.0,
-              "planner": 33754.0,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "baseline": 29664.5,
+              "planner": 29777.0,
+              "delta": 112.5,
+              "delta_pct": 0.3792,
               "defined": true,
               "direction": "higher_better"
             },
@@ -9914,15 +9914,15 @@
             },
             "fulfillment_pct": {
               "baseline": 19.71,
-              "planner": 19.71,
-              "delta": 0.0,
-              "delta_pct": 0.0,
+              "planner": 18.98,
+              "delta": -0.73,
+              "delta_pct": -3.7037,
               "defined": true,
               "direction": "higher_better"
             }
           },
           "win": {
-            "net_revenue": false,
+            "net_revenue": true,
             "spoilage_kg": false,
             "fulfillment_pct": false,
             "all_metrics": false
@@ -9932,25 +9932,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 33754.0,
-            "min": 33754.0,
-            "max": 33754.0,
+            "mean": 29664.5,
+            "min": 29664.5,
+            "max": 29664.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 33754.0,
-            "min": 33754.0,
-            "max": 33754.0,
+            "mean": 29777.0,
+            "min": 29777.0,
+            "max": 29777.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": 112.5,
+            "min": 112.5,
+            "max": 112.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -9960,14 +9960,14 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": 0.0,
-            "min": 0.0,
-            "max": 0.0,
+            "mean": -0.73,
+            "min": -0.73,
+            "max": -0.73,
             "std": 0.0
           }
         },
         "wins": {
-          "net_revenue": 0,
+          "net_revenue": 1,
           "spoilage_kg": 0,
           "fulfillment_pct": 0,
           "all_metrics": 0,
@@ -9988,19 +9988,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1950.0,
-              "dispatched_kg": 1600.0,
-              "sold_kg": 1600.0,
+              "dispatched_kg": 1300.0,
+              "sold_kg": 1300.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 350.0,
+              "fresh_inventory_kg": 650.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5450.0,
-              "gross_revenue": 51702.0,
-              "procurement_cost": 22400.0,
-              "transport_cost": 27200.0,
-              "handling_cost": 1600.0,
+              "gross_revenue": 43797.0,
+              "procurement_cost": 18800.0,
+              "transport_cost": 20000.0,
+              "handling_cost": 1300.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 502.0,
-              "fulfillment_pct": 29.36,
+              "net_revenue": 3697.0,
+              "fulfillment_pct": 23.85,
               "feasible": true,
               "violations": []
             },
@@ -10029,10 +10029,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 502.0,
+              "baseline": 3697.0,
               "planner": 8409.0,
-              "delta": 7907.0,
-              "delta_pct": 1575.0996,
+              "delta": 4712.0,
+              "delta_pct": 127.4547,
               "defined": true,
               "direction": "higher_better"
             },
@@ -10045,10 +10045,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 29.36,
+              "baseline": 23.85,
               "planner": 16.51,
-              "delta": -12.85,
-              "delta_pct": -43.767,
+              "delta": -7.34,
+              "delta_pct": -30.7757,
               "defined": true,
               "direction": "higher_better"
             }
@@ -10064,9 +10064,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 502.0,
-            "min": 502.0,
-            "max": 502.0,
+            "mean": 3697.0,
+            "min": 3697.0,
+            "max": 3697.0,
             "std": 0.0
           }
         },
@@ -10080,9 +10080,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 7907.0,
-            "min": 7907.0,
-            "max": 7907.0,
+            "mean": 4712.0,
+            "min": 4712.0,
+            "max": 4712.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -10092,9 +10092,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -12.85,
-            "min": -12.85,
-            "max": -12.85,
+            "mean": -7.34,
+            "min": -7.34,
+            "max": -7.34,
             "std": 0.0
           }
         },
@@ -10128,19 +10128,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1950.0,
-              "dispatched_kg": 1500.0,
-              "sold_kg": 1500.0,
+              "dispatched_kg": 1200.0,
+              "sold_kg": 1200.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 450.0,
+              "fresh_inventory_kg": 750.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5450.0,
-              "gross_revenue": 48875.0,
-              "procurement_cost": 21200.0,
-              "transport_cost": 25760.0,
-              "handling_cost": 1500.0,
+              "gross_revenue": 40970.0,
+              "procurement_cost": 17600.0,
+              "transport_cost": 18560.0,
+              "handling_cost": 1200.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 415.0,
-              "fulfillment_pct": 27.52,
+              "net_revenue": 3610.0,
+              "fulfillment_pct": 22.02,
               "feasible": true,
               "violations": []
             },
@@ -10169,10 +10169,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 415.0,
+              "baseline": 3610.0,
               "planner": 8322.0,
-              "delta": 7907.0,
-              "delta_pct": 1905.3012,
+              "delta": 4712.0,
+              "delta_pct": 130.5263,
               "defined": true,
               "direction": "higher_better"
             },
@@ -10185,10 +10185,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 27.52,
+              "baseline": 22.02,
               "planner": 14.68,
-              "delta": -12.84,
-              "delta_pct": -46.657,
+              "delta": -7.34,
+              "delta_pct": -33.3333,
               "defined": true,
               "direction": "higher_better"
             }
@@ -10204,9 +10204,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 415.0,
-            "min": 415.0,
-            "max": 415.0,
+            "mean": 3610.0,
+            "min": 3610.0,
+            "max": 3610.0,
             "std": 0.0
           }
         },
@@ -10220,9 +10220,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 7907.0,
-            "min": 7907.0,
-            "max": 7907.0,
+            "mean": 4712.0,
+            "min": 4712.0,
+            "max": 4712.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -10232,9 +10232,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -12.84,
-            "min": -12.84,
-            "max": -12.84,
+            "mean": -7.34,
+            "min": -7.34,
+            "max": -7.34,
             "std": 0.0
           }
         },
@@ -10268,19 +10268,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1950.0,
-              "dispatched_kg": 1600.0,
-              "sold_kg": 1600.0,
+              "dispatched_kg": 1300.0,
+              "sold_kg": 1300.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 350.0,
+              "fresh_inventory_kg": 650.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5600.0,
-              "gross_revenue": 51702.0,
-              "procurement_cost": 22400.0,
-              "transport_cost": 27200.0,
-              "handling_cost": 1600.0,
+              "gross_revenue": 43797.0,
+              "procurement_cost": 18800.0,
+              "transport_cost": 20000.0,
+              "handling_cost": 1300.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 502.0,
-              "fulfillment_pct": 28.57,
+              "net_revenue": 3697.0,
+              "fulfillment_pct": 23.21,
               "feasible": true,
               "violations": []
             },
@@ -10309,10 +10309,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 502.0,
+              "baseline": 3697.0,
               "planner": 8409.0,
-              "delta": 7907.0,
-              "delta_pct": 1575.0996,
+              "delta": 4712.0,
+              "delta_pct": 127.4547,
               "defined": true,
               "direction": "higher_better"
             },
@@ -10325,10 +10325,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 28.57,
+              "baseline": 23.21,
               "planner": 16.07,
-              "delta": -12.5,
-              "delta_pct": -43.7522,
+              "delta": -7.14,
+              "delta_pct": -30.7626,
               "defined": true,
               "direction": "higher_better"
             }
@@ -10344,9 +10344,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 502.0,
-            "min": 502.0,
-            "max": 502.0,
+            "mean": 3697.0,
+            "min": 3697.0,
+            "max": 3697.0,
             "std": 0.0
           }
         },
@@ -10360,9 +10360,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 7907.0,
-            "min": 7907.0,
-            "max": 7907.0,
+            "mean": 4712.0,
+            "min": 4712.0,
+            "max": 4712.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -10372,9 +10372,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -12.5,
-            "min": -12.5,
-            "max": -12.5,
+            "mean": -7.14,
+            "min": -7.14,
+            "max": -7.14,
             "std": 0.0
           }
         },
@@ -10408,19 +10408,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1950.0,
-              "dispatched_kg": 1600.0,
-              "sold_kg": 1600.0,
+              "dispatched_kg": 1300.0,
+              "sold_kg": 1300.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 350.0,
+              "fresh_inventory_kg": 650.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5450.0,
-              "gross_revenue": 51702.0,
-              "procurement_cost": 22400.0,
-              "transport_cost": 27200.0,
-              "handling_cost": 1600.0,
+              "gross_revenue": 43797.0,
+              "procurement_cost": 18800.0,
+              "transport_cost": 20000.0,
+              "handling_cost": 1300.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 502.0,
-              "fulfillment_pct": 29.36,
+              "net_revenue": 3697.0,
+              "fulfillment_pct": 23.85,
               "feasible": true,
               "violations": []
             },
@@ -10449,10 +10449,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 502.0,
+              "baseline": 3697.0,
               "planner": 8409.0,
-              "delta": 7907.0,
-              "delta_pct": 1575.0996,
+              "delta": 4712.0,
+              "delta_pct": 127.4547,
               "defined": true,
               "direction": "higher_better"
             },
@@ -10465,10 +10465,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 29.36,
+              "baseline": 23.85,
               "planner": 16.51,
-              "delta": -12.85,
-              "delta_pct": -43.767,
+              "delta": -7.34,
+              "delta_pct": -30.7757,
               "defined": true,
               "direction": "higher_better"
             }
@@ -10484,9 +10484,9 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 502.0,
-            "min": 502.0,
-            "max": 502.0,
+            "mean": 3697.0,
+            "min": 3697.0,
+            "max": 3697.0,
             "std": 0.0
           }
         },
@@ -10500,9 +10500,9 @@
         },
         "improvement": {
           "net_revenue": {
-            "mean": 7907.0,
-            "min": 7907.0,
-            "max": 7907.0,
+            "mean": 4712.0,
+            "min": 4712.0,
+            "max": 4712.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -10512,9 +10512,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -12.85,
-            "min": -12.85,
-            "max": -12.85,
+            "mean": -7.34,
+            "min": -7.34,
+            "max": -7.34,
             "std": 0.0
           }
         },
@@ -12748,19 +12748,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 2800.0,
-              "dispatched_kg": 2400.0,
-              "sold_kg": 2400.0,
+              "dispatched_kg": 2000.0,
+              "sold_kg": 2000.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 50.0,
+              "fresh_inventory_kg": 450.0,
               "spoiled_kg": 350.0,
               "demand_kg": 5250.0,
-              "gross_revenue": 123624.5,
-              "procurement_cost": 55050.0,
-              "transport_cost": 39040.0,
-              "handling_cost": 2400.0,
+              "gross_revenue": 108678.5,
+              "procurement_cost": 49050.0,
+              "transport_cost": 32000.0,
+              "handling_cost": 2000.0,
               "spoilage_cost": 700.0,
-              "net_revenue": 26434.5,
-              "fulfillment_pct": 45.71,
+              "net_revenue": 24928.5,
+              "fulfillment_pct": 38.1,
               "feasible": true,
               "violations": []
             },
@@ -12769,19 +12769,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 2800.0,
-              "dispatched_kg": 1750.0,
-              "sold_kg": 1750.0,
+              "dispatched_kg": 1350.0,
+              "sold_kg": 1350.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 700.0,
+              "fresh_inventory_kg": 1100.0,
               "spoiled_kg": 350.0,
               "demand_kg": 5250.0,
-              "gross_revenue": 105857.4,
-              "procurement_cost": 47250.0,
-              "transport_cost": 24080.0,
-              "handling_cost": 1750.0,
+              "gross_revenue": 92685.0,
+              "procurement_cost": 41250.0,
+              "transport_cost": 18320.0,
+              "handling_cost": 1350.0,
               "spoilage_cost": 700.0,
-              "net_revenue": 32077.4,
-              "fulfillment_pct": 33.33,
+              "net_revenue": 31065.0,
+              "fulfillment_pct": 25.71,
               "feasible": true,
               "violations": []
             },
@@ -12789,10 +12789,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 26434.5,
-              "planner": 32077.4,
-              "delta": 5642.9,
-              "delta_pct": 21.3467,
+              "baseline": 24928.5,
+              "planner": 31065.0,
+              "delta": 6136.5,
+              "delta_pct": 24.6164,
               "defined": true,
               "direction": "higher_better"
             },
@@ -12805,10 +12805,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 45.71,
-              "planner": 33.33,
-              "delta": -12.38,
-              "delta_pct": -27.0838,
+              "baseline": 38.1,
+              "planner": 25.71,
+              "delta": -12.39,
+              "delta_pct": -32.5197,
               "defined": true,
               "direction": "higher_better"
             }
@@ -12824,25 +12824,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 26434.5,
-            "min": 26434.5,
-            "max": 26434.5,
+            "mean": 24928.5,
+            "min": 24928.5,
+            "max": 24928.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 32077.4,
-            "min": 32077.4,
-            "max": 32077.4,
+            "mean": 31065.0,
+            "min": 31065.0,
+            "max": 31065.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 5642.9,
-            "min": 5642.9,
-            "max": 5642.9,
+            "mean": 6136.5,
+            "min": 6136.5,
+            "max": 6136.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -12852,9 +12852,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -12.38,
-            "min": -12.38,
-            "max": -12.38,
+            "mean": -12.39,
+            "min": -12.39,
+            "max": -12.39,
             "std": 0.0
           }
         },
@@ -13028,19 +13028,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 2800.0,
-              "dispatched_kg": 2400.0,
-              "sold_kg": 2400.0,
+              "dispatched_kg": 2000.0,
+              "sold_kg": 2000.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 50.0,
+              "fresh_inventory_kg": 450.0,
               "spoiled_kg": 350.0,
               "demand_kg": 5925.0,
-              "gross_revenue": 123624.5,
-              "procurement_cost": 55050.0,
-              "transport_cost": 39040.0,
-              "handling_cost": 2400.0,
+              "gross_revenue": 108678.5,
+              "procurement_cost": 49050.0,
+              "transport_cost": 32000.0,
+              "handling_cost": 2000.0,
               "spoilage_cost": 700.0,
-              "net_revenue": 26434.5,
-              "fulfillment_pct": 40.51,
+              "net_revenue": 24928.5,
+              "fulfillment_pct": 33.76,
               "feasible": true,
               "violations": []
             },
@@ -13049,19 +13049,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 2800.0,
-              "dispatched_kg": 1750.0,
-              "sold_kg": 1750.0,
+              "dispatched_kg": 1350.0,
+              "sold_kg": 1350.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 700.0,
+              "fresh_inventory_kg": 1100.0,
               "spoiled_kg": 350.0,
               "demand_kg": 5925.0,
-              "gross_revenue": 105857.4,
-              "procurement_cost": 47250.0,
-              "transport_cost": 24080.0,
-              "handling_cost": 1750.0,
+              "gross_revenue": 92685.0,
+              "procurement_cost": 41250.0,
+              "transport_cost": 18320.0,
+              "handling_cost": 1350.0,
               "spoilage_cost": 700.0,
-              "net_revenue": 32077.4,
-              "fulfillment_pct": 29.54,
+              "net_revenue": 31065.0,
+              "fulfillment_pct": 22.78,
               "feasible": true,
               "violations": []
             },
@@ -13069,10 +13069,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 26434.5,
-              "planner": 32077.4,
-              "delta": 5642.9,
-              "delta_pct": 21.3467,
+              "baseline": 24928.5,
+              "planner": 31065.0,
+              "delta": 6136.5,
+              "delta_pct": 24.6164,
               "defined": true,
               "direction": "higher_better"
             },
@@ -13085,10 +13085,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 40.51,
-              "planner": 29.54,
-              "delta": -10.97,
-              "delta_pct": -27.0797,
+              "baseline": 33.76,
+              "planner": 22.78,
+              "delta": -10.98,
+              "delta_pct": -32.5237,
               "defined": true,
               "direction": "higher_better"
             }
@@ -13104,25 +13104,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 26434.5,
-            "min": 26434.5,
-            "max": 26434.5,
+            "mean": 24928.5,
+            "min": 24928.5,
+            "max": 24928.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 32077.4,
-            "min": 32077.4,
-            "max": 32077.4,
+            "mean": 31065.0,
+            "min": 31065.0,
+            "max": 31065.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 5642.9,
-            "min": 5642.9,
-            "max": 5642.9,
+            "mean": 6136.5,
+            "min": 6136.5,
+            "max": 6136.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -13132,9 +13132,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -10.97,
-            "min": -10.97,
-            "max": -10.97,
+            "mean": -10.98,
+            "min": -10.98,
+            "max": -10.98,
             "std": 0.0
           }
         },
@@ -13168,19 +13168,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 2800.0,
-              "dispatched_kg": 2400.0,
-              "sold_kg": 2400.0,
+              "dispatched_kg": 2000.0,
+              "sold_kg": 2000.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 50.0,
+              "fresh_inventory_kg": 450.0,
               "spoiled_kg": 350.0,
               "demand_kg": 5250.0,
-              "gross_revenue": 123624.5,
-              "procurement_cost": 55050.0,
-              "transport_cost": 39040.0,
-              "handling_cost": 2400.0,
+              "gross_revenue": 108678.5,
+              "procurement_cost": 49050.0,
+              "transport_cost": 32000.0,
+              "handling_cost": 2000.0,
               "spoilage_cost": 700.0,
-              "net_revenue": 26434.5,
-              "fulfillment_pct": 45.71,
+              "net_revenue": 24928.5,
+              "fulfillment_pct": 38.1,
               "feasible": true,
               "violations": []
             },
@@ -13189,19 +13189,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 2800.0,
-              "dispatched_kg": 1750.0,
-              "sold_kg": 1750.0,
+              "dispatched_kg": 1350.0,
+              "sold_kg": 1350.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 700.0,
+              "fresh_inventory_kg": 1100.0,
               "spoiled_kg": 350.0,
               "demand_kg": 5250.0,
-              "gross_revenue": 105857.4,
-              "procurement_cost": 47250.0,
-              "transport_cost": 24080.0,
-              "handling_cost": 1750.0,
+              "gross_revenue": 92685.0,
+              "procurement_cost": 41250.0,
+              "transport_cost": 18320.0,
+              "handling_cost": 1350.0,
               "spoilage_cost": 700.0,
-              "net_revenue": 32077.4,
-              "fulfillment_pct": 33.33,
+              "net_revenue": 31065.0,
+              "fulfillment_pct": 25.71,
               "feasible": true,
               "violations": []
             },
@@ -13209,10 +13209,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 26434.5,
-              "planner": 32077.4,
-              "delta": 5642.9,
-              "delta_pct": 21.3467,
+              "baseline": 24928.5,
+              "planner": 31065.0,
+              "delta": 6136.5,
+              "delta_pct": 24.6164,
               "defined": true,
               "direction": "higher_better"
             },
@@ -13225,10 +13225,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 45.71,
-              "planner": 33.33,
-              "delta": -12.38,
-              "delta_pct": -27.0838,
+              "baseline": 38.1,
+              "planner": 25.71,
+              "delta": -12.39,
+              "delta_pct": -32.5197,
               "defined": true,
               "direction": "higher_better"
             }
@@ -13244,25 +13244,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 26434.5,
-            "min": 26434.5,
-            "max": 26434.5,
+            "mean": 24928.5,
+            "min": 24928.5,
+            "max": 24928.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 32077.4,
-            "min": 32077.4,
-            "max": 32077.4,
+            "mean": 31065.0,
+            "min": 31065.0,
+            "max": 31065.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 5642.9,
-            "min": 5642.9,
-            "max": 5642.9,
+            "mean": 6136.5,
+            "min": 6136.5,
+            "max": 6136.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -13272,9 +13272,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -12.38,
-            "min": -12.38,
-            "max": -12.38,
+            "mean": -12.39,
+            "min": -12.39,
+            "max": -12.39,
             "std": 0.0
           }
         },
@@ -16066,12 +16066,12 @@
               "fresh_inventory_kg": 0.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5500.0,
-              "gross_revenue": 74059.0,
+              "gross_revenue": 72881.5,
               "procurement_cost": 30650.0,
-              "transport_cost": 18960.0,
+              "transport_cost": 20080.0,
               "handling_cost": 1750.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 22699.0,
+              "net_revenue": 20401.5,
               "fulfillment_pct": 31.82,
               "feasible": true,
               "violations": []
@@ -16081,19 +16081,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1750.0,
-              "dispatched_kg": 1500.0,
-              "sold_kg": 1500.0,
+              "dispatched_kg": 1400.0,
+              "sold_kg": 1400.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 250.0,
+              "fresh_inventory_kg": 350.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5500.0,
-              "gross_revenue": 64167.8,
-              "procurement_cost": 27500.0,
-              "transport_cost": 11360.0,
-              "handling_cost": 1500.0,
+              "gross_revenue": 59801.0,
+              "procurement_cost": 25400.0,
+              "transport_cost": 9920.0,
+              "handling_cost": 1400.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 23807.8,
-              "fulfillment_pct": 27.27,
+              "net_revenue": 23081.0,
+              "fulfillment_pct": 25.45,
               "feasible": true,
               "violations": []
             },
@@ -16101,10 +16101,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 22699.0,
-              "planner": 23807.8,
-              "delta": 1108.8,
-              "delta_pct": 4.8848,
+              "baseline": 20401.5,
+              "planner": 23081.0,
+              "delta": 2679.5,
+              "delta_pct": 13.1338,
               "defined": true,
               "direction": "higher_better"
             },
@@ -16118,9 +16118,9 @@
             },
             "fulfillment_pct": {
               "baseline": 31.82,
-              "planner": 27.27,
-              "delta": -4.55,
-              "delta_pct": -14.2992,
+              "planner": 25.45,
+              "delta": -6.37,
+              "delta_pct": -20.0189,
               "defined": true,
               "direction": "higher_better"
             }
@@ -16136,25 +16136,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 22699.0,
-            "min": 22699.0,
-            "max": 22699.0,
+            "mean": 20401.5,
+            "min": 20401.5,
+            "max": 20401.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 23807.8,
-            "min": 23807.8,
-            "max": 23807.8,
+            "mean": 23081.0,
+            "min": 23081.0,
+            "max": 23081.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 1108.8,
-            "min": 1108.8,
-            "max": 1108.8,
+            "mean": 2679.5,
+            "min": 2679.5,
+            "max": 2679.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -16164,9 +16164,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -4.55,
-            "min": -4.55,
-            "max": -4.55,
+            "mean": -6.37,
+            "min": -6.37,
+            "max": -6.37,
             "std": 0.0
           }
         },
@@ -16200,19 +16200,19 @@
           "baseline": {
             "metrics": {
               "harvested_kg": 1750.0,
-              "dispatched_kg": 1750.0,
-              "sold_kg": 1750.0,
+              "dispatched_kg": 1700.0,
+              "sold_kg": 1700.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 0.0,
+              "fresh_inventory_kg": 50.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5500.0,
-              "gross_revenue": 72877.0,
-              "procurement_cost": 30650.0,
-              "transport_cost": 20240.0,
-              "handling_cost": 1750.0,
+              "gross_revenue": 70414.0,
+              "procurement_cost": 29900.0,
+              "transport_cost": 19040.0,
+              "handling_cost": 1700.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 20237.0,
-              "fulfillment_pct": 31.82,
+              "net_revenue": 19774.0,
+              "fulfillment_pct": 30.91,
               "feasible": true,
               "violations": []
             },
@@ -16227,12 +16227,12 @@
               "fresh_inventory_kg": 550.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5500.0,
-              "gross_revenue": 51997.8,
-              "procurement_cost": 23100.0,
+              "gross_revenue": 50580.0,
+              "procurement_cost": 22200.0,
               "transport_cost": 7040.0,
               "handling_cost": 1200.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 20657.8,
+              "net_revenue": 20140.0,
               "fulfillment_pct": 21.82,
               "feasible": true,
               "violations": []
@@ -16241,10 +16241,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 20237.0,
-              "planner": 20657.8,
-              "delta": 420.8,
-              "delta_pct": 2.0794,
+              "baseline": 19774.0,
+              "planner": 20140.0,
+              "delta": 366.0,
+              "delta_pct": 1.8509,
               "defined": true,
               "direction": "higher_better"
             },
@@ -16257,10 +16257,10 @@
               "direction": "lower_better"
             },
             "fulfillment_pct": {
-              "baseline": 31.82,
+              "baseline": 30.91,
               "planner": 21.82,
-              "delta": -10.0,
-              "delta_pct": -31.4268,
+              "delta": -9.09,
+              "delta_pct": -29.408,
               "defined": true,
               "direction": "higher_better"
             }
@@ -16276,25 +16276,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 20237.0,
-            "min": 20237.0,
-            "max": 20237.0,
+            "mean": 19774.0,
+            "min": 19774.0,
+            "max": 19774.0,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 20657.8,
-            "min": 20657.8,
-            "max": 20657.8,
+            "mean": 20140.0,
+            "min": 20140.0,
+            "max": 20140.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 420.8,
-            "min": 420.8,
-            "max": 420.8,
+            "mean": 366.0,
+            "min": 366.0,
+            "max": 366.0,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -16304,9 +16304,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -10.0,
-            "min": -10.0,
-            "max": -10.0,
+            "mean": -9.09,
+            "min": -9.09,
+            "max": -9.09,
             "std": 0.0
           }
         },
@@ -16346,12 +16346,12 @@
               "fresh_inventory_kg": 0.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6275.0,
-              "gross_revenue": 74059.0,
+              "gross_revenue": 72881.5,
               "procurement_cost": 30650.0,
-              "transport_cost": 18960.0,
+              "transport_cost": 20080.0,
               "handling_cost": 1750.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 22699.0,
+              "net_revenue": 20401.5,
               "fulfillment_pct": 27.89,
               "feasible": true,
               "violations": []
@@ -16367,12 +16367,12 @@
               "fresh_inventory_kg": 250.0,
               "spoiled_kg": 0.0,
               "demand_kg": 6275.0,
-              "gross_revenue": 64152.1,
-              "procurement_cost": 27650.0,
+              "gross_revenue": 62896.0,
+              "procurement_cost": 26900.0,
               "transport_cost": 11360.0,
               "handling_cost": 1500.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 23642.1,
+              "net_revenue": 23136.0,
               "fulfillment_pct": 23.9,
               "feasible": true,
               "violations": []
@@ -16381,10 +16381,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 22699.0,
-              "planner": 23642.1,
-              "delta": 943.1,
-              "delta_pct": 4.1548,
+              "baseline": 20401.5,
+              "planner": 23136.0,
+              "delta": 2734.5,
+              "delta_pct": 13.4034,
               "defined": true,
               "direction": "higher_better"
             },
@@ -16416,25 +16416,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 22699.0,
-            "min": 22699.0,
-            "max": 22699.0,
+            "mean": 20401.5,
+            "min": 20401.5,
+            "max": 20401.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 23642.1,
-            "min": 23642.1,
-            "max": 23642.1,
+            "mean": 23136.0,
+            "min": 23136.0,
+            "max": 23136.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 943.1,
-            "min": 943.1,
-            "max": 943.1,
+            "mean": 2734.5,
+            "min": 2734.5,
+            "max": 2734.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -16486,12 +16486,12 @@
               "fresh_inventory_kg": 0.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5500.0,
-              "gross_revenue": 74059.0,
+              "gross_revenue": 72881.5,
               "procurement_cost": 30650.0,
-              "transport_cost": 18960.0,
+              "transport_cost": 20080.0,
               "handling_cost": 1750.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 22699.0,
+              "net_revenue": 20401.5,
               "fulfillment_pct": 31.82,
               "feasible": true,
               "violations": []
@@ -16501,19 +16501,19 @@
           "planner": {
             "metrics": {
               "harvested_kg": 1750.0,
-              "dispatched_kg": 1500.0,
-              "sold_kg": 1500.0,
+              "dispatched_kg": 1400.0,
+              "sold_kg": 1400.0,
               "arrived_unsold_kg": 0.0,
-              "fresh_inventory_kg": 250.0,
+              "fresh_inventory_kg": 350.0,
               "spoiled_kg": 0.0,
               "demand_kg": 5500.0,
-              "gross_revenue": 64167.8,
-              "procurement_cost": 27500.0,
-              "transport_cost": 11360.0,
-              "handling_cost": 1500.0,
+              "gross_revenue": 59801.0,
+              "procurement_cost": 25400.0,
+              "transport_cost": 9920.0,
+              "handling_cost": 1400.0,
               "spoilage_cost": 0.0,
-              "net_revenue": 23807.8,
-              "fulfillment_pct": 27.27,
+              "net_revenue": 23081.0,
+              "fulfillment_pct": 25.45,
               "feasible": true,
               "violations": []
             },
@@ -16521,10 +16521,10 @@
           },
           "improvement": {
             "net_revenue": {
-              "baseline": 22699.0,
-              "planner": 23807.8,
-              "delta": 1108.8,
-              "delta_pct": 4.8848,
+              "baseline": 20401.5,
+              "planner": 23081.0,
+              "delta": 2679.5,
+              "delta_pct": 13.1338,
               "defined": true,
               "direction": "higher_better"
             },
@@ -16538,9 +16538,9 @@
             },
             "fulfillment_pct": {
               "baseline": 31.82,
-              "planner": 27.27,
-              "delta": -4.55,
-              "delta_pct": -14.2992,
+              "planner": 25.45,
+              "delta": -6.37,
+              "delta_pct": -20.0189,
               "defined": true,
               "direction": "higher_better"
             }
@@ -16556,25 +16556,25 @@
       "summary": {
         "baseline": {
           "net_revenue": {
-            "mean": 22699.0,
-            "min": 22699.0,
-            "max": 22699.0,
+            "mean": 20401.5,
+            "min": 20401.5,
+            "max": 20401.5,
             "std": 0.0
           }
         },
         "planner": {
           "net_revenue": {
-            "mean": 23807.8,
-            "min": 23807.8,
-            "max": 23807.8,
+            "mean": 23081.0,
+            "min": 23081.0,
+            "max": 23081.0,
             "std": 0.0
           }
         },
         "improvement": {
           "net_revenue": {
-            "mean": 1108.8,
-            "min": 1108.8,
-            "max": 1108.8,
+            "mean": 2679.5,
+            "min": 2679.5,
+            "max": 2679.5,
             "std": 0.0
           },
           "spoilage_kg": {
@@ -16584,9 +16584,9 @@
             "std": 0.0
           },
           "fulfillment_pct": {
-            "mean": -4.55,
-            "min": -4.55,
-            "max": -4.55,
+            "mean": -6.37,
+            "min": -6.37,
+            "max": -6.37,
             "std": 0.0
           }
         },

@@ -212,6 +212,27 @@ def effective_price(scenario, batch, dest, produce, discount_pct):
     return price_basis(scenario, batch, dest, produce) * discount_factor(discount_pct)
 
 
+def max_price_for(dest, produce):
+    """§2.5 declared price ceiling for ``produce`` at ``dest`` (or None if none)."""
+    caps = dest.get('max_price_per_kg') or {}
+    cap = caps.get(produce)
+    return None if cap is None else float(cap)
+
+
+def sells_at_price(scenario, batch, dest, produce, discount_pct):
+    """§2.5 price threshold (inclusive).
+
+    A destination buys ``produce`` at ``effective_price_per_kg`` only when
+    ``effective_price_per_kg <= max_price_per_kg``; above the ceiling the sold
+    quantity is 0 for that dispatch. No declared ceiling => it buys at any price.
+    The effective price is post-discount (§2.1).
+    """
+    cap = max_price_for(dest, produce)
+    if cap is None:
+        return True
+    return effective_price(scenario, batch, dest, produce, discount_pct) <= cap + TOLERANCE_INR
+
+
 def effective_demand_kg(demand_kg, discount_pct, dr_config):
     """§2.2 demand response. Off (default) => no extra demand from discounting."""
     if not dr_config.get('enabled') or float(dr_config.get('discount_elasticity', 0.0)) == 0.0:
@@ -287,6 +308,7 @@ def build_dispatches(scenario, flows):
             'idx': i, 'flow': f, 'batch': b, 'dest': d, 'produce': produce,
             'eff': eff, 'remaining_at_arrival': remain,
             'remaining_at_dispatch': float(b['shelf_life_days']) - (dispatch_day - float(b['harvest_day'])),
+            'sells': sells_at_price(scenario, b, d, produce, f['discount_pct']),
         }
         by_dp.setdefault((d['destination_id'], produce), []).append(stream)
         ordered.append(stream)
@@ -300,6 +322,11 @@ def build_dispatches(scenario, flows):
             streams[0]['dest']['demand'].get(_pr, 0.0), streams[0]['flow']['discount_pct'],
             cfg['demand_response'])
         for s in streams:
+            if not s['sells']:
+                # §2.5: the destination buys nothing at this effective price, so
+                # the stream neither sells nor consumes the demand budget.
+                sold[s['idx']] = 0.0
+                continue
             take = min(float(s['flow']['quantity_kg']), remaining)
             sold[s['idx']] = take
             remaining -= take
