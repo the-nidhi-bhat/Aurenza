@@ -9,6 +9,7 @@ import http.server
 import importlib.util
 import json
 import os
+import statistics
 import threading
 import unittest
 import urllib.request
@@ -106,6 +107,43 @@ class TestDashboardMarkup(unittest.TestCase):
         self.assertIn('src="app.js"', self.html)
         self.assertNotIn('http://', self.html.replace('http://www.w3.org', ''))
         self.assertNotIn('https://', self.html.replace('https://www.w3.org', ''))
+
+
+class TestLandingClaims(unittest.TestCase):
+    """The landing page quotes evaluation numbers, so they must be recomputable
+    from the committed fixture. A wrong figure on the marketing page is a
+    claim, not a typo -- this test is what keeps the copy honest."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.html = open(os.path.join(os.path.dirname(HERE), 'index.html'), encoding='utf-8').read()
+        with open(os.path.join(DEMO, 'evaluation.json'), encoding='utf-8') as fh:
+            cls.evaluation = json.load(fh)
+        cls.runs = [run for sc in cls.evaluation['scenarios'] for run in sc['runs']]
+
+    def test_landing_quotes_fixture_numbers(self):
+        net = [(r['planner']['metrics']['net_revenue'], r['baseline']['metrics']['net_revenue'])
+               for r in self.runs]
+        pct = sorted(100.0 * (p - b) / b for p, b in net)
+        median = statistics.median(pct)
+        wins = sum(1 for p, b in net if p > b)
+        spoilage_ties = sum(1 for r in self.runs
+                            if r['planner']['metrics']['spoilage_cost']
+                            == r['baseline']['metrics']['spoilage_cost'])
+        infeasible = sum(1 for r in self.runs
+                         if not r['planner']['feasible'] or not r['baseline']['feasible'])
+
+        self.assertEqual(len(self.evaluation['scenarios']), 120)
+        self.assertIn('120</span>', self.html)
+        self.assertIn(f'+{median:.1f}%', self.html)
+        self.assertIn(f'median improvement of {median:.1f}%', self.html)
+        self.assertIn(f'{wins}/120', self.html)
+        self.assertIn(f'spoilage is unchanged from the baseline in {spoilage_ties} of the 120', self.html)
+        self.assertEqual(infeasible, 0)
+        self.assertIn('no infeasible allocation', self.html)
+        # the sum-of-runs uplift the README quotes must agree with the same fixture
+        uplift = 100.0 * (sum(p for p, _ in net) - sum(b for _, b in net)) / sum(b for _, b in net)
+        self.assertAlmostEqual(uplift, 22.76, places=2)
 
 
 class TestStaticServer(unittest.TestCase):
