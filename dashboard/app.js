@@ -583,16 +583,16 @@ function showShortcutsHint() {
   hint.id = 'shortcuts-hint';
   hint.style.cssText = `
     position: fixed; bottom: 24px; right: 24px; z-index: 1000;
-    background: var(--card); border: 1px solid var(--rule); border-radius: var(--r-lg);
-    padding: var(--sp4); box-shadow: var(--shadow-lg); max-width: 320px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg);
+    padding: var(--sp4); box-shadow: var(--shadow); max-width: 320px;
   `;
   hint.innerHTML = `
     <h4 style="margin: 0 0 var(--sp3); font-size: 13px;">Keyboard shortcuts</h4>
     <div style="display: grid; gap: var(--sp2); font-size: 12px; color: var(--muted);">
-      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">1</kbd> / <kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">2</kbd> — Switch tabs</div>
-      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">T</kbd> — Toggle theme</div>
-      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">R</kbd> — Refresh data</div>
-      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--paper-2);border:1px solid var(--rule);border-radius:3px">?</kbd> — Show this hint</div>
+      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px">1</kbd> / <kbd style="font-family:var(--mono);padding:1px 4px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px">2</kbd> — Switch tabs</div>
+      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px">T</kbd> — Toggle theme</div>
+      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px">R</kbd> — Refresh data</div>
+      <div><kbd style="font-family:var(--mono);padding:1px 4px;background:var(--surface-2);border:1px solid var(--line);border-radius:3px">?</kbd> — Show this hint</div>
     </div>
   `;
   document.body.appendChild(hint);

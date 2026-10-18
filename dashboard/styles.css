@@ -1,21 +1,95 @@
 /* ============================================================================
    Aurenza — Logistics decision-support console (loads AFTER tokens.css)
-   Dashboard-specific components and overrides only.
+   Deep neutral surfaces, one purposeful green accent, amber/red for warnings.
+   Professional data-visualization aesthetic. Desktop / tablet / mobile.
    ============================================================================ */
 
-/* ---------- App bar (extends tokens .appbar) ---------- */
+/* ---------- Dashboard-specific token overrides (dark mode base) ---------- */
+:root {
+  /* Dark mode surfaces (base) */
+  --bg: #080b11;
+  --surface: #0e131c;
+  --surface-2: #121926;
+  --surface-3: #17202e;
+  --line: #1d2735;
+  --line-2: #283444;
+
+  /* Dark mode text */
+  --text: #e9eef6;
+  --muted: #9bacc2;
+  --faint: #6d7f95;
+
+  /* Dark mode semantic accents */
+  --accent: #2fbf7f;
+  --accent-2: #5ee0a8;
+  --accent-3: #1ea05f;
+  --accent-soft: rgba(47, 191, 127, 0.12);
+  --accent-line: rgba(47, 191, 127, 0.38);
+  --warn: #e2a53a;
+  --warn-soft: rgba(226, 165, 58, 0.12);
+  --warn-line: rgba(226, 165, 58, 0.32);
+  --bad: #e5717a;
+  --bad-soft: rgba(229, 113, 122, 0.13);
+  --bad-line: rgba(229, 113, 122, 0.4);
+  --base: #8aa0b8;
+  --plan: #2fbf7f;
+
+  /* Geometry */
+  --r-sm: 7px;
+  --r: 10px;
+  --r-lg: 16px;
+  --maxw: 1200px;
+
+  /* Spacing */
+  --sp1: 4px; --sp2: 8px; --sp3: 12px; --sp4: 16px;
+  --sp5: 24px; --sp6: 32px; --sp7: 48px;
+
+  /* Shadows */
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 14px 34px -16px rgba(0, 0, 0, 0.65);
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Light mode overrides */
+[data-theme="light"] {
+  --bg: #faf5ea;
+  --surface: #ffffff;
+  --surface-2: #f3ede2;
+  --surface-3: #e8e0d1;
+  --line: #e5ddd0;
+  --line-2: #ddd5c4;
+  --text: #14120e;
+  --muted: #6b655a;
+  --faint: #9b9486;
+  --accent: #0a7a34;
+  --accent-2: #0f9d46;
+  --accent-3: #085e28;
+  --accent-soft: rgba(15, 157, 70, 0.1);
+  --accent-line: rgba(15, 157, 70, 0.3);
+  --warn: #d4a01e;
+  --warn-soft: rgba(212, 160, 30, 0.12);
+  --warn-line: rgba(212, 160, 30, 0.35);
+  --bad: #d94a4a;
+  --bad-soft: rgba(217, 74, 74, 0.12);
+  --bad-line: rgba(217, 74, 74, 0.35);
+  --base: #5a7f9e;
+  --plan: #0a7a34;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 12px 28px -12px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------- App bar ---------- */
 .appbar {
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
   background: rgba(10, 14, 20, 0.82);
   backdrop-filter: blur(12px) saturate(1.2);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
 }
 [data-theme="light"] .appbar {
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(12px) saturate(1.2);
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
 }
 
 .appbar-inner {
@@ -69,8 +143,8 @@
   gap: 3px;
   padding: 3px;
   margin-left: var(--sp2);
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
   border-radius: 999px;
 }
 .vtab {
@@ -87,11 +161,11 @@
   transition: color var(--dur-1) var(--ease), background var(--dur-1) var(--ease);
 }
 .vtab:hover {
-  color: var(--ink);
+  color: var(--text);
 }
 .vtab[aria-selected="true"] {
-  background: var(--paper-3);
-  color: var(--ink);
+  background: var(--surface-3);
+  color: var(--text);
   box-shadow: 0 1px 0 rgba(255,255,255,0.04) inset;
 }
 [data-theme="light"] .vtab[aria-selected="true"] {
@@ -126,17 +200,17 @@
 .appbar .theme-toggle {
   width: 38px;
   height: 38px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--line);
   border-radius: var(--r);
-  background: var(--paper-2);
-  color: var(--ink);
+  background: var(--surface-2);
+  color: var(--text);
   cursor: pointer;
   display: grid;
   place-items: center;
   transition: background var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease), color var(--dur-1) var(--ease);
 }
 .appbar .theme-toggle:hover {
-  background: var(--paper-3);
+  background: var(--surface-3);
   border-color: var(--accent-line);
   color: var(--accent);
 }
@@ -153,6 +227,17 @@
 }
 .appbar .theme-toggle[aria-pressed="true"] .tt-sun {
   display: block;
+}
+
+/* ---------- Body background with subtle radial gradients (dark mode) ---------- */
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(1100px 460px at 82% -10%, rgba(47, 191, 127, 0.06), transparent 60%),
+    radial-gradient(900px 420px at -5% 0%, rgba(90, 120, 160, 0.05), transparent 55%);
+}
+[data-theme="light"] body {
+  background-image: none;
 }
 
 /* ---------- Shell ---------- */
@@ -198,8 +283,8 @@
   letter-spacing: 0.01em;
   padding: 7px 13px;
   border-radius: 999px;
-  border: 1px solid var(--rule-2);
-  background: var(--paper-2);
+  border: 1px solid var(--line-2);
+  background: var(--surface-2);
   color: var(--muted);
 }
 .verdict.up {
@@ -223,13 +308,13 @@
   margin-bottom: var(--sp4);
 }
 .note {
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--rule-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--line-2);
   border-radius: var(--r);
   padding: 11px 14px;
   font-size: 13.5px;
-  background: var(--card);
-  color: var(--ink);
+  background: var(--surface);
+  color: var(--text);
 }
 .note strong {
   font-variant-numeric: tabular-nums;
@@ -239,7 +324,7 @@
 }
 .note.warn {
   border-left-color: var(--warn);
-  background: linear-gradient(90deg, var(--warn-soft), transparent 42%), var(--card);
+  background: linear-gradient(90deg, var(--warn-soft), transparent 42%), var(--surface);
 }
 .note.info {
   border-left-color: var(--base);
@@ -328,7 +413,7 @@
 }
 .bm-track {
   height: 12px;
-  background: var(--paper-2);
+  background: var(--surface-3);
   border-radius: 999px;
   overflow: hidden;
 }
@@ -352,17 +437,17 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 .card {
-  background: var(--card);
-  border: 1px solid var(--rule);
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--r-lg);
   padding: var(--sp4);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
   transition: transform var(--dur-2) var(--ease), box-shadow var(--dur-2) var(--ease), border-color var(--dur-2) var(--ease);
 }
 .card:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow);
-  border-color: var(--rule-2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 24px 48px -24px rgba(0, 0, 0, 0.3);
+  border-color: var(--line-2);
 }
 .card-title {
   font-size: 11.5px;
@@ -459,9 +544,9 @@
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 999px;
-  border: 1px solid var(--rule-2);
+  border: 1px solid var(--line-2);
   color: var(--muted);
-  background: var(--paper-2);
+  background: var(--surface-2);
   white-space: nowrap;
 }
 .tag.win {
@@ -497,7 +582,7 @@ caption {
 th, td {
   text-align: left;
   padding: 9px 11px;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
 }
 th {
   color: var(--faint);
@@ -521,7 +606,7 @@ tbody tr {
   transition: background var(--dur-1) var(--ease);
 }
 tbody tr:hover {
-  background: var(--paper-2);
+  background: var(--surface-2);
 }
 tbody tr:last-child td {
   border-bottom: 0;
@@ -548,7 +633,7 @@ td.wrap {
 .batch-cell {
   font-family: var(--mono);
   font-size: 12px;
-  color: var(--ink);
+  color: var(--text);
 }
 .empty {
   color: var(--faint);
@@ -582,17 +667,17 @@ td.wrap {
     width: 100%;
   }
   table.responsive tr {
-    border: 1px solid var(--rule);
+    border: 1px solid var(--line);
     border-radius: var(--r);
     margin-bottom: var(--sp2);
     padding: var(--sp1) var(--sp2);
-    background: var(--card);
+    background: var(--surface-2);
   }
   table.responsive td {
     display: flex;
     justify-content: space-between;
     gap: var(--sp3);
-    border-bottom: 1px dashed var(--rule);
+    border-bottom: 1px dashed var(--line);
     padding: 7px 4px;
     white-space: normal;
     text-align: right;
@@ -618,7 +703,7 @@ td.wrap {
 
 /* ---------- Skeleton loaders ---------- */
 .skeleton {
-  background: linear-gradient(90deg, var(--paper-2) 25%, var(--paper-3) 50%, var(--paper-2) 75%);
+  background: linear-gradient(90deg, var(--surface-2) 25%, var(--surface-3) 50%, var(--surface-2) 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
   border-radius: var(--r-sm);
@@ -628,7 +713,7 @@ td.wrap {
   100% { background-position: -200% 0; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .skeleton { animation: none; background: var(--paper-2); }
+  .skeleton { animation: none; background: var(--surface-2); }
 }
 .skeleton-text {
   height: 1em;
@@ -670,7 +755,7 @@ td.wrap {
 .empty-state h3 {
   margin: 0 0 var(--sp2);
   font-size: 18px;
-  color: var(--ink);
+  color: var(--text);
 }
 .empty-state p {
   margin: 0;
@@ -696,7 +781,7 @@ td.wrap {
   align-items: center;
   gap: var(--sp2);
   padding: 9px 0;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--line);
   font-size: 13px;
   flex-wrap: wrap;
 }
@@ -744,8 +829,8 @@ td.wrap {
   height: 16px;
   border-radius: 6px;
   overflow: hidden;
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
+  background: var(--surface-3);
+  border: 1px solid var(--line);
 }
 .stack .seg {
   height: 100%;
@@ -771,7 +856,7 @@ td.wrap {
   margin-bottom: 6px;
 }
 .stack-head .lbl {
-  color: var(--ink);
+  color: var(--text);
   font-weight: 600;
 }
 .stack-head .val {
@@ -822,7 +907,7 @@ td.wrap {
   opacity: 0.8;
 }
 .hist .axis {
-  stroke: var(--rule-2);
+  stroke: var(--line-2);
 }
 .hist .zero {
   stroke: var(--faint);
@@ -852,9 +937,9 @@ td.wrap {
 select {
   appearance: none;
   cursor: pointer;
-  background: var(--paper-2);
-  color: var(--ink);
-  border: 1px solid var(--rule-2);
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--line-2);
   border-radius: var(--r);
   padding: 8px 34px 8px 12px;
   font: inherit;
@@ -891,7 +976,7 @@ select:hover {
 .bar {
   height: 12px;
   border-radius: 999px;
-  background: var(--paper-2);
+  background: var(--surface-3);
   overflow: hidden;
   margin: 4px 0;
 }
@@ -939,14 +1024,14 @@ select:hover {
   align-items: center;
   gap: var(--sp3);
   color: var(--muted);
-  background: var(--card);
-  border: 1px solid var(--rule);
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 .spinner {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 2px solid var(--rule-2);
+  border: 2px solid var(--line-2);
   border-top-color: var(--accent-2);
   animation: spin 0.8s linear infinite;
 }
@@ -983,69 +1068,28 @@ select:hover {
   font-size: 11px;
   color: var(--faint);
   padding: 2px 6px;
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
   border-radius: var(--r-sm);
 }
 .kbd-hint kbd {
   font-family: var(--mono);
   font-size: 10.5px;
   padding: 1px 4px;
-  background: var(--paper-3);
-  border: 1px solid var(--rule-2);
+  background: var(--surface-3);
+  border: 1px solid var(--line-2);
   border-radius: 3px;
-}
-
-/* ---------- Narrow screens ---------- */
-@media (max-width: 620px) {
-  .appbar-inner {
-    height: auto;
-    padding: var(--sp3) var(--sp4);
-    flex-wrap: wrap;
-    row-gap: var(--sp2);
-  }
-  .viewswitch {
-    order: 3;
-    margin-left: 0;
-    width: 100%;
-  }
-  .vtab {
-    flex: 1;
-  }
-  .badge-synthetic {
-    margin-left: auto;
-  }
-  .shell {
-    padding: var(--sp4) var(--sp4) var(--sp6);
-  }
-  .panel {
-    padding: var(--sp4);
-  }
-  .recon-row .detail {
-    margin-left: 0;
-    width: 100%;
-  }
-  .kpi-row {
-    grid-template-columns: 1fr;
-  }
-  .compare {
-    grid-template-columns: 1fr;
-    gap: var(--sp3);
-  }
-  .compare .arrow {
-    display: none;
-  }
 }
 
 /* ---------- Panel base ---------- */
 .panel {
-  background: var(--card);
-  border: 1px solid var(--rule);
+  background: var(--surface);
+  border: 1px solid var(--line);
   border-radius: var(--r-lg);
   padding: var(--sp5);
   margin-bottom: var(--sp4);
   min-width: 0;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
 .panel h2 {
   font-size: 15px;
@@ -1100,4 +1144,45 @@ select:hover {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ---------- Narrow screens ---------- */
+@media (max-width: 620px) {
+  .appbar-inner {
+    height: auto;
+    padding: var(--sp3) var(--sp4);
+    flex-wrap: wrap;
+    row-gap: var(--sp2);
+  }
+  .viewswitch {
+    order: 3;
+    margin-left: 0;
+    width: 100%;
+  }
+  .vtab {
+    flex: 1;
+  }
+  .badge-synthetic {
+    margin-left: auto;
+  }
+  .shell {
+    padding: var(--sp4) var(--sp4) var(--sp6);
+  }
+  .panel {
+    padding: var(--sp4);
+  }
+  .recon-row .detail {
+    margin-left: 0;
+    width: 100%;
+  }
+  .kpi-row {
+    grid-template-columns: 1fr;
+  }
+  .compare {
+    grid-template-columns: 1fr;
+    gap: var(--sp3);
+  }
+  .compare .arrow {
+    display: none;
+  }
 }
